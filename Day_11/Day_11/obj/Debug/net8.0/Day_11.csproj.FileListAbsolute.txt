@@ -1,0 +1,14 @@
+C:\Users\VC\source\repos\Day_11\Day_11\obj\Debug\net8.0\Day_11.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\VC\source\repos\Day_11\Day_11\obj\Debug\net8.0\Day_11.AssemblyInfoInputs.cache
+C:\Users\VC\source\repos\Day_11\Day_11\obj\Debug\net8.0\Day_11.AssemblyInfo.cs
+C:\Users\VC\source\repos\Day_11\Day_11\obj\Debug\net8.0\Day_11.csproj.CoreCompileInputs.cache
+C:\Users\VC\source\repos\Day_11\Day_11\bin\Debug\net8.0\Day_11.exe
+C:\Users\VC\source\repos\Day_11\Day_11\bin\Debug\net8.0\Day_11.deps.json
+C:\Users\VC\source\repos\Day_11\Day_11\bin\Debug\net8.0\Day_11.runtimeconfig.json
+C:\Users\VC\source\repos\Day_11\Day_11\bin\Debug\net8.0\Day_11.dll
+C:\Users\VC\source\repos\Day_11\Day_11\bin\Debug\net8.0\Day_11.pdb
+C:\Users\VC\source\repos\Day_11\Day_11\obj\Debug\net8.0\Day_11.dll
+C:\Users\VC\source\repos\Day_11\Day_11\obj\Debug\net8.0\refint\Day_11.dll
+C:\Users\VC\source\repos\Day_11\Day_11\obj\Debug\net8.0\Day_11.pdb
+C:\Users\VC\source\repos\Day_11\Day_11\obj\Debug\net8.0\Day_11.genruntimeconfig.cache
+C:\Users\VC\source\repos\Day_11\Day_11\obj\Debug\net8.0\ref\Day_11.dll
