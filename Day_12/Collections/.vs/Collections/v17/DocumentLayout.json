@@ -1,0 +1,105 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|c:\\users\\vc\\documents\\genspark_training\\day_12\\collections\\collections\\hard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|solutionrelative:collections\\hard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|c:\\users\\vc\\documents\\genspark_training\\day_12\\collections\\collections\\medium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|solutionrelative:collections\\medium.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|c:\\users\\vc\\documents\\genspark_training\\day_12\\collections\\collections\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|solutionrelative:collections\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|c:\\users\\vc\\documents\\genspark_training\\day_12\\collections\\collections\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|solutionrelative:collections\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|c:\\users\\vc\\documents\\genspark_training\\day_12\\collections\\collections\\easy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{353EF36C-7796-4BB8-97B7-EE5F03D7AE4D}|Collections\\Collections.csproj|solutionrelative:collections\\easy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Hard.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Hard.cs",
+              "RelativeDocumentMoniker": "Collections\\Hard.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Hard.cs",
+              "RelativeToolTip": "Collections\\Hard.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T11:08:02.355Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Medium.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Medium.cs",
+              "RelativeDocumentMoniker": "Collections\\Medium.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Medium.cs",
+              "RelativeToolTip": "Collections\\Medium.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T11:07:30.17Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Employee.cs",
+              "RelativeDocumentMoniker": "Collections\\Employee.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Employee.cs",
+              "RelativeToolTip": "Collections\\Employee.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAmwAUAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T07:54:34.155Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Easy.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Easy.cs",
+              "RelativeDocumentMoniker": "Collections\\Easy.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Easy.cs",
+              "RelativeToolTip": "Collections\\Easy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAEoAAABCAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T07:22:39.547Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Program.cs",
+              "RelativeDocumentMoniker": "Collections\\Program.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_12\\Collections\\Collections\\Program.cs",
+              "RelativeToolTip": "Collections\\Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-20T06:29:45.249Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

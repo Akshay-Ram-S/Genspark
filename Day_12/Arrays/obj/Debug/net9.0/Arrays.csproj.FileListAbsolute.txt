@@ -1,0 +1,15 @@
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\Arrays.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\Arrays.AssemblyInfoInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\Arrays.AssemblyInfo.cs
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\Arrays.csproj.CoreCompileInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\Arrays.sourcelink.json
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\bin\Debug\net9.0\Arrays.exe
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\bin\Debug\net9.0\Arrays.deps.json
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\bin\Debug\net9.0\Arrays.runtimeconfig.json
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\bin\Debug\net9.0\Arrays.dll
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\bin\Debug\net9.0\Arrays.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\Arrays.dll
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\refint\Arrays.dll
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\Arrays.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\Arrays.genruntimeconfig.cache
+C:\Users\VC\Documents\Genspark_Training\Day_12\Arrays\obj\Debug\net9.0\ref\Arrays.dll
