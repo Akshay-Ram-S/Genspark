@@ -1,0 +1,157 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication\\manageemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|solutionrelative:manageemployee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication\\services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|solutionrelative:services\\employeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|solutionrelative:models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication\\repositories\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|solutionrelative:repositories\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|solutionrelative:interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication\\interfaces\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|solutionrelative:interfaces\\iemployeeservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication\\models\\searchmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{D19DA5BB-2F7D-4034-A2E1-3CC6B32AF8C8}|WholeApplication.csproj|solutionrelative:models\\searchmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T04:07:41.673Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "EmployeeRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Repositories\\EmployeeRepository.cs",
+              "RelativeDocumentMoniker": "Repositories\\EmployeeRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Repositories\\EmployeeRepository.cs",
+              "RelativeToolTip": "Repositories\\EmployeeRepository.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAYwC4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T05:28:33.897Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "Models\\Employee.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Models\\Employee.cs",
+              "RelativeToolTip": "Models\\Employee.cs",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAAB4AAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T06:38:01.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmployeeService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Services\\EmployeeService.cs",
+              "RelativeDocumentMoniker": "Services\\EmployeeService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Services\\EmployeeService.cs",
+              "RelativeToolTip": "Services\\EmployeeService.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAYwE8AAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T06:25:18.892Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ManageEmployee.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\ManageEmployee.cs",
+              "RelativeDocumentMoniker": "ManageEmployee.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\ManageEmployee.cs",
+              "RelativeToolTip": "ManageEmployee.cs",
+              "ViewState": "AgIAAIEAAAAAAAAAAAAkwJ4AAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T07:14:55.671Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T04:43:21.027Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IEmployeeService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Interfaces\\IEmployeeService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IEmployeeService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Interfaces\\IEmployeeService.cs",
+              "RelativeToolTip": "Interfaces\\IEmployeeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T06:28:19.352Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SearchModel.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Models\\SearchModel.cs",
+              "RelativeDocumentMoniker": "Models\\SearchModel.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication\\Models\\SearchModel.cs",
+              "RelativeToolTip": "Models\\SearchModel.cs",
+              "ViewState": "AgIAAAQAAAAAAAAAAAA9wAkAAAAEAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T06:26:20.014Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,30 @@
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\bin\Debug\net8.0\WholeApplication2.exe
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\bin\Debug\net8.0\WholeApplication2.deps.json
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\bin\Debug\net8.0\WholeApplication2.runtimeconfig.json
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\bin\Debug\net8.0\WholeApplication2.dll
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\bin\Debug\net8.0\WholeApplication2.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\WholeApplication2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\WholeApplication2.AssemblyInfoInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\WholeApplication2.AssemblyInfo.cs
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\WholeApplication2.csproj.CoreCompileInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\WholeApplication2.sourcelink.json
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\WholeApplication2.dll
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\refint\WholeApplication2.dll
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\WholeApplication2.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\WholeApplication2.genruntimeconfig.cache
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2\obj\Debug\net8.0\ref\WholeApplication2.dll
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\bin\Debug\net8.0\WholeApplication2.exe
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\bin\Debug\net8.0\WholeApplication2.deps.json
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\bin\Debug\net8.0\WholeApplication2.runtimeconfig.json
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\bin\Debug\net8.0\WholeApplication2.dll
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\bin\Debug\net8.0\WholeApplication2.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\WholeApplication2.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\WholeApplication2.AssemblyInfoInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\WholeApplication2.AssemblyInfo.cs
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\WholeApplication2.csproj.CoreCompileInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\WholeApplication2.sourcelink.json
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\WholeApplication2.dll
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\refint\WholeApplication2.dll
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\WholeApplication2.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\WholeApplication2.genruntimeconfig.cache
+C:\Users\VC\Documents\Genspark_Training\Day_13\WholeApplication2 (AN)\obj\Debug\net8.0\ref\WholeApplication2.dll

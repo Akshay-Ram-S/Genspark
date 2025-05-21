@@ -1,0 +1,71 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Services\\AppointmentService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Services\\AppointmentService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\ManageAppointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:ManageAppointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AppointmentService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Services\\AppointmentService.cs",
+              "RelativeDocumentMoniker": "Services\\AppointmentService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Services\\AppointmentService.cs",
+              "RelativeToolTip": "Services\\AppointmentService.cs",
+              "ViewState": "AgIAACkAAAAAAAAAAAAYwEkAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T12:13:52.315Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ManageAppointment.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\ManageAppointment.cs",
+              "RelativeDocumentMoniker": "ManageAppointment.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\ManageAppointment.cs",
+              "RelativeToolTip": "ManageAppointment.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAACYAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T12:13:03.91Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T12:12:59.128Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication2 (an)\\manageappointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|solutionrelative:manageappointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication2 (an)\\services\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|solutionrelative:services\\appointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication2 (an)\\interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|solutionrelative:interfaces\\iappointmentservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication2 (an)\\models\\appointmentsearchmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|solutionrelative:models\\appointmentsearchmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication2 (an)\\models\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|solutionrelative:models\\appointment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication2 (an)\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|c:\\users\\vc\\documents\\genspark_training\\day_13\\wholeapplication2 (an)\\interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{2C03ACFF-4FEF-4682-8C13-C0BB2060E44A}|WholeApplication2.csproj|solutionrelative:interfaces\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "AppointmentSearchModel.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Models\\AppointmentSearchModel.cs",
+              "RelativeDocumentMoniker": "Models\\AppointmentSearchModel.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Models\\AppointmentSearchModel.cs",
+              "RelativeToolTip": "Models\\AppointmentSearchModel.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T11:55:38.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ManageAppointment.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\ManageAppointment.cs",
+              "RelativeDocumentMoniker": "ManageAppointment.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\ManageAppointment.cs",
+              "RelativeToolTip": "ManageAppointment.cs",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAiwIYAAABOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T10:12:14.725Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "IAppointmentService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Interfaces\\IAppointmentService.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IAppointmentService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Interfaces\\IAppointmentService.cs",
+              "RelativeToolTip": "Interfaces\\IAppointmentService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T08:57:07.526Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "AppointmentService.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Services\\AppointmentService.cs",
+              "RelativeDocumentMoniker": "Services\\AppointmentService.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Services\\AppointmentService.cs",
+              "RelativeToolTip": "Services\\AppointmentService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwDUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T09:50:22.098Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Program.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABAAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T08:42:13.701Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Appointment.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Models\\Appointment.cs",
+              "RelativeDocumentMoniker": "Models\\Appointment.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Models\\Appointment.cs",
+              "RelativeToolTip": "Models\\Appointment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T09:42:37.297Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Interfaces\\IRepository.cs",
+              "RelativeDocumentMoniker": "Interfaces\\IRepository.cs",
+              "ToolTip": "C:\\Users\\VC\\Documents\\Genspark_Training\\Day_13\\WholeApplication2 (AN)\\Interfaces\\IRepository.cs",
+              "RelativeToolTip": "Interfaces\\IRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAgAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-21T08:52:53.984Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
