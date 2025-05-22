@@ -1,0 +1,15 @@
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\bin\Debug\net9.0\SOLID.exe
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\bin\Debug\net9.0\SOLID.deps.json
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\bin\Debug\net9.0\SOLID.runtimeconfig.json
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\bin\Debug\net9.0\SOLID.dll
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\bin\Debug\net9.0\SOLID.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\SOLID.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\SOLID.AssemblyInfoInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\SOLID.AssemblyInfo.cs
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\SOLID.csproj.CoreCompileInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\SOLID.sourcelink.json
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\SOLID.dll
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\refint\SOLID.dll
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\SOLID.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\SOLID.genruntimeconfig.cache
+C:\Users\VC\Documents\Genspark_Training\Day_14\SOLID\obj\Debug\net9.0\ref\SOLID.dll
