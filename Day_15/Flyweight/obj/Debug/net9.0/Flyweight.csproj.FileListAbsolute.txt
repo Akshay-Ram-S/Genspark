@@ -1,0 +1,15 @@
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\bin\Debug\net9.0\Flyweight.exe
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\bin\Debug\net9.0\Flyweight.deps.json
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\bin\Debug\net9.0\Flyweight.runtimeconfig.json
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\bin\Debug\net9.0\Flyweight.dll
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\bin\Debug\net9.0\Flyweight.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\Flyweight.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\Flyweight.AssemblyInfoInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\Flyweight.AssemblyInfo.cs
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\Flyweight.csproj.CoreCompileInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\Flyweight.sourcelink.json
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\Flyweight.dll
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\refint\Flyweight.dll
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\Flyweight.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\Flyweight.genruntimeconfig.cache
+C:\Users\VC\Documents\Genspark_Training\Day_15\Flyweight\obj\Debug\net9.0\ref\Flyweight.dll

@@ -1,0 +1,1 @@
+This is an example for proxy design pattern. This can only be read by admin.

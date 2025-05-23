@@ -1,0 +1,15 @@
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\bin\Debug\net9.0\Singleton.exe
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\bin\Debug\net9.0\Singleton.deps.json
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\bin\Debug\net9.0\Singleton.runtimeconfig.json
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\bin\Debug\net9.0\Singleton.dll
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\bin\Debug\net9.0\Singleton.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\Singleton.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\Singleton.AssemblyInfoInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\Singleton.AssemblyInfo.cs
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\Singleton.csproj.CoreCompileInputs.cache
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\Singleton.sourcelink.json
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\Singleton.dll
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\refint\Singleton.dll
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\Singleton.pdb
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\Singleton.genruntimeconfig.cache
+C:\Users\VC\Documents\Genspark_Training\Day_15\Singleton\obj\Debug\net9.0\ref\Singleton.dll
