@@ -24,7 +24,7 @@ namespace SOLID.repositories
         {
             return _users.ContainsKey(username) && _users[username].Password == password;
         }
-
+        
         public bool UserExists(string username)
         {
             return _users.ContainsKey(username);
