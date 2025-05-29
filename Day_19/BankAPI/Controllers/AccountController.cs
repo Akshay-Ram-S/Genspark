@@ -24,7 +24,7 @@ namespace BankAPI.Controllers
             return CreatedAtAction(nameof(GetAccount), new { accountId = createdAccount.Id }, createdAccount);
         }
 
-        [HttpGet("{accountId}")]
+        [HttpGet("{accountNumber}")]
         public async Task<IActionResult> GetAccount(string accountNumber)
         {
             var account = await _accountService.GetAccount(accountNumber);
