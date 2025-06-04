@@ -1,0 +1,26 @@
+2025-06-04 12:34:16,463 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 12:34:16,500 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 12:34:16,500 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 12:34:16,500 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 12:50:21,148 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
+2025-06-04 13:03:08,386 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 13:03:08,423 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 13:03:08,423 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 13:03:08,423 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 13:03:38,523 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (53ms) [Parameters=[@__key_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT u."Username", u."Password", u."Role"
+FROM "Users" AS u
+WHERE u."Username" = @__key_0
+LIMIT 2
+2025-06-04 13:03:38,925 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (3ms) [Parameters=[@__user_Username_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT d."Id", d."Email", d."Name", d."Status", d."YearsOfExperience"
+FROM "Doctors" AS d
+WHERE d."Email" = @__user_Username_0
+LIMIT 1
+2025-06-04 13:03:45,950 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT u."Username", u."Password", u."Role"
+FROM "Users" AS u
+WHERE u."Username" = @__key_0
+LIMIT 2
+2025-06-04 13:03:46,234 [.NET TP Worker] ERROR FirstAPI.Services.AuthenticationService - Invalid login attempt
+2025-06-04 14:27:50,023 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...

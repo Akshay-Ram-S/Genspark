@@ -1,0 +1,115 @@
+2025-06-04 15:03:25,567 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 15:03:25,599 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 15:03:25,600 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 15:03:25,600 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 15:04:15,534 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
+2025-06-04 15:04:22,455 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 15:04:22,486 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 15:04:22,486 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 15:04:22,486 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 15:05:50,161 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (46ms) [Parameters=[@__key_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT u."Username", u."Password", u."Role"
+FROM "Users" AS u
+WHERE u."Username" = @__key_0
+LIMIT 2
+2025-06-04 15:05:50,570 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (4ms) [Parameters=[@__user_Username_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT d."Id", d."Email", d."Name", d."Status", d."YearsOfExperience"
+FROM "Doctors" AS d
+WHERE d."Email" = @__user_Username_0
+LIMIT 1
+2025-06-04 15:14:21,574 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
+2025-06-04 15:14:32,654 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 15:14:32,684 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 15:14:32,684 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 15:14:32,685 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 15:14:58,977 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (45ms) [Parameters=[@__key_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT u."Username", u."Password", u."Role"
+FROM "Users" AS u
+WHERE u."Username" = @__key_0
+LIMIT 2
+2025-06-04 15:14:59,364 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (3ms) [Parameters=[@__user_Username_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT d."Id", d."Email", d."Name", d."Status", d."YearsOfExperience"
+FROM "Doctors" AS d
+WHERE d."Email" = @__user_Username_0
+LIMIT 1
+2025-06-04 15:18:32,336 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
+2025-06-04 15:18:44,268 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 15:18:44,298 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 15:18:44,298 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 15:18:44,298 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 15:28:21,917 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
+2025-06-04 15:38:18,740 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 15:38:18,771 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 15:38:18,772 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 15:38:18,772 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 15:39:29,833 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
+2025-06-04 15:39:38,059 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 15:39:38,100 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 15:39:38,100 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 15:39:38,100 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 15:43:21,619 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
+2025-06-04 16:22:36,294 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 16:22:36,325 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 16:22:36,326 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 16:22:36,326 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 16:22:50,476 [.NET TP Worker] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware - An unhandled exception has occurred while executing the request.
+System.InvalidOperationException: Unable to resolve service for type 'FirstAPI.Interfaces.IAuthenticationService' while attempting to activate 'FirstAPI.Controllers.AuthenticationController'.
+   at Microsoft.Extensions.DependencyInjection.ActivatorUtilities.ThrowHelperUnableToResolveService(Type type, Type requiredBy)
+   at lambda_method3(Closure, IServiceProvider, Object[])
+   at Microsoft.AspNetCore.Mvc.Controllers.ControllerFactoryProvider.<>c__DisplayClass6_0.<CreateControllerFactory>g__CreateController|0(ControllerContext controllerContext)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-04 16:24:43,249 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
+2025-06-04 16:24:51,246 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 16:24:51,279 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 16:24:51,280 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 16:24:51,280 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 16:25:25,153 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (48ms) [Parameters=[@__key_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT u."Username", u."Password", u."Role"
+FROM "Users" AS u
+WHERE u."Username" = @__key_0
+LIMIT 2
+2025-06-04 16:25:25,315 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (4ms) [Parameters=[@p0='?', @p1='?', @p2='?'], CommandType='Text', CommandTimeout='30']
+INSERT INTO "Users" ("Username", "Password", "Role")
+VALUES (@p0, @p1, @p2);
+2025-06-04 16:30:53,944 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
+2025-06-04 16:36:33,949 [1] INFO Microsoft.Hosting.Lifetime - Now listening on: http://localhost:5001
+2025-06-04 16:36:33,982 [1] INFO Microsoft.Hosting.Lifetime - Application started. Press Ctrl+C to shut down.
+2025-06-04 16:36:33,982 [1] INFO Microsoft.Hosting.Lifetime - Hosting environment: Development
+2025-06-04 16:36:33,982 [1] INFO Microsoft.Hosting.Lifetime - Content root path: /Users/presidio/Documents/Genspark/Day_23/FirstAPI
+2025-06-04 16:36:55,594 [.NET TP Worker] INFO Microsoft.EntityFrameworkCore.Database.Command - Executed DbCommand (53ms) [Parameters=[@__key_0='?'], CommandType='Text', CommandTimeout='30']
+SELECT u."Username", u."Password", u."Role"
+FROM "Users" AS u
+WHERE u."Username" = @__key_0
+LIMIT 2
+2025-06-04 16:37:12,350 [.NET TP Worker] ERROR FirstAPI.Services.GoogleAuthenticationService - Google token validation failed: Invalid character after parsing property name. Expected ':' but got: �. Path 'alg', line 1, position 62.
+2025-06-04 16:37:12,376 [.NET TP Worker] ERROR Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware - An unhandled exception has occurred while executing the request.
+System.Exception: Invalid Google token
+   at FirstAPI.Services.GoogleAuthenticationService.LoginWithGoogle(String idToken) in /Users/presidio/Documents/Genspark/Day_23/FirstAPI/Services/GoogleService.cs:line 36
+   at FirstAPI.Controllers.AuthenticationController.UserLogin(String token) in /Users/presidio/Documents/Genspark/Day_23/FirstAPI/Controllers/AuthenticationController.cs:line 53
+   at lambda_method5(Closure, Object)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ActionMethodExecutor.AwaitableObjectResultExecutor.Execute(ActionContext actionContext, IActionResultTypeMapper mapper, ObjectMethodExecutor executor, Object controller, Object[] arguments)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeActionMethodAsync>g__Awaited|12_0(ControllerActionInvoker invoker, ValueTask`1 actionResultValueTask)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.<InvokeNextActionFilterAsync>g__Awaited|10_0(ControllerActionInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Rethrow(ActionExecutedContextSealed context)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ControllerActionInvoker.InvokeInnerFilterAsync()
+--- End of stack trace from previous location ---
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeFilterPipelineAsync>g__Awaited|20_0(ResourceInvoker invoker, Task lastTask, State next, Scope scope, Object state, Boolean isCompleted)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Mvc.Infrastructure.ResourceInvoker.<InvokeAsync>g__Awaited|17_0(ResourceInvoker invoker, Task task, IDisposable scope)
+   at Microsoft.AspNetCore.Authorization.AuthorizationMiddleware.Invoke(HttpContext context)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.Invoke(HttpContext context)
+   at Swashbuckle.AspNetCore.SwaggerUI.SwaggerUIMiddleware.Invoke(HttpContext httpContext)
+   at Swashbuckle.AspNetCore.Swagger.SwaggerMiddleware.Invoke(HttpContext httpContext, ISwaggerProvider swaggerProvider)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddlewareImpl.Invoke(HttpContext context)
+2025-06-04 16:37:31,516 [.NET Signal Handler] INFO Microsoft.Hosting.Lifetime - Application is shutting down...
