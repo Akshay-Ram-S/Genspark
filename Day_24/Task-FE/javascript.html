@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>SignalR Test</title>
+  <script src="https://cdn.jsdelivr.net/npm/@microsoft/signalr@latest/dist/browser/signalr.min.js"></script>
+</head>
+<body>
+  <h2>SignalR Notification Test</h2>
+  <div id="messages"></div>
+
+  <script>
+    const connection = new signalR.HubConnectionBuilder()
+        .withUrl("http://localhost:5220/notifications") 
+        .withAutomaticReconnect()
+        .build();
+
+    connection.on("ReceiveNotification", message => {
+      const div = document.getElementById("messages");
+      const p = document.createElement("p");
+      p.textContent = message;
+      div.appendChild(p);
+    });
+
+    connection.start()
+      .then(() => console.log("Connected to SignalR hub"))
+      .catch(err => console.error("Connection failed: ", err));
+  </script>
+</body>
+</html>
