@@ -1,0 +1,310 @@
+body {
+    margin: 0;
+    font-family: 'Inter', 'Roboto', sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    color: #666666;
+    background-color: #F5F5F5;
+    padding: 0 100px;
+}
+
+h1, h2, h3 {
+    font-family: 'Poppins', 'Inter', sans-serif;
+    color: #333333;
+}
+
+h1 {
+    font-size: 32px;
+    font-weight: 600;
+}
+
+h2 {
+    font-size: 24px;
+    font-weight: 500;
+}
+
+h3 {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+p {
+    margin: 0;
+    color: #666666;
+}
+
+.container {
+    width: 100%;
+    max-width: 1140px;
+    margin: 0 auto;
+    padding: 0 20px 20px 0;
+    box-sizing: border-box;
+    color : #FFFFFF
+}
+
+
+.btn-primary {
+    padding: 12px 24px;
+    background-color: #5e87ed;
+    color: #FFFFFF;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.btn-primary:hover {
+    background-color: #acbcea;
+}
+
+.btn-outline {
+    padding: 12px 24px;
+    background-color: transparent;
+    color: #666666;
+    border: 1px solid #666666;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+}
+
+.btn-outline:hover {
+    background-color: #E0E0E0;
+}
+
+.heading-align-center{
+    text-align: center;
+}
+
+header {
+    background-color: #FFFFFF;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 24px 20px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.logo .icon {
+    width: 32px;
+    height: 32px;
+    color: #4B8BBE;
+}
+
+.logo span {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+}
+
+nav {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+}
+
+nav a {
+    color: #666666;
+    text-decoration: none;
+}
+
+nav a:hover {
+    color: #333333;
+}
+
+.lucide-quote-icon, .lucide-stethoscope-icon, 
+.lucide-clipboard-plus-icon, .lucide-cross-icon, 
+.lucide-briefcase-medical-icon {
+    color: #333333; 
+}
+
+.section-card {
+    background-color: #FFFFFF;
+    padding: 24px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+}
+
+.hero {
+    background-color: #daf4ff;
+    
+    position: relative; 
+}
+
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    position: relative;
+    height: 100%; 
+    min-height: 400px; 
+}
+
+.hero-text {
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.hero-image {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.image-placeholder {
+    width: 300px;
+    height: 300px;
+    background-color: #daf4ff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.image-placeholder img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+@media (min-width: 768px) {
+    .hero-content {
+        flex-direction: row;
+        align-items: center;
+    }
+    .hero-text,
+    .hero-image {
+        width: 50%;
+    }
+
+    .hero-image {
+        margin-top: 0;
+    }
+}
+
+.services {
+    background-color: #FFFFFF;
+    padding: 10px 0;
+}
+
+.services h2 {
+    margin-bottom: 32px;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+.services .section-card:hover {
+    background-color: #e0f0fa; 
+    transition: background-color 0.3s ease; 
+    transform: scale(1.1);
+}
+.icon-large {
+    width: 48px;
+    height: 48px;
+    color: #4B8BBE;
+}
+
+.service-card h3 {
+    margin-bottom: 8px;
+}
+
+@media (min-width: 768px) {
+    .services-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+.testimonials {
+    background-color: #daf4ff;
+    padding: 10px 0;
+}
+
+.testimonials h2 {
+    margin-bottom: 32px;
+}
+
+
+.testimonial-card .icon {
+    width: 32px;
+    height: 32px;
+    color: #4B8BBE;
+}
+
+.testimonial-card .quote {
+    margin-bottom: 8px;
+}
+
+.testimonial-card .author {
+    color: #333333;
+    font-weight: 500;
+}
+
+
+.clinic-hours {
+    background-color: #FFFFFF;
+    padding: 10px 0;
+}
+
+.clinic-hours h2 {
+    margin-bottom: 20px;
+}
+
+.hours-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    width:100%;
+    
+}
+
+.hours-card {
+    background-color: #FFFFFF;
+    padding: 20px;
+    border-radius: 0 0 8px 8px;
+    display: flex;
+    align-items: center;
+    
+   
+}
+
+.hours-card .icon {
+    width: 32px;
+    height: 32px;
+    color: #4B8BBE;
+}
+
+.hours-card .day {
+    color: #333333;
+    font-weight: 500;
+}
+
+@media (min-width: 768px) {
+    .hours-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
