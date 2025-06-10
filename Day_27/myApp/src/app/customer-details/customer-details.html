@@ -1,0 +1,23 @@
+<h2>Customer Details</h2>
+<div class="customer-details">
+  <p>
+    Customer ID: {{custId}}  
+    <br />
+    Name: {{name}}  
+    <br />
+    Email: {{email}}  
+    <br />
+    Age: {{age}}  
+  </p>
+</div>
+<div class="like-dislike-container">
+  <button (click)="like()">
+    <i class="bi bi-hand-thumbs-up"></i>
+  </button>
+  <span class="count">{{ likeCount }}</span>
+
+  <button (click)="dislike()">
+    <i class="bi bi-hand-thumbs-down"></i>
+  </button>
+  <span class="count">{{ dislikeCount }}</span>
+</div>

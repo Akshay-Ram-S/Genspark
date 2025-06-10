@@ -1,0 +1,19 @@
+<h2>Product Component</h2>
+    <div class="header">    
+      <i class="bi bi-cart cart-icon">
+        <span class="badge">{{ cartCount }}</span>
+      </i>
+    </div>
+
+    <div class="product-list">
+      <div class="product-card" *ngFor="let product of products">
+        <img [src]="product.image" alt="{{ product.name }}">
+
+        <h3>{{ product.name }}</h3>
+        <p>${{ product.price }}</p>
+        <p>Quantity Required: {{ product.quantity }}</p>
+
+        <button (click)="removeFromCart(product)" [disabled]="product.quantity === 0">Remove</button>
+        <button (click)="addToCart(product)">Add to Cart</button>
+      </div>
+    </div>
