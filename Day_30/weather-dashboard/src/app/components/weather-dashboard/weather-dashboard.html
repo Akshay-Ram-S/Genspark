@@ -1,0 +1,17 @@
+<app-city-search></app-city-search>
+
+<div class="dashboard-container">
+  <ng-container *ngIf="error$ | async as error; else weatherBlock">
+    <p class="error-text">{{ error }}</p>
+  </ng-container>
+
+  <ng-template #weatherBlock>
+    <ng-container *ngIf="weather$ | async as weather; else loading">
+      <app-weather-card [weather]="weather"></app-weather-card>
+    </ng-container>
+  </ng-template>
+
+  <ng-template #loading>
+    <p class="loading-text">Loading weather data...</p>
+  </ng-template>
+</div>

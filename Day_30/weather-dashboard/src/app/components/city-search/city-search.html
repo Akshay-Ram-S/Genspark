@@ -1,0 +1,9 @@
+<div class="search-container">
+  <input
+    type="text"
+    [value]="city()"
+    (input)="onInputChange($event)"
+    placeholder="Enter city..."
+  />
+  <button (click)="search()">Search</button>
+</div>
