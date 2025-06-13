@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using AuctionAPI.Interfaces;
 using AuctionAPI.Mappers;
 using AuctionAPI.Models;
@@ -193,11 +194,20 @@ namespace AuctionAPI.Services
             }
         }
 
-
-
         public static bool IsFuzzyMatch(string source, string target, int threshold = 70)
         {
-            return Fuzz.Ratio(source.ToLower(), target.ToLower()) >= threshold;
+            string Clean(string input) => Regex.Replace(input.Trim().ToLower(), @"\s+", " ");
+
+            source = Clean(source);
+            target = Clean(target);
+
+            int ratio = Fuzz.Ratio(source, target);
+            int tokenRatio = Fuzz.TokenSetRatio(source, target);
+            int partialRatio = Fuzz.PartialRatio(source, target);
+
+            double avgScore = (tokenRatio + partialRatio + ratio) / 3.0;
+
+            return avgScore >= threshold;
         }
 
 

@@ -1,9 +1,6 @@
 using System.Text.RegularExpressions;
 using AuctionAPI.Interfaces;
 using AuctionAPI.Models;
-using AuctionAPI.Models.DTOs;
-using Microsoft.AspNetCore.Http.HttpResults;
-using Microsoft.AspNetCore.Mvc;
 
 namespace AuctionAPI.Validation
 {
@@ -23,7 +20,7 @@ namespace AuctionAPI.Validation
         {
             try
             {
-                if (string.IsNullOrWhiteSpace(email) || !IsValidEmail(email))
+                if (string.IsNullOrWhiteSpace(email))
                     return false;
 
                 var users = await _userRepository.GetAll();
@@ -35,7 +32,7 @@ namespace AuctionAPI.Validation
             }
         }
 
-        private bool IsValidEmail(string email)
+        public bool IsValidEmail(string email)
         {
             var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$",
                                         RegexOptions.IgnoreCase | RegexOptions.Compiled);
@@ -55,8 +52,18 @@ namespace AuctionAPI.Validation
             return Regex.IsMatch(name, @"^[A-Za-z ]+$");
         }
 
-        public async Task<bool> ValidAadhar(string aadhar)
+        public async Task<bool> ValidAadharAndPAN(string aadhar, string pan)
         {
+            if (string.IsNullOrWhiteSpace(pan) || pan.Length != 10)
+            {
+                throw new Exception("PAN number must be exactly 10 characters long.");
+            }
+
+            if (!Regex.IsMatch(pan, @"^[A-Z]{5}\d{4}[A-Z]$"))
+            {
+                throw new Exception("PAN number must be in the format: 5 letters, 4 digits, and 1 letter.");
+            }
+
             if (string.IsNullOrWhiteSpace(aadhar) || aadhar.Length != 12)
             {
                 throw new Exception("Aadhar number must be exactly 12 digits long.");
@@ -66,29 +73,9 @@ namespace AuctionAPI.Validation
             {
                 throw new Exception("Aadhar number must contain only digits.");
             }
-            var encryptedAadhar = await _encryptionService.EncryptData(new EncryptModel { Data = aadhar });
 
-            var users = await _userRepository.GetAll();
-            bool aadharExists = users.Any(u => u.PAN == encryptedAadhar.EncryptedData);
-            return !aadharExists;
+            return true;
         }
 
-        public async Task<bool> ValidPAN(string pan)
-        {
-            if (string.IsNullOrWhiteSpace(pan) || pan.Length != 10)
-            {
-                throw new Exception("PAN number must be exactly 10 characters long.");
-            }
-
-            if (!Regex.IsMatch(pan, @"^[A-Z]{5}\d{4}[A-Z]$"))
-            {
-                throw new Exception("PAN number must be in the format: 5 uppercase letters, 4 digits, and 1 uppercase letter.");
-            }
-            var encryptedPAN = await _encryptionService.EncryptData(new EncryptModel { Data = pan });
-
-            var users = await _userRepository.GetAll();
-            bool panExists = users.Any(u => u.PAN == encryptedPAN.EncryptedData);
-            return !panExists;
-        }
     }
 }

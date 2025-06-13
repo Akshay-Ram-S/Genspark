@@ -10,5 +10,6 @@ namespace AuctionAPI.Interfaces
         public Task<Item> GetItemWithBids(Guid id);
         public Task<IEnumerable<ItemsBySellerDto>> ItemsBySeller(Guid id);
         public Task<IEnumerable<BidsByBidderDto>> BidsByBidder(Guid bidderId);
+        public Task<User> GetUserDetails(string email);
     }
 }

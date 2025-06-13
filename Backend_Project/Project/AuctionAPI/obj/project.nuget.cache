@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "3TKBImPd3gw=",
+  "dgSpecHash": "8ticIHjpR8Y=",
   "success": true,
   "projectFilePath": "/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/AuctionAPI.csproj",
   "expectedPackageFiles": [
@@ -12,6 +12,7 @@
     "/Users/presidio/.nuget/packages/google.apis.core/1.69.0/google.apis.core.1.69.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/humanizer.core/2.14.1/humanizer.core.2.14.1.nupkg.sha512",
     "/Users/presidio/.nuget/packages/log4net/2.0.15/log4net.2.0.15.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.applicationinsights/2.20.0/microsoft.applicationinsights.2.20.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/microsoft.aspnetcore.authentication.abstractions/2.3.0/microsoft.aspnetcore.authentication.abstractions.2.3.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/microsoft.aspnetcore.authentication.google/9.0.5/microsoft.aspnetcore.authentication.google.9.0.5.nupkg.sha512",
     "/Users/presidio/.nuget/packages/microsoft.aspnetcore.authentication.jwtbearer/9.0.5/microsoft.aspnetcore.authentication.jwtbearer.9.0.5.nupkg.sha512",
@@ -88,6 +89,7 @@
     "/Users/presidio/.nuget/packages/serilog.extensions.logging/9.0.0/serilog.extensions.logging.9.0.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/serilog.formatting.compact/3.0.0/serilog.formatting.compact.3.0.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/serilog.settings.configuration/9.0.0/serilog.settings.configuration.9.0.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/serilog.sinks.applicationinsights/4.0.0/serilog.sinks.applicationinsights.4.0.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/serilog.sinks.console/6.0.0/serilog.sinks.console.6.0.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/serilog.sinks.debug/3.0.0/serilog.sinks.debug.3.0.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/serilog.sinks.file/7.0.0/serilog.sinks.file.7.0.0.nupkg.sha512",
@@ -105,6 +107,7 @@
     "/Users/presidio/.nuget/packages/system.composition.runtime/7.0.0/system.composition.runtime.7.0.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/system.composition.typedparts/7.0.0/system.composition.typedparts.7.0.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/system.configuration.configurationmanager/4.5.0/system.configuration.configurationmanager.4.5.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/system.diagnostics.diagnosticsource/5.0.0/system.diagnostics.diagnosticsource.5.0.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/system.identitymodel.tokens.jwt/8.0.1/system.identitymodel.tokens.jwt.8.0.1.nupkg.sha512",
     "/Users/presidio/.nuget/packages/system.io.pipelines/8.0.0/system.io.pipelines.8.0.0.nupkg.sha512",
     "/Users/presidio/.nuget/packages/system.management/7.0.2/system.management.7.0.2.nupkg.sha512",

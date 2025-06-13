@@ -18,6 +18,8 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
+using Serilog.Sinks.ApplicationInsights.TelemetryConverters;
+
 
 Log.Logger = new LoggerConfiguration()
     .WriteTo.Console()
@@ -26,6 +28,17 @@ Log.Logger = new LoggerConfiguration()
     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
+
+
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .Enrich.WithProperty("Application", "AuctionAPI")    
+    .WriteTo.Console()
+    .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day)
+    .WriteTo.ApplicationInsights(
+        connectionString: builder.Configuration["ApplicationInsights:ConnectionString"],
+        telemetryConverter: TelemetryConverter.Traces)
+    .CreateLogger();
 
 builder.Host.UseSerilog();
 builder.Services.AddControllers();

@@ -26,6 +26,12 @@ namespace AuctionAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Seller")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CreateItem([FromForm] ItemCreateDto dto)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value ?? "Unknown";
@@ -54,6 +60,10 @@ namespace AuctionAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetItem(Guid id)
         {
             _logger.LogInformation("Request to fetch item {ItemId}", id);
@@ -78,6 +88,10 @@ namespace AuctionAPI.Controllers
         }
 
         [HttpGet]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllItems([FromQuery] ItemFilter? filter, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
 
@@ -92,7 +106,11 @@ namespace AuctionAPI.Controllers
                     _logger.LogWarning("No items found in database");
                     return NotFound(ApiResponseMapper.NotFound<string>("No items found in the database."));
                 }
-
+                if (result.Data == null || !result.Data.Any())
+                {
+                    _logger.LogWarning("No items found for the given filter");
+                    return NotFound(ApiResponseMapper.NotFound<string>("No items found for the given filter."));
+                }
                 return Ok(new
                 {
                     success = true,
@@ -110,6 +128,10 @@ namespace AuctionAPI.Controllers
         }
 
         [HttpGet("all-bids/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetAllBids(Guid id)
         {
             _logger.LogInformation("Fetching all bids for item {ItemId}", id);
@@ -135,7 +157,13 @@ namespace AuctionAPI.Controllers
 
         [HttpPut("{id}")]
         [Authorize(Roles = "Seller")]
-        public async Task<IActionResult> UpdateItemById(Guid id,[FromForm] ItemUpdateDto item)
+        [Authorize(Roles = "Seller")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> UpdateItemById(Guid id, [FromForm] ItemUpdateDto item)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
             _logger.LogInformation("Updating item {ItemId}", id);
@@ -163,6 +191,11 @@ namespace AuctionAPI.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Seller")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteItemById(Guid id)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;

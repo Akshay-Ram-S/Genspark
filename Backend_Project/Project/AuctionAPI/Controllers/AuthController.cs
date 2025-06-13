@@ -9,19 +9,28 @@ namespace AuctionAPI.Controllers
 {
     [ApiController]
     [Route("/api/v1/[controller]")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+    [ProducesResponseType(StatusCodes.Status500InternalServerError)]
     public class AuthController : ControllerBase
     {
         private readonly IAuthenticationService _authenticationService;
         private readonly ILogger<AuthController> _logger;
+        private readonly IFunctionalities _functionalities;
 
         public AuthController(IAuthenticationService authenticationService,
-                              ILogger<AuthController> logger)
+                              ILogger<AuthController> logger,
+                              IFunctionalities functionalities)
         {
             _authenticationService = authenticationService;
             _logger = logger;
+            _functionalities = functionalities;
         }
 
         [HttpPost("Login")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UserLogin(UserLoginRequest loginRequest)
         {
             try
@@ -36,7 +45,11 @@ namespace AuctionAPI.Controllers
             }
         }
 
+        [Authorize]
         [HttpPost("Refresh")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> Refresh([FromBody] TokenRefreshRequest request)
         {
             try
@@ -57,6 +70,9 @@ namespace AuctionAPI.Controllers
 
         [Authorize]
         [HttpPost("Logout")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> UserLogout([FromBody] TokenRefreshRequest token)
         {
             if (token == null || string.IsNullOrWhiteSpace(token.RefreshToken))
@@ -78,20 +94,17 @@ namespace AuctionAPI.Controllers
 
         [Authorize]
         [HttpGet("Me")]
-        public IActionResult MyProfile()
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> MyProfile()
         {
             try
             {
                 var userId = User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
                 var email = User.FindFirst(ClaimTypes.Email)?.Value;
                 var role = User.FindFirst(ClaimTypes.Role)?.Value;
-
-                var result = new
-                {
-                    Id = userId,
-                    Email = email,
-                    Role = role
-                };
+                var result = await _functionalities.GetUserDetails(email);
 
                 return Ok(ApiResponseMapper.Success(result, "User profile fetched."));
             }

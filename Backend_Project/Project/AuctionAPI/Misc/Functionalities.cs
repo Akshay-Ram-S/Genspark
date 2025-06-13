@@ -15,18 +15,22 @@ namespace AuctionAPI.Misc
         private readonly IValidation _validation;
         private readonly IEncryptionService _encryptionService;
         private readonly UserMapper _mapper;
+        private readonly IRepository<string, User> _userRepository;
 
         public Functionalities(AuctionContext auctionContext,
                                IEncryptionService encryptionService,
-                               IValidation validationService)    
+                               IValidation validationService,
+                               IRepository<string, User> userRepository)
         {
             _validation = validationService;
             _encryptionService = encryptionService;
             _mapper = new UserMapper();
             _auctionContext = auctionContext;
+            _userRepository = userRepository;
         }
 
-        public async Task<User> RegisterUser(AddUserDto user) {
+        public async Task<User> RegisterUser(AddUserDto user)
+        {
 
             var _user = _mapper.MapUser(user);
 
@@ -69,7 +73,7 @@ namespace AuctionAPI.Misc
         {
             var seller = await _auctionContext.Sellers
                 .Where(s => s.SellerId == sellerId && s.User.Status == "Active")
-                .Include(s => s.Items)
+                .Include(s => s.Items.Where(i => !i.IsDeleted))
                 .FirstOrDefaultAsync();
 
             if (seller == null || seller.Items == null || !seller.Items.Any())
@@ -88,13 +92,13 @@ namespace AuctionAPI.Misc
 
             return itemSummaries;
         }
-        
+
         public async Task<IEnumerable<BidsByBidderDto>> BidsByBidder(Guid bidderId)
         {
             var bidder = await _auctionContext.Bidders
                 .Where(b => b.BidderId == bidderId && b.User.Status == "Active")
                 .Include(b => b.User)
-                .Include(b => b.Bids)
+                .Include(b => b.Bids.Where(bid => !bid.IsDeleted))
                 .FirstOrDefaultAsync();
 
             if (bidder == null || bidder.Bids == null || !bidder.Bids.Any())
@@ -112,6 +116,22 @@ namespace AuctionAPI.Misc
             });
 
             return bidSummaries;
+        }
+
+        public async Task<User> GetUserDetails(string email)
+        {
+            if (string.IsNullOrWhiteSpace(email))
+            {
+                throw new ArgumentException("Email cannot be null or empty", nameof(email));
+            }
+
+            var user = await _userRepository.Get(email);
+            if (user == null)
+            {
+                throw new Exception("User not found");
+            }
+
+            return user;
         }
         
     }

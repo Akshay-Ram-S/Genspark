@@ -325,3 +325,5 @@
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/obj/Debug/net9.0/AuctionAPI.genruntimeconfig.cache
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/obj/Debug/net9.0/ref/AuctionAPI.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net9.0/FuzzySharp.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net9.0/Microsoft.ApplicationInsights.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net9.0/Serilog.Sinks.ApplicationInsights.dll

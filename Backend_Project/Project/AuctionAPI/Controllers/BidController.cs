@@ -9,6 +9,7 @@ namespace AuctionAPI.Controllers
 {
     [ApiController]
     [Route("/api/v1/[controller]")]
+    
     public class BidController : Controller
     {
         private readonly IBidService _bidService;
@@ -23,6 +24,12 @@ namespace AuctionAPI.Controllers
 
         [HttpPost]
         [Authorize(Roles = "Bidder")]
+        [ProducesResponseType(StatusCodes.Status201Created)]
+        [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> PostBid(BidCreateDTO bidDto)
         {
             _logger.LogInformation("Attempting to place a bid on item {ItemId} by bidder {BidderId} for amount {Amount}",
@@ -39,7 +46,7 @@ namespace AuctionAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogError(ex, "Error placing bid on item {ItemId} by bidder {BidderId}", 
+                _logger.LogError(ex, "Error placing bid on item {ItemId} by bidder {BidderId}",
                     bidDto.ItemId, bidDto.BidderId);
 
                 return BadRequest(ApiResponseMapper.Fail<string>(ex.Message));
@@ -47,6 +54,9 @@ namespace AuctionAPI.Controllers
         }
 
         [HttpGet("{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> GetBid(Guid id)
         {
             _logger.LogInformation("Fetching bid with ID: {BidId}", id);
@@ -74,6 +84,10 @@ namespace AuctionAPI.Controllers
 
         [HttpDelete("{id}")]
         [Authorize(Roles = "Bidder")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CancelBid(Guid id)
         {
             var email = User.FindFirst(ClaimTypes.Email)?.Value;

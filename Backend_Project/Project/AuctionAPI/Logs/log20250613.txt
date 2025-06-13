@@ -1,0 +1,813 @@
+2025-06-13 08:46:42.287 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 08:46:42.501 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 08:46:42.551 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 08:46:42.554 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 08:46:42.554 +05:30 [INF] Hosting environment: Development
+2025-06-13 08:46:42.554 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 08:46:50.543 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/swagger/index.html - null null
+2025-06-13 08:46:50.681 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/swagger/index.html - 200 null text/html;charset=utf-8 139.881ms
+2025-06-13 08:46:50.810 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/swagger/v1/swagger.json - null null
+2025-06-13 08:46:51.038 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 228.8855ms
+2025-06-13 09:13:56.575 +05:30 [INF] Application is shutting down...
+2025-06-13 09:22:26.163 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 09:22:26.332 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 09:22:26.373 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 09:22:26.375 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 09:22:26.375 +05:30 [INF] Hosting environment: Development
+2025-06-13 09:22:26.376 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 09:25:26.756 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/swagger/index.html - null null
+2025-06-13 09:25:26.902 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/swagger/index.html - 200 null text/html;charset=utf-8 148.7521ms
+2025-06-13 09:25:27.033 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/swagger/v1/swagger.json - null null
+2025-06-13 09:25:27.278 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 245.3667ms
+2025-06-13 09:25:44.217 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - application/json 60
+2025-06-13 09:25:44.241 +05:30 [INF] CORS policy execution successful.
+2025-06-13 09:25:44.322 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 09:25:44.355 +05:30 [INF] Route matched with {action = "UserLogin", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UserLogin(AuctionAPI.Models.DTOs.UserLoginRequest) on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 09:25:46.371 +05:30 [INF] Executed DbCommand (81ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 09:25:47.188 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "Expires", "IsRevoked", "Token", "UserEmail")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 09:25:47.210 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.DTOs.UserLoginResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 09:25:47.230 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI) in 2869.4392ms
+2025-06-13 09:25:47.231 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 09:25:47.244 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - 200 null application/json; charset=utf-8 3027.0982ms
+2025-06-13 09:27:38.729 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5205/api/v1/User/Seller/0197652e-d0e2-755b-b58f-fe4130e334a0 - application/json 46
+2025-06-13 09:27:38.732 +05:30 [INF] CORS policy execution successful.
+2025-06-13 09:27:38.790 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI)'
+2025-06-13 09:27:38.798 +05:30 [INF] Route matched with {action = "UpdateUserByRole", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUserByRole(System.Guid, System.String, AuctionAPI.Models.DTOs.UpdateUserDto) on controller AuctionAPI.Controllers.UserController (AuctionAPI).
+2025-06-13 09:27:38.809 +05:30 [INF] Updating Seller with ID: "0197652e-d0e2-755b-b58f-fe4130e334a0"
+2025-06-13 09:27:38.922 +05:30 [INF] Executed DbCommand (5ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 09:27:38.942 +05:30 [INF] Executing ForbidResult with authentication schemes ([]).
+2025-06-13 09:27:38.949 +05:30 [INF] AuthenticationScheme: Bearer was forbidden.
+2025-06-13 09:27:38.950 +05:30 [INF] Executed action AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI) in 151.501ms
+2025-06-13 09:27:38.950 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI)'
+2025-06-13 09:27:38.951 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5205/api/v1/User/Seller/0197652e-d0e2-755b-b58f-fe4130e334a0 - 403 null application/json 221.7268ms
+2025-06-13 09:27:57.232 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - application/json 56
+2025-06-13 09:27:57.235 +05:30 [INF] CORS policy execution successful.
+2025-06-13 09:27:57.237 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 09:27:57.237 +05:30 [INF] Route matched with {action = "UserLogin", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UserLogin(AuctionAPI.Models.DTOs.UserLoginRequest) on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 09:27:57.341 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 09:27:57.766 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "Expires", "IsRevoked", "Token", "UserEmail")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 09:27:57.767 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.DTOs.UserLoginResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 09:27:57.767 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI) in 529.8229ms
+2025-06-13 09:27:57.768 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 09:27:57.768 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - 200 null application/json; charset=utf-8 535.892ms
+2025-06-13 09:29:40.452 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5205/api/v1/User/Seller/0197652e-d0e2-755b-b58f-fe4130e334a0 - application/json 45
+2025-06-13 09:29:40.454 +05:30 [INF] CORS policy execution successful.
+2025-06-13 09:29:40.457 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI)'
+2025-06-13 09:29:40.457 +05:30 [INF] Route matched with {action = "UpdateUserByRole", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUserByRole(System.Guid, System.String, AuctionAPI.Models.DTOs.UpdateUserDto) on controller AuctionAPI.Controllers.UserController (AuctionAPI).
+2025-06-13 09:29:40.462 +05:30 [INF] Updating Seller with ID: "0197652e-d0e2-755b-b58f-fe4130e334a0"
+2025-06-13 09:29:40.465 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 09:29:40.470 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 09:29:40.475 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 09:29:40.685 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 09:29:40.708 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "Password" = @p0
+WHERE "UserId" = @p1;
+2025-06-13 09:29:40.733 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Audits" ("Id", "Action", "CreatedAt", "CreatedBy", "EntityId", "EntityType")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 09:29:40.734 +05:30 [INF] Seller "0197652e-d0e2-755b-b58f-fe4130e334a0" updated successfully
+2025-06-13 09:29:40.734 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 09:29:40.764 +05:30 [INF] Executed action AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI) in 306.4543ms
+2025-06-13 09:29:40.764 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI)'
+2025-06-13 09:29:40.764 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5205/api/v1/User/Seller/0197652e-d0e2-755b-b58f-fe4130e334a0 - 200 null application/json; charset=utf-8 311.7889ms
+2025-06-13 09:32:16.305 +05:30 [INF] Application is shutting down...
+2025-06-13 10:09:23.792 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 10:09:23.967 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 10:09:24.012 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 10:09:24.014 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 10:09:24.014 +05:30 [INF] Hosting environment: Development
+2025-06-13 10:09:24.015 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 10:09:40.856 +05:30 [INF] Application is shutting down...
+2025-06-13 12:32:44.510 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 12:32:44.685 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 12:32:44.729 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 12:32:44.731 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 12:32:44.732 +05:30 [INF] Hosting environment: Development
+2025-06-13 12:32:44.732 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 12:33:15.824 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Items?PriceLessThan=1200 - null null
+2025-06-13 12:33:15.948 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:33:15.984 +05:30 [INF] Route matched with {action = "GetAllItems", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllItems(ItemFilter, Int32, Int32) on controller AuctionAPI.Controllers.ItemsController (AuctionAPI).
+2025-06-13 12:33:17.823 +05:30 [INF] Executed DbCommand (33ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE i."Status" = 'Active'
+2025-06-13 12:33:18.069 +05:30 [INF] Executed DbCommand (13ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.094 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.141 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.143 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.145 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.146 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.167 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."BidderId", b."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Bidders" AS b
+INNER JOIN "Users" AS u ON b."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND b."BidderId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.183 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.187 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.189 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.190 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.192 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.193 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.195 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.196 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.197 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.198 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:18.212 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`5[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.IEnumerable`1[[AuctionAPI.Models.DTOs.ItemResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[AuctionAPI.Models.DTOs.PaginationMetadata, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 12:33:18.293 +05:30 [INF] Executed action AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI) in 2303.7718ms
+2025-06-13 12:33:18.299 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:33:18.314 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Items?PriceLessThan=1200 - 200 null application/json; charset=utf-8 2494.0377ms
+2025-06-13 12:33:42.838 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Items?Search=Crickt - null null
+2025-06-13 12:33:42.859 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:33:42.860 +05:30 [INF] Route matched with {action = "GetAllItems", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllItems(ItemFilter, Int32, Int32) on controller AuctionAPI.Controllers.ItemsController (AuctionAPI).
+2025-06-13 12:33:42.886 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE i."Status" = 'Active'
+2025-06-13 12:33:42.914 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:42.916 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:42.918 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."BidderId", b."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Bidders" AS b
+INNER JOIN "Users" AS u ON b."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND b."BidderId" = @__key_0
+LIMIT 2
+2025-06-13 12:33:42.919 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`5[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.IEnumerable`1[[AuctionAPI.Models.DTOs.ItemResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[AuctionAPI.Models.DTOs.PaginationMetadata, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 12:33:42.921 +05:30 [INF] Executed action AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI) in 60.3296ms
+2025-06-13 12:33:42.921 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:33:42.922 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Items?Search=Crickt - 200 null application/json; charset=utf-8 84.4349ms
+2025-06-13 12:33:57.445 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Items?Category=Electronics&Search=Crickt - null null
+2025-06-13 12:33:57.448 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:33:57.449 +05:30 [INF] Route matched with {action = "GetAllItems", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllItems(ItemFilter, Int32, Int32) on controller AuctionAPI.Controllers.ItemsController (AuctionAPI).
+2025-06-13 12:33:57.615 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE i."Status" = 'Active'
+2025-06-13 12:33:57.619 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`5[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.IEnumerable`1[[AuctionAPI.Models.DTOs.ItemResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[AuctionAPI.Models.DTOs.PaginationMetadata, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 12:33:57.619 +05:30 [INF] Executed action AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI) in 170.1064ms
+2025-06-13 12:33:57.619 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:33:57.620 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Items?Category=Electronics&Search=Crickt - 200 null application/json; charset=utf-8 174.7722ms
+2025-06-13 12:47:24.158 +05:30 [INF] Application is shutting down...
+2025-06-13 12:47:37.651 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 12:47:37.825 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 12:47:37.868 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 12:47:37.870 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 12:47:37.871 +05:30 [INF] Hosting environment: Development
+2025-06-13 12:47:37.871 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 12:48:17.027 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Items?Search=Crickt - null null
+2025-06-13 12:48:17.153 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:48:17.190 +05:30 [INF] Route matched with {action = "GetAllItems", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllItems(ItemFilter, Int32, Int32) on controller AuctionAPI.Controllers.ItemsController (AuctionAPI).
+2025-06-13 12:48:19.079 +05:30 [INF] Executed DbCommand (29ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE i."Status" = 'Active'
+2025-06-13 12:48:19.344 +05:30 [INF] Executed DbCommand (15ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:19.368 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:19.426 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."BidderId", b."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Bidders" AS b
+INNER JOIN "Users" AS u ON b."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND b."BidderId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:19.454 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`5[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.IEnumerable`1[[AuctionAPI.Models.DTOs.ItemResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[AuctionAPI.Models.DTOs.PaginationMetadata, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 12:48:19.529 +05:30 [INF] Executed action AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI) in 2334.091ms
+2025-06-13 12:48:19.535 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:48:19.553 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Items?Search=Crickt - 200 null application/json; charset=utf-8 2529.0128ms
+2025-06-13 12:48:25.703 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Items?Category=Electronics&Search=Crickt - null null
+2025-06-13 12:48:25.710 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:48:25.710 +05:30 [INF] Route matched with {action = "GetAllItems", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllItems(ItemFilter, Int32, Int32) on controller AuctionAPI.Controllers.ItemsController (AuctionAPI).
+2025-06-13 12:48:25.740 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE i."Status" = 'Active'
+2025-06-13 12:48:25.748 +05:30 [WRN] No items found for the given filter
+2025-06-13 12:48:25.750 +05:30 [INF] Executing NotFoundObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 12:48:25.756 +05:30 [INF] Executed action AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI) in 45.9569ms
+2025-06-13 12:48:25.757 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:48:25.757 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Items?Category=Electronics&Search=Crickt - 404 null application/json; charset=utf-8 54.1201ms
+2025-06-13 12:48:39.156 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Items - null null
+2025-06-13 12:48:39.162 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:48:39.162 +05:30 [INF] Route matched with {action = "GetAllItems", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllItems(ItemFilter, Int32, Int32) on controller AuctionAPI.Controllers.ItemsController (AuctionAPI).
+2025-06-13 12:48:39.254 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE i."Status" = 'Active'
+2025-06-13 12:48:39.260 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.262 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.264 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.267 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.269 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.272 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.277 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT b."BidderId", b."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Bidders" AS b
+INNER JOIN "Users" AS u ON b."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND b."BidderId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.280 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.281 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.283 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.286 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.288 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.291 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.293 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.296 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.298 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."ItemId", i."CurrentBid", i."CurrentBidderID", i."Description", i."ImageData", i."ImageMimeType", i."StartingPrice"
+FROM "ItemDetails" AS i
+WHERE i."ItemId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.300 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 12:48:39.301 +05:30 [INF] Executing OkObjectResult, writing value of type '<>f__AnonymousType3`5[[System.Boolean, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.Collections.Generic.IEnumerable`1[[AuctionAPI.Models.DTOs.ItemResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[AuctionAPI.Models.DTOs.PaginationMetadata, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null],[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 12:48:39.301 +05:30 [INF] Executed action AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI) in 138.7991ms
+2025-06-13 12:48:39.302 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.ItemsController.GetAllItems (AuctionAPI)'
+2025-06-13 12:48:39.302 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Items - 200 null application/json; charset=utf-8 146.4749ms
+2025-06-13 13:01:24.129 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Items/all-bids/bbaf7228-8b27-4452-91b9-fd9b206d580d - null null
+2025-06-13 13:01:24.131 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.ItemsController.GetAllBids (AuctionAPI)'
+2025-06-13 13:01:24.139 +05:30 [INF] Route matched with {action = "GetAllBids", controller = "Items"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] GetAllBids(System.Guid) on controller AuctionAPI.Controllers.ItemsController (AuctionAPI).
+2025-06-13 13:01:24.141 +05:30 [INF] Fetching all bids for item "bbaf7228-8b27-4452-91b9-fd9b206d580d"
+2025-06-13 13:01:24.234 +05:30 [INF] Executed DbCommand (49ms) [Parameters=[p0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+select * from fn_get_bids_by_item(@p0)
+2025-06-13 13:01:24.248 +05:30 [INF] 5 bids fetched for item "bbaf7228-8b27-4452-91b9-fd9b206d580d"
+2025-06-13 13:01:24.248 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[System.Collections.Generic.IEnumerable`1[[AuctionAPI.Models.DTOs.ItemAllBids, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 13:01:24.257 +05:30 [INF] Executed action AuctionAPI.Controllers.ItemsController.GetAllBids (AuctionAPI) in 117.8358ms
+2025-06-13 13:01:24.257 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.ItemsController.GetAllBids (AuctionAPI)'
+2025-06-13 13:01:24.257 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Items/all-bids/bbaf7228-8b27-4452-91b9-fd9b206d580d - 200 null application/json; charset=utf-8 128.0584ms
+2025-06-13 13:15:05.460 +05:30 [INF] Application is shutting down...
+2025-06-13 13:16:51.695 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 13:16:51.871 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 13:16:51.915 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 13:16:51.918 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 13:16:51.918 +05:30 [INF] Hosting environment: Development
+2025-06-13 13:16:51.918 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 13:16:55.663 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - application/json 60
+2025-06-13 13:16:55.765 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 13:16:55.791 +05:30 [INF] Route matched with {action = "UserLogin", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UserLogin(AuctionAPI.Models.DTOs.UserLoginRequest) on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 13:16:58.003 +05:30 [INF] Executed DbCommand (76ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 13:16:58.861 +05:30 [INF] Executed DbCommand (18ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "Expires", "IsRevoked", "Token", "UserEmail")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 13:16:58.884 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.DTOs.UserLoginResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 13:16:58.910 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI) in 3113.9301ms
+2025-06-13 13:16:58.916 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 13:16:58.932 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - 200 null application/json; charset=utf-8 3272.4138ms
+2025-06-13 13:18:22.142 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - application/json 54
+2025-06-13 13:18:22.148 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 13:18:22.148 +05:30 [INF] Route matched with {action = "UserLogin", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UserLogin(AuctionAPI.Models.DTOs.UserLoginRequest) on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 13:18:22.218 +05:30 [INF] Executed DbCommand (14ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 13:18:22.662 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "Expires", "IsRevoked", "Token", "UserEmail")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 13:18:22.663 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.DTOs.UserLoginResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 13:18:22.664 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI) in 515.032ms
+2025-06-13 13:18:22.664 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 13:18:22.665 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - 200 null application/json; charset=utf-8 522.8985ms
+2025-06-13 13:21:17.800 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - application/json 56
+2025-06-13 13:21:17.806 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 13:21:17.806 +05:30 [INF] Route matched with {action = "UserLogin", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UserLogin(AuctionAPI.Models.DTOs.UserLoginRequest) on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 13:21:17.894 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 13:21:18.100 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "Expires", "IsRevoked", "Token", "UserEmail")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 13:21:18.101 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.DTOs.UserLoginResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 13:21:18.101 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI) in 294.8115ms
+2025-06-13 13:21:18.101 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 13:21:18.101 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - 200 null application/json; charset=utf-8 301.2102ms
+2025-06-13 13:23:27.396 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/User/0197652e-d04d-7ac5-a356-4e63d358f89f - application/json 46
+2025-06-13 13:23:27.451 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/User/0197652e-d04d-7ac5-a356-4e63d358f89f - 404 0 null 55.4699ms
+2025-06-13 13:23:27.453 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5205/api/v1/User/0197652e-d04d-7ac5-a356-4e63d358f89f, Response status code: 404
+2025-06-13 13:24:29.986 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - application/json 46
+2025-06-13 13:24:29.987 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - 404 0 null 1.2477ms
+2025-06-13 13:24:29.988 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0, Response status code: 404
+2025-06-13 13:24:32.369 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - application/json 46
+2025-06-13 13:24:32.370 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - 404 0 null 0.9759ms
+2025-06-13 13:24:32.370 +05:30 [INF] Request reached the end of the middleware pipeline without being handled by application code. Request path: POST http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0, Response status code: 404
+2025-06-13 13:28:51.686 +05:30 [INF] Application is shutting down...
+2025-06-13 13:29:03.247 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 13:29:03.416 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 13:29:03.458 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 13:29:03.460 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 13:29:03.460 +05:30 [INF] Hosting environment: Development
+2025-06-13 13:29:03.460 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 13:29:14.035 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - application/json 46
+2025-06-13 13:29:14.192 +05:30 [INF] Executing endpoint '405 HTTP Method Not Supported'
+2025-06-13 13:29:14.192 +05:30 [INF] Executed endpoint '405 HTTP Method Not Supported'
+2025-06-13 13:29:14.197 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - 405 0 null 165.1128ms
+2025-06-13 13:31:13.300 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - application/json 46
+2025-06-13 13:31:13.324 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI)'
+2025-06-13 13:31:13.354 +05:30 [INF] Route matched with {action = "UpdateUserByRole", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUserByRole(System.Guid, AuctionAPI.Models.DTOs.UpdateUserDto) on controller AuctionAPI.Controllers.UserController (AuctionAPI).
+2025-06-13 13:31:15.242 +05:30 [INF] Executed DbCommand (72ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 13:31:15.382 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 13:31:15.395 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 13:31:15.877 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 13:31:15.978 +05:30 [INF] Executed DbCommand (3ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?', @p1='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "Name" = @p0, "Password" = @p1
+WHERE "UserId" = @p2;
+2025-06-13 13:31:16.079 +05:30 [INF] Executed DbCommand (8ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Audits" ("Id", "Action", "CreatedAt", "CreatedBy", "EntityId", "EntityType")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 13:31:16.081 +05:30 [INF] Seller "0197652e-d0e2-755b-b58f-fe4130e334a0" updated successfully
+2025-06-13 13:31:16.092 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 13:31:16.147 +05:30 [INF] Executed action AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI) in 2788.4903ms
+2025-06-13 13:31:16.148 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI)'
+2025-06-13 13:31:16.161 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - 200 null application/json; charset=utf-8 2860.7161ms
+2025-06-13 13:31:27.408 +05:30 [INF] Request starting HTTP/1.1 PUT http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - application/json 45
+2025-06-13 13:31:27.414 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI)'
+2025-06-13 13:31:27.415 +05:30 [INF] Route matched with {action = "UpdateUserByRole", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UpdateUserByRole(System.Guid, AuctionAPI.Models.DTOs.UpdateUserDto) on controller AuctionAPI.Controllers.UserController (AuctionAPI).
+2025-06-13 13:31:27.441 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 13:31:27.443 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 13:31:27.445 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 13:31:27.848 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 13:31:27.850 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p2='?' (DbType = Guid), @p0='?', @p1='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "Name" = @p0, "Password" = @p1
+WHERE "UserId" = @p2;
+2025-06-13 13:31:27.853 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Audits" ("Id", "Action", "CreatedAt", "CreatedBy", "EntityId", "EntityType")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 13:31:27.853 +05:30 [INF] Seller "0197652e-d0e2-755b-b58f-fe4130e334a0" updated successfully
+2025-06-13 13:31:27.854 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 13:31:27.855 +05:30 [INF] Executed action AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI) in 439.2461ms
+2025-06-13 13:31:27.855 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.UserController.UpdateUserByRole (AuctionAPI)'
+2025-06-13 13:31:27.856 +05:30 [INF] Request finished HTTP/1.1 PUT http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - 200 null application/json; charset=utf-8 447.7565ms
+2025-06-13 13:31:47.499 +05:30 [INF] Request starting HTTP/1.1 DELETE http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - null null
+2025-06-13 13:31:47.502 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.UserController.DeleteUserByRole (AuctionAPI)'
+2025-06-13 13:31:47.508 +05:30 [INF] Route matched with {action = "DeleteUserByRole", controller = "User"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] DeleteUserByRole(System.Guid) on controller AuctionAPI.Controllers.UserController (AuctionAPI).
+2025-06-13 13:31:47.516 +05:30 [INF] Deleting Seller with ID: "0197652e-d0e2-755b-b58f-fe4130e334a0"
+2025-06-13 13:31:47.595 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 13:31:47.598 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT s."SellerId", s."UserId", u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Sellers" AS s
+INNER JOIN "Users" AS u ON s."UserId" = u."UserId"
+WHERE u."Status" = 'Active' AND s."SellerId" = @__key_0
+LIMIT 2
+2025-06-13 13:31:47.600 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 13:31:47.601 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 13:31:47.603 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p1='?' (DbType = Guid), @p0='?'], CommandType='"Text"', CommandTimeout='30']
+UPDATE "Users" SET "Status" = @p0
+WHERE "UserId" = @p1;
+2025-06-13 13:31:47.604 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?', @p2='?' (DbType = DateTime), @p3='?', @p4='?' (DbType = Guid), @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "Audits" ("Id", "Action", "CreatedAt", "CreatedBy", "EntityId", "EntityType")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 13:31:47.605 +05:30 [INF] Seller "0197652e-d0e2-755b-b58f-fe4130e334a0" deleted successfully
+2025-06-13 13:31:47.605 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[System.Object, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 13:31:47.605 +05:30 [INF] Executed action AuctionAPI.Controllers.UserController.DeleteUserByRole (AuctionAPI) in 97.2573ms
+2025-06-13 13:31:47.606 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.UserController.DeleteUserByRole (AuctionAPI)'
+2025-06-13 13:31:47.606 +05:30 [INF] Request finished HTTP/1.1 DELETE http://localhost:5205/api/v1/User/0197652e-d0e2-755b-b58f-fe4130e334a0 - 200 null application/json; charset=utf-8 106.8906ms
+2025-06-13 13:32:06.396 +05:30 [INF] Application is shutting down...
+2025-06-13 14:07:28.093 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 14:07:28.263 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 14:07:28.305 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 14:07:28.307 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 14:07:28.307 +05:30 [INF] Hosting environment: Development
+2025-06-13 14:07:28.307 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 14:08:27.704 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/swagger/index.html - null null
+2025-06-13 14:08:27.840 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/swagger/index.html - 200 null text/html;charset=utf-8 137.8951ms
+2025-06-13 14:08:27.965 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/swagger/v1/swagger.json - null null
+2025-06-13 14:08:28.184 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 219.5794ms
+2025-06-13 14:10:13.718 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - application/json 60
+2025-06-13 14:10:13.771 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 14:10:13.806 +05:30 [INF] Route matched with {action = "UserLogin", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UserLogin(AuctionAPI.Models.DTOs.UserLoginRequest) on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:10:15.513 +05:30 [INF] Executed DbCommand (70ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 14:10:16.277 +05:30 [INF] Executed DbCommand (12ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "Expires", "IsRevoked", "Token", "UserEmail")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 14:10:16.300 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.DTOs.UserLoginResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:10:16.318 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI) in 2507.3394ms
+2025-06-13 14:10:16.319 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 14:10:16.332 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - 200 null application/json; charset=utf-8 2613.6176ms
+2025-06-13 14:11:52.629 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - application/json 54
+2025-06-13 14:11:52.633 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 14:11:52.634 +05:30 [INF] Route matched with {action = "UserLogin", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UserLogin(AuctionAPI.Models.DTOs.UserLoginRequest) on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:11:52.661 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 14:11:53.044 +05:30 [INF] Executed DbCommand (2ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "Expires", "IsRevoked", "Token", "UserEmail")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 14:11:53.045 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.DTOs.UserLoginResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:11:53.046 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI) in 411.8274ms
+2025-06-13 14:11:53.046 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 14:11:53.047 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - 200 null application/json; charset=utf-8 417.8883ms
+2025-06-13 14:13:06.591 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:13:06.647 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:13:06.649 +05:30 [INF] Route matched with {action = "MyProfile", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult MyProfile() on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:13:06.655 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:13:06.665 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI) in 15.5408ms
+2025-06-13 14:13:06.665 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:13:06.666 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 200 null application/json; charset=utf-8 74.8037ms
+2025-06-13 14:13:28.147 +05:30 [INF] Application is shutting down...
+2025-06-13 14:13:34.782 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 14:13:34.947 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 14:13:34.984 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 14:13:34.986 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 14:13:34.987 +05:30 [INF] Hosting environment: Development
+2025-06-13 14:13:34.987 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 14:13:54.501 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:13:54.656 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:13:54.670 +05:30 [INF] Route matched with {action = "MyProfile", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult MyProfile() on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:13:54.816 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:13:54.860 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI) in 185.0531ms
+2025-06-13 14:13:54.877 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:13:54.880 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 200 null application/json; charset=utf-8 381.1443ms
+2025-06-13 14:13:56.667 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:13:56.676 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:13:56.678 +05:30 [INF] Route matched with {action = "MyProfile", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult MyProfile() on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:13:56.692 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:13:56.693 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI) in 14.2812ms
+2025-06-13 14:13:56.693 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:13:56.694 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 200 null application/json; charset=utf-8 27.9022ms
+2025-06-13 14:14:07.033 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:14:07.039 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:14:07.039 +05:30 [INF] Route matched with {action = "MyProfile", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult MyProfile() on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:14:07.044 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[<>f__AnonymousType1`3[[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e],[System.String, System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]], AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:14:07.045 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI) in 5.1741ms
+2025-06-13 14:14:07.045 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:14:07.046 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 200 null application/json; charset=utf-8 12.7324ms
+2025-06-13 14:16:30.753 +05:30 [INF] Application is shutting down...
+2025-06-13 14:22:13.826 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 14:22:14.043 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 14:22:14.082 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 14:22:14.084 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 14:22:14.084 +05:30 [INF] Hosting environment: Development
+2025-06-13 14:22:14.085 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 14:22:25.316 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:22:25.482 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:22:25.496 +05:30 [INF] Route matched with {action = "MyProfile", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult MyProfile() on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:22:26.977 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[System.Threading.Tasks.Task`1[[AuctionAPI.Models.User, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 14:22:27.271 +05:30 [INF] Executed DbCommand (173ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 14:22:27.391 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI) in 1890.2288ms
+2025-06-13 14:22:27.397 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:22:27.409 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 200 null application/json; charset=utf-8 2094.7592ms
+2025-06-13 14:23:21.218 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:23:21.228 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:23:21.229 +05:30 [INF] Route matched with {action = "MyProfile", controller = "Auth"}. Executing controller action with signature Microsoft.AspNetCore.Mvc.IActionResult MyProfile() on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:23:21.264 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[System.Threading.Tasks.Task`1[[AuctionAPI.Models.User, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]], System.Private.CoreLib, Version=9.0.0.0, Culture=neutral, PublicKeyToken=7cec85d7bea7798e]]'.
+2025-06-13 14:23:21.264 +05:30 [INF] Executed DbCommand (6ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 14:23:21.266 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI) in 36.5279ms
+2025-06-13 14:23:21.267 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:23:21.267 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 200 null application/json; charset=utf-8 49.4713ms
+2025-06-13 14:27:01.216 +05:30 [INF] Application is shutting down...
+2025-06-13 14:29:11.473 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-06-13 14:29:11.668 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-06-13 14:29:11.712 +05:30 [INF] Now listening on: http://localhost:5205
+2025-06-13 14:29:11.715 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-06-13 14:29:11.715 +05:30 [INF] Hosting environment: Development
+2025-06-13 14:29:11.715 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-06-13 14:29:16.480 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:29:16.664 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:29:16.688 +05:30 [INF] Route matched with {action = "MyProfile", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyProfile() on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:29:18.491 +05:30 [INF] Executed DbCommand (74ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 14:29:18.610 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.User, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:29:18.684 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI) in 1990.954ms
+2025-06-13 14:29:18.691 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:29:18.768 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 200 null application/json; charset=utf-8 2291.2484ms
+2025-06-13 14:29:35.416 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/swagger/index.html - null null
+2025-06-13 14:29:35.496 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/swagger/index.html - 200 null text/html;charset=utf-8 80.6736ms
+2025-06-13 14:29:35.620 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/swagger/v1/swagger.json - null null
+2025-06-13 14:29:35.844 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/swagger/v1/swagger.json - 200 null application/json;charset=utf-8 223.8531ms
+2025-06-13 14:31:42.990 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - application/json 56
+2025-06-13 14:31:42.995 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 14:31:43.010 +05:30 [INF] Route matched with {action = "UserLogin", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UserLogin(AuctionAPI.Models.DTOs.UserLoginRequest) on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:31:43.078 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 14:31:43.676 +05:30 [INF] Executed DbCommand (10ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "Expires", "IsRevoked", "Token", "UserEmail")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 14:31:43.690 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.DTOs.UserLoginResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:31:43.693 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI) in 682.8332ms
+2025-06-13 14:31:43.693 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 14:31:43.694 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - 200 null application/json; charset=utf-8 703.4928ms
+2025-06-13 14:32:31.660 +05:30 [INF] Request starting HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - application/json 56
+2025-06-13 14:32:31.663 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 14:32:31.663 +05:30 [INF] Route matched with {action = "UserLogin", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] UserLogin(AuctionAPI.Models.DTOs.UserLoginRequest) on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:32:31.752 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 14:32:31.959 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@p0='?' (DbType = Guid), @p1='?' (DbType = DateTime), @p2='?' (DbType = DateTime), @p3='?' (DbType = Boolean), @p4='?', @p5='?'], CommandType='"Text"', CommandTimeout='30']
+INSERT INTO "RefreshTokens" ("Id", "CreatedAt", "Expires", "IsRevoked", "Token", "UserEmail")
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5);
+2025-06-13 14:32:31.959 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.DTOs.UserLoginResponse, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:32:31.960 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI) in 296.1035ms
+2025-06-13 14:32:31.960 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.UserLogin (AuctionAPI)'
+2025-06-13 14:32:31.960 +05:30 [INF] Request finished HTTP/1.1 POST http://localhost:5205/api/v1/Auth/Login - 200 null application/json; charset=utf-8 300.5472ms
+2025-06-13 14:33:41.011 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:33:41.014 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:33:41.015 +05:30 [INF] Route matched with {action = "MyProfile", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyProfile() on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:33:41.018 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 14:33:41.019 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.User, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:33:41.019 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI) in 4.3538ms
+2025-06-13 14:33:41.019 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:33:41.020 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 200 null application/json; charset=utf-8 8.4364ms
+2025-06-13 14:33:45.718 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:33:45.721 +05:30 [INF] Executing endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:33:45.722 +05:30 [INF] Route matched with {action = "MyProfile", controller = "Auth"}. Executing controller action with signature System.Threading.Tasks.Task`1[Microsoft.AspNetCore.Mvc.IActionResult] MyProfile() on controller AuctionAPI.Controllers.AuthController (AuctionAPI).
+2025-06-13 14:33:45.724 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?'], CommandType='"Text"', CommandTimeout='30']
+SELECT u."UserId", u."Aadhar", u."Email", u."Name", u."PAN", u."Password", u."Role", u."Status"
+FROM "Users" AS u
+WHERE u."Status" = 'Active' AND u."Email" = @__key_0
+LIMIT 2
+2025-06-13 14:33:45.725 +05:30 [INF] Executing OkObjectResult, writing value of type 'AuctionAPI.Models.DTOs.ApiResponse`1[[AuctionAPI.Models.User, AuctionAPI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null]]'.
+2025-06-13 14:33:45.725 +05:30 [INF] Executed action AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI) in 3.4373ms
+2025-06-13 14:33:45.725 +05:30 [INF] Executed endpoint 'AuctionAPI.Controllers.AuthController.MyProfile (AuctionAPI)'
+2025-06-13 14:33:45.726 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 200 null application/json; charset=utf-8 7.4453ms
+2025-06-13 14:33:49.256 +05:30 [INF] Request starting HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - null null
+2025-06-13 14:33:49.260 +05:30 [INF] Failed to validate the token.
+Microsoft.IdentityModel.Tokens.SecurityTokenMalformedException: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken.ReadToken(ReadOnlyMemory`1 encodedTokenMemory)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebToken..ctor(String jwtEncodedString)
+   at Microsoft.IdentityModel.JsonWebTokens.JsonWebTokenHandler.ReadToken(String token, TokenValidationParameters validationParameters)
+2025-06-13 14:33:49.285 +05:30 [INF] Bearer was not authenticated. Failure message: IDX14100: JWT is not well formed, there are no dots (.).
+The token needs to be in JWS or JWE Compact Serialization Format. (JWS): 'EncodedHeader.EncodedPayload.EncodedSignature'. (JWE): 'EncodedProtectedHeader.EncodedEncryptedKey.EncodedInitializationVector.EncodedCiphertext.EncodedAuthenticationTag'.
+2025-06-13 14:33:49.286 +05:30 [INF] Authorization failed. These requirements were not met:
+DenyAnonymousAuthorizationRequirement: Requires an authenticated user.
+2025-06-13 14:33:49.294 +05:30 [INF] AuthenticationScheme: Bearer was challenged.
+2025-06-13 14:33:49.294 +05:30 [INF] Request finished HTTP/1.1 GET http://localhost:5205/api/v1/Auth/Me - 401 null application/json 38.0924ms
+2025-06-13 14:40:10.559 +05:30 [INF] Application is shutting down...

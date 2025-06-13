@@ -31,7 +31,7 @@ namespace FirstAPI.Services
             var tokenDescriptor = new SecurityTokenDescriptor
             {
                 Subject = new ClaimsIdentity(claims),
-                Expires = DateTime.Now.AddHours(2),
+                Expires = DateTime.Now.AddHours(4),
                 SigningCredentials = creds
             };
             var tokenHandler = new JwtSecurityTokenHandler();
