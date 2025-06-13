@@ -4,7 +4,7 @@ import { BehaviorSubject, Observable, catchError, throwError, switchMap, timer }
 
 @Injectable({ providedIn: 'root' })
 export class WeatherService {
-  private readonly API_KEY = '40e8635e2e89be6bfa035a2acd1338c2';
+  private readonly API_KEY = 'API_KEY';
   private readonly API_URL = 'https://api.openweathermap.org/data/2.5/weather';
 
   private selectedCity$ = new BehaviorSubject<string>('Chennai');
