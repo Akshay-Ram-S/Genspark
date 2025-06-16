@@ -1,0 +1,20 @@
+<div class="container">
+  <input type="text" placeholder="Search" (input)="onSearch($event)" />
+
+  @if (isLoading && products.length === 0) {
+    <div class="loader">Loading...</div>
+  } @else if (hasError) {
+    <div class="error">An error occurred while fetching products. Please try again later.</div>
+  } @else if (!isLoading && products.length === 0) {
+    <div>No products found.</div>
+  }
+
+  <app-products [products]="products"></app-products>
+
+  @if (isLoading && products.length > 0) {
+    <div class="loader">Loading more...</div>
+  }
+</div>
+<button class="back-to-top" (click)="scrollToTop()" *ngIf="scrollToTop">
+  Back to Top
+</button>

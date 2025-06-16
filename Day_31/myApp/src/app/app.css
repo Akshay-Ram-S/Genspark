@@ -1,0 +1,32 @@
+.bg-color{
+  background-color: rgb(228, 135, 64)
+}
+.nav-link.active {
+  font-weight: bold;
+  color: aliceblue !important;
+}
+
+.navbar-custom {
+    background: linear-gradient(135deg, #e48740, #ff5733); /* Warm gradient */
+    padding: 12px 24px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+
+  .navbar-brand {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+  }
+
+  .nav-link {
+    font-size: 18px;
+    font-weight: 500;
+    color: white !important;
+    transition: all 0.3s ease-in-out;
+  }
+
+  .nav-link:hover {
+    color: #ffe084 !important; /* Golden hover effect */
+    text-decoration: underline;
+  }
