@@ -1,0 +1,15 @@
+/* src/styles.css or navbar.component.css */
+.navbar-nav .nav-link {
+  font-size: 1rem;
+  padding: 0.5rem 1rem;
+}
+
+.navbar-brand {
+  font-size: 1.3rem;
+}
+
+.navbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}

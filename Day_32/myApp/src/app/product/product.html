@@ -1,0 +1,14 @@
+@if (loading) {
+  <div class="loader">Loading product details...</div>
+} 
+@else if (error) {
+  <div class="error">{{ error }}</div>
+} 
+@else if (product) {
+  <div class="detail-container">
+    <h2>{{ product.title }}</h2>
+    <img [src]="product.thumbnail" alt="{{ product.title }}">
+    <p class="desc">{{ product.description }}</p>
+    <p class="price">Price: $ {{ product.price }}</p>
+  </div>
+}
