@@ -1,0 +1,46 @@
+<h1>Dashboard</h1>
+
+<form [formGroup]="filterForm" class="filter-form">
+  <div class="filter-group">
+    <label>Gender</label>
+    <select formControlName="gender">
+      <option value="">All Genders</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+    <label>Role</label>
+    <select formControlName="role">
+      <option value="">All Roles</option>
+      <option value="admin">Admin</option>
+      <option value="user">User</option>
+      <option value="moderator">Moderator</option>
+    </select>
+  </div>
+
+  <div class="filter-group">
+  <label>State</label>
+  <select formControlName="state">
+    <option value="">All States</option>
+    @for (state of states; track state) {
+      <option [value]="state">{{ state }}</option>
+    }
+  </select>
+  </div>
+
+  <button type="button" (click)="clearFilters()">Clear Filters</button>
+</form>
+
+<div class="user-count-circle">
+  <div class="user-count-value">{{ filteredUsers.length }}</div>
+  <div class="user-count-label">Total Users</div>
+</div>
+
+<app-role-chart [users]="filteredUsers" />
+<br/>
+<app-gender-chart [users]="filteredUsers" />
+<br/>
+<app-state-chart [users]="filteredUsers" />
+

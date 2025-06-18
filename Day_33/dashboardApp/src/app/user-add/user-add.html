@@ -1,0 +1,41 @@
+<div class="form-container">
+  <h2>Add User</h2>
+  <form [formGroup]="userForm" (ngSubmit)="addUser()">
+    
+    <label>First Name:</label>
+    <input formControlName="firstName" placeholder="First Name" />
+    @if (userForm.get('firstName')?.invalid && userForm.get('firstName')?.touched) {
+      <div class="error">First name is required</div>
+    }
+
+    <label>Last Name:</label>
+    <input formControlName="lastName" placeholder="Last Name" />
+    @if (userForm.get('lastName')?.invalid && userForm.get('lastName')?.touched) {
+      <div class="error">Last name is required</div>
+    }
+
+    <label>Gender:</label>
+    <select formControlName="gender">
+      <option value="">Select Gender</option>
+      <option value="male">Male</option>
+      <option value="female">Female</option>
+    </select>
+    @if (userForm.get('gender')?.invalid && userForm.get('gender')?.touched) {
+      <div class="error">Gender is required</div>
+    }
+
+    <label>Role:</label>
+    <input formControlName="role" placeholder="Role" />
+    @if (userForm.get('role')?.invalid && userForm.get('role')?.touched) {
+      <div class="error">Role is required</div>
+    }
+
+    <label>State:</label>
+    <input formControlName="state" placeholder="State" />
+    @if (userForm.get('state')?.invalid && userForm.get('state')?.touched) {
+      <div class="error">State is required</div>
+    }
+
+    <button type="submit" [disabled]="userForm.invalid">Submit</button>
+  </form>
+</div>
