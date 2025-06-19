@@ -1,0 +1,20 @@
+<div class="filter-container">
+  <div class="row g-2 align-items-end">
+    <div class="col-md-8">
+      <input
+        type="text"
+        class="form-control"
+        placeholder="Search by username"
+        (input)="onSearch($event)"
+      />
+    </div>
+
+    <div class="col-md-4">
+      <select class="form-select role-select" (change)="onRoleChange($event)">
+        <option value="">All Roles</option>
+        <option *ngFor="let role of roles" [value]="role">{{ role | titlecase }}</option>
+      </select>
+    </div>
+  </div>
+</div>
+<app-user-list [users]="users"></app-user-list>

@@ -1,0 +1,33 @@
+<form [formGroup]="userForm" (ngSubmit)="handleSubmit()">
+  <input formControlName="username" placeholder="Username" />
+  @if (userForm.get('username')?.hasError('bannedWord')) {
+    <div>Banned word. Please use some other username.</div>
+  }
+
+  <input formControlName="email" placeholder="Email" />
+
+  <input formControlName="password" type="password" placeholder="Password" />
+  @if (userForm.get('password')?.touched && userForm.get('password')?.errors?.['passwordRequirements']) {
+    <div>
+      Password must be at least 6 characters long, contain 1 number and must have 1 special character.
+    </div>
+  }
+
+  <input formControlName="confirmPassword" type="password" placeholder="Confirm Password" />
+  @if (userForm.errors?.['passwordMismatch'] && userForm.get('confirmPassword')?.touched) {
+    <div>Passwords do not match</div>
+  }
+
+  <div class="input-group mb-3">
+  <span class="input-group-text">Role</span>
+  <select formControlName="role" class="form-select">
+    <option value="">Select Role</option>
+    <option value="user">User</option>
+    <option value="admin">Admin</option>
+    <option value="guest">Guest</option>
+  </select>
+  </div>
+
+  <button type="submit" [disabled]="userForm.invalid">Add User</button>
+
+</form>

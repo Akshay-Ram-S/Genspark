@@ -1,0 +1,29 @@
+<h3 class="mb-4">User Results</h3>
+
+@if (users.length > 0) {
+    <div class="row justify-content-center g-4">
+        @for (user of users; track user.email) {
+            <div class="col-12 col-sm-8 col-md-6 col-lg-4 d-flex justify-content-center">
+            <div class="card border-0 shadow-sm rounded-3" style="max-width: 320px; width: 100%;">
+                <div class="card-header bg-light d-flex align-items-center gap-2">
+                <i class="bi bi-person-circle fs-4 text-primary"></i>
+                <strong class="text-capitalize">{{ user.username }}</strong>
+                </div>
+                <div class="card-body">
+                <p class="mb-2">
+                    <strong>Role:</strong>
+                    <span class="badge bg-gradient bg-info text-white text-uppercase px-2">{{ user.role }}</span>
+                </p>
+                <p class="mb-0 text-muted small">
+                    <strong>Email:</strong> {{ user.email }}
+                </p>
+                </div>
+            </div>
+            </div>
+        }
+    </div>
+
+}
+@else {
+    <p> No users Found</p>
+}
