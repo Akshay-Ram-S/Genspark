@@ -1,0 +1,53 @@
+.profile-card {
+  width: 100%;
+  max-width: 550px;
+  border-radius: 20px;
+  overflow: hidden;
+  background: beige;
+  transition: box-shadow 0.3s ease;
+}
+
+.profile-card:hover {
+  box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+}
+
+.card-header {
+  padding: 1.5rem;
+  background-color: aliceblue;
+  border-bottom: none;
+  border-radius: 20px 20px 0 0;
+}
+
+.card-body {
+  padding: 2rem;
+  font-size: 1.1rem;
+}
+
+.card-color{
+  background-color: goldenrod;
+}
+
+.text-color{
+  color:beige
+}
+
+.section-title {
+  text-align: center;
+  color: goldenrod;
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 2rem;
+  margin-bottom: 1.5rem;
+  position: relative;
+}
+
+.section-title::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 4px;
+  background-color: goldenrod;
+  margin: 8px auto 0;
+  border-radius: 2px;
+}
+

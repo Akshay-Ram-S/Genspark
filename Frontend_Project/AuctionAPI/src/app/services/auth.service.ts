@@ -1,0 +1,57 @@
+import { Injectable } from '@angular/core';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { LoginRequest } from '../models/login-request';
+import { RegisterRequest } from '../models/register';
+
+@Injectable({ providedIn: 'root' })
+
+export class AuthService {
+  private baseUrl = 'http://localhost:5205/api/v1/auth';
+
+  constructor(private http: HttpClient) {}
+
+  login(data: LoginRequest): Observable<any> {
+    return this.http.post<any>(`${this.baseUrl}/login`, data);
+  }
+
+  logout(): void {
+    const refreshToken = localStorage.getItem('refreshToken');
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: `Bearer ${token}`
+    });
+    const body = { refreshToken };
+    this.http.post(`${this.baseUrl}/logout`, body, {headers}).subscribe({
+      next: () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('id');
+      },
+      error: () => {
+        localStorage.removeItem('token');
+        localStorage.removeItem('refreshToken');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('id');
+      }
+    });
+  }
+
+  getMe(): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.get<any>(`${this.baseUrl}/me`, { headers });
+  }
+
+
+  isAuthenticated(): boolean {
+    return !!localStorage.getItem('token');
+  }
+}

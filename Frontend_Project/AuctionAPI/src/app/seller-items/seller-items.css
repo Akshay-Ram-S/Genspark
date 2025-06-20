@@ -1,0 +1,14 @@
+.item-card {
+  font-size: 0.875rem;
+  line-height: 1.4;
+}
+
+.btn-color{
+  color:beige;
+  background-color: goldenrod;
+}
+
+.category-color{
+  color:goldenrod;
+  background-color: beige;
+}

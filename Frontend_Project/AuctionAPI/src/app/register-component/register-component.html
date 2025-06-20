@@ -1,0 +1,122 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+      <div class="card shadow-lg border-0 rounded-4">
+        <div class="card-body p-4">
+          <h3 class="card-title text-center mb-4">Register</h3>
+
+          <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+            <div class="mb-3">
+              <label for="name" class="form-label">Name</label>
+              <input
+                type="text"
+                id="name"
+                class="form-control"
+                formControlName="name"
+                [ngClass]="{ 'is-invalid': isInvalid('name') }"
+              />
+              @if (isInvalid('name')) {
+                <div class="invalid-feedback">Name is required.</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label for="email" class="form-label">Email</label>
+              <input
+                type="email"
+                id="email"
+                class="form-control"
+                formControlName="email"
+                [ngClass]="{ 'is-invalid': isInvalid('email') }"
+              />
+              @if (isInvalid('email')) {
+                <div class="invalid-feedback">Valid email is required.</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label for="password" class="form-label">Password</label>
+              <input
+                type="password"
+                id="password"
+                class="form-control"
+                formControlName="password"
+                [ngClass]="{ 'is-invalid': isInvalid('password') }"
+              />
+              @if (isInvalid('password')) {
+                <div class="invalid-feedback">Password is required.</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label for="pan" class="form-label">PAN</label>
+              <input
+                type="text"
+                id="pan"
+                class="form-control"
+                formControlName="pan"
+                [ngClass]="{ 'is-invalid': isInvalid('pan') }"
+              />
+              @if (isInvalid('pan')) {
+                <div class="invalid-feedback">PAN is required.</div>
+              }
+            </div>
+
+            <div class="mb-3">
+              <label for="aadhar" class="form-label">Aadhar</label>
+              <input
+                type="text"
+                id="aadhar"
+                class="form-control"
+                formControlName="aadhar"
+                [ngClass]="{ 'is-invalid': isInvalid('aadhar') }"
+              />
+              @if (isInvalid('aadhar')) {
+                <div class="invalid-feedback">Aadhar is required.</div>
+              }
+            </div>
+
+            <div class="mb-4">
+              <label class="form-label">Role</label>
+              <div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="bidder"
+                    formControlName="role"
+                    value="bidder"
+                  />
+                  <label for="Bidder" class="form-check-label">Bidder</label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input
+                    type="radio"
+                    class="form-check-input"
+                    id="seller"
+                    formControlName="role"
+                    value="seller"
+                  />
+                  <label for="Seller" class="form-check-label">Seller</label>
+                </div>
+                @if (isInvalid('role')) {
+                  <div class="text-danger mt-1">Role is required.</div>
+                }
+              </div>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">
+              Register
+            </button>
+          </form>
+
+          @if (errorMessage;) {
+            <div class="alert alert-danger mt-3">{{ errorMessage }}</div>
+          } @else {
+            <div class="text-muted mt-3 text-center">Please fill in all required fields.</div>
+          }
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

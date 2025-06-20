@@ -1,0 +1,95 @@
+<div class="container-fluid my-4" style="background-color: aliceblue; min-height: 100vh;">
+
+  <!-- Search Bar -->
+  <div class="row justify-content-center mb-4">
+    <div class="col-md-7">
+      <input 
+        type="text" 
+        class="form-control form-control-lg" 
+        placeholder="Search items..." 
+        [(ngModel)]="searchTerm"
+        (ngModelChange)="onSearchChange($event)"
+      />
+    </div>
+  </div>
+
+  <div class="row justify-content-center">
+
+    <div class="col-12 col-lg-6 d-flex justify-content-center">
+      <div class="w-100" style="max-width: 550px;">
+        @for (item of items; track item.itemID) {
+          <app-item [item]="item" />
+        }
+      </div>
+    </div>
+
+    <div class="col-12 col-lg-3 pt-4 pt-lg-0 ps-lg-4">
+      <div class="card shadow-sm">
+        <div class="card-header bg-dark text-white">
+          <strong>Filters</strong>
+        </div>
+        <div class="card-body">
+
+          <div class="mb-3">
+            <label class="form-label">Category</label>
+            <select class="form-select" [(ngModel)]="selectedCategory" (change)="onFilterChange()">
+              <option value="">All</option>
+              <option *ngFor="let category of categories" [value]="category">{{ category }}</option>
+            </select>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Starting Price (Min)</label>
+            <input 
+              type="number" 
+              class="form-control mb-2" 
+              [(ngModel)]="startingPrice" 
+              (change)="onFilterChange()" 
+              placeholder="Enter minimum price" 
+            />
+            <input 
+              type="range" 
+              class="form-range" 
+              min="0" 
+              max="100000" 
+              step="100" 
+              [(ngModel)]="startingPrice" 
+              (change)="onFilterChange()" 
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Ending Price (Max)</label>
+            <input 
+              type="number" 
+              class="form-control mb-2" 
+              [(ngModel)]="endingPrice" 
+              (change)="onFilterChange()" 
+              placeholder="Enter maximum price" 
+            />
+            <input 
+              type="range" 
+              class="form-range" 
+              min="0" 
+              max="100000" 
+              step="100" 
+              [(ngModel)]="endingPrice" 
+              (change)="onFilterChange()" 
+            />
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label">Ending Before</label>
+            <input 
+              type="date" 
+              class="form-control" 
+              [(ngModel)]="endDateBefore" 
+              (change)="onFilterChange()" 
+            />
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

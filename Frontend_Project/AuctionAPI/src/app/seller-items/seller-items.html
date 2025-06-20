@@ -1,0 +1,53 @@
+<div *ngIf="errorMessage" class="alert alert-warning text-center">
+  {{ errorMessage }}
+</div>
+
+<div class="container">
+  <div class="row justify-content-center mt-4">
+    @for (item of items; track item.itemID) {
+      <div class="col-md-6 col-lg-5 mb-4">
+        <div class="card shadow-sm rounded-4 overflow-hidden">
+          
+          <div class="position-relative">
+          <img
+            [src]="item.imageUrl || fallbackImage"
+            class="card-img-top"
+            style="height: 200px; object-fit: cover;"
+            alt="{{ item.title }}"
+          />
+
+          <button
+            class="btn btn-sm btn-light position-absolute top-0 end-0 m-2 rounded-circle shadow"
+            (click)="editItem(item)"
+            title="Edit Item">
+            ✏️
+          </button>
+        </div>
+
+
+          <div class="card-header btn-color text-white d-flex justify-content-between align-items-center py-2 px-3">
+            <h5 class="mb-0">{{ item.title }}</h5>
+            <span class="badge category-color text-capitalize fs-6">{{ item.category }}</span>
+          </div>
+
+          <div class="card-body py-3 px-3">
+            <p class="card-text text-muted small mb-3">{{ item.description }}</p>
+
+            <ul class="list-group list-group-flush mb-3 small">
+              <li class="list-group-item py-1 px-2"><strong>Status:</strong> {{ item.status }}</li>
+              <li class="list-group-item py-1 px-2"><strong>Start:</strong> {{ item.startDate }} – <strong>End:</strong> {{ item.endDate }}</li>
+              <li class="list-group-item py-1 px-2"><strong>Starting Price:</strong> ₹{{ item.startingPrice }}</li>
+              <li class="list-group-item py-1 px-2"><strong>Current Bid:</strong> ₹{{ item.currentBid ?? item.startingPrice }}</li>
+              <li class="list-group-item py-1 px-2"><strong>Current Bidder:</strong> {{ item.currentBidderName || 'N/A' }}</li>
+            </ul>
+
+            <div class="text-center">
+              <button class="btn btn-sm btn-color px-4">View All Bids</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    }
+  </div>
+</div>

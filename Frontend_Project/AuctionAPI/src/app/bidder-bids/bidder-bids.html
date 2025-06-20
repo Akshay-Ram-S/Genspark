@@ -1,0 +1,8 @@
+<div class="card shadow-sm p-4">
+      <h4 class="mb-3 text-success">Your Bids</h4>
+      <ul class="list-group">
+        <li class="list-group-item" *ngFor="let bid of bids">
+          ₹{{ bid.amount }} on {{ bid.item }}
+        </li>
+      </ul>
+</div>
