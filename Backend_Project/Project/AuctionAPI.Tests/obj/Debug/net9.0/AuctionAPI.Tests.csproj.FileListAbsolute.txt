@@ -25,10 +25,12 @@
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/AutoMapper.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/BCrypt.Net-Next.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Castle.Core.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/FuzzySharp.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Google.Apis.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Google.Apis.Auth.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Google.Apis.Core.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/log4net.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Microsoft.ApplicationInsights.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.Google.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Microsoft.AspNetCore.Authentication.JwtBearer.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Microsoft.AspNetCore.Mvc.Versioning.dll
@@ -76,6 +78,7 @@
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Serilog.Extensions.Logging.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Serilog.Formatting.Compact.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Serilog.Settings.Configuration.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Serilog.Sinks.ApplicationInsights.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Serilog.Sinks.Console.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Serilog.Sinks.Debug.dll
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Serilog.Sinks.File.dll
@@ -164,6 +167,3 @@
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/obj/Debug/net9.0/AuctionAPI.Tests.pdb
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/obj/Debug/net9.0/AuctionAPI.Tests.genruntimeconfig.cache
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/obj/Debug/net9.0/ref/AuctionAPI.Tests.dll
-/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/FuzzySharp.dll
-/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Microsoft.ApplicationInsights.dll
-/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI.Tests/bin/Debug/net9.0/Serilog.Sinks.ApplicationInsights.dll

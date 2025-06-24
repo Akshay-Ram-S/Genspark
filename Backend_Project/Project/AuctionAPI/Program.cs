@@ -172,6 +172,7 @@ builder.Services.AddTransient<IItemService, ItemService>();
 builder.Services.AddTransient<IFunctionalities, Functionalities>();
 builder.Services.AddScoped<IBidService, BidService>();
 builder.Services.AddTransient<IValidation, Validation>();
+builder.Services.AddTransient<ICommonUserService, CommonUserService>();
 #endregion
 
 #region Misc
@@ -202,6 +203,16 @@ builder.Services.AddCors(options =>
                         .AllowAnyHeader());
 });
 
+// builder.Services.AddCors(options =>
+// {
+//     options.AddPolicy("AllowFrontend", policy =>
+//     {
+//         policy.WithOrigins("http://localhost:4200") 
+//               .AllowAnyMethod()
+//               .AllowAnyHeader()
+//               .AllowCredentials();                 
+//     });
+// });
 
 var app = builder.Build();
 
@@ -212,6 +223,7 @@ if (app.Environment.IsDevelopment())
 }
 
 
+//app.UseCors("AllowFrontend");
 app.UseCors("AllowAll");
 app.UseStaticFiles();
 app.UseAuthentication();

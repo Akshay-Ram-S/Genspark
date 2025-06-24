@@ -15,19 +15,25 @@ namespace AuctionAPI.Repositories
 
         public override async Task<User> Get(string key)
         {
-            var user = await _auctionContext.Users.Where(u => u.Status == "Active").SingleOrDefaultAsync(u => u.Email == key);
+            var user = await _auctionContext.Users.Where(u => u.Status == "Active")
+                                                    .Include(u => u.Seller)
+                                                    .Include(u => u.Bidder)
+                                                    .SingleOrDefaultAsync(u => u.Email == key);
 
             return user??throw new IdNotFoundException("No User with the given ID");
         }
 
         public override async Task<IEnumerable<User>> GetAll()
         {
-            var users = _auctionContext.Users.Where(u => u.Status == "Active");
+            var users = await _auctionContext.Users.Where(u => u.Status == "Active")
+                                        .Include(u => u.Seller)
+                                        .Include(u => u.Bidder)
+                                        .ToListAsync();
 
             if (users == null)
                 throw new CollectionEmptyException("No active users in the database");
 
-            return await users.ToListAsync();
+            return users;
         }
 
     }

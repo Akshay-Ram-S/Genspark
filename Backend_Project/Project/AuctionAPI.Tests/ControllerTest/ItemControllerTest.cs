@@ -109,10 +109,10 @@ namespace AuctionAPI.Tests.Controllers
             {
                 new ItemAllBids
                 {
-                    title = "Laptop",
-                    bidder_id = Guid.NewGuid(),
-                    name = "John Doe",
-                    amount = 1500.00m,
+                    Title = "Laptop",
+                    Bidder_id = Guid.NewGuid(),
+                    Name = "John Doe",
+                    Amount = 1500.00m,
                     bid_timestamp = DateTime.UtcNow
                 }
             };

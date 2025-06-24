@@ -83,60 +83,6 @@ namespace AuctionAPI.Tests.Services
             Assert.That(result, Has.Exactly(2).Items);
         }
 
-        [Test]
-        public async Task DeleteUser_Success()
-        {
-            var userId = Guid.NewGuid();
-            var bidder = new Bidder { UserId = userId, User = new User { Email = "john@example.com" } };
-            var user = new User { UserId = userId, Email = "john@example.com" };
-
-            _bidderRepositoryMock.Setup(r => r.Get(userId)).ReturnsAsync(bidder);
-            _userRepositoryMock.Setup(r => r.Get(user.Email)).ReturnsAsync(user);
-            _userRepositoryMock.Setup(r => r.Update(user.Email, It.IsAny<User>())).ReturnsAsync(user);
-
-            var result = await _bidderService.DeleteUser(userId);
-
-            Assert.That(result.UserId, Is.EqualTo(userId));
-            _userRepositoryMock.Verify(r => r.Update(user.Email, It.Is<User>(u => u.Status == "Deleted")), Times.Once);
-        }
-
-        [Test]
-        public async Task UpdateUser_Success()
-        {
-            var bidderId = Guid.NewGuid();
-            var updateDto = new UpdateUserDto { Name = "Updated", Password = "newpass" };
-            var user = new User { Email = "email@example.com", Name = "Old" };
-            var bidder = new Bidder { UserId = bidderId, User = user };
-
-            _bidderRepositoryMock.Setup(r => r.Get(bidderId)).ReturnsAsync(bidder);
-            _userRepositoryMock.Setup(r => r.Get(user.Email)).ReturnsAsync(user);
-            _encryptionServiceMock.Setup(e => e.EncryptData(It.IsAny<EncryptModel>()))
-                .ReturnsAsync(new EncryptModel { EncryptedData = "encrypted" });
-
-            var result = await _bidderService.UpdateUser(bidderId, updateDto);
-
-            Assert.That(result.User.Name, Is.EqualTo("Updated"));
-            Assert.That(user.Password, Is.EqualTo("encrypted"));
-        }
-
-        [Test]
-        public async Task UpdateUser_NotSuccess()
-        {
-            var bidderId = Guid.NewGuid();
-            var updateDto = new UpdateUserDto { Name = "Updated", Password = "newpass" };
-            var user = new User { Email = "email@example.com", Name = "Old" };
-            var bidder = new Bidder { UserId = bidderId, User = user };
-
-            _bidderRepositoryMock.Setup(r => r.Get(bidderId)).ReturnsAsync(bidder);
-            _userRepositoryMock.Setup(r => r.Get(user.Email)).ReturnsAsync(user);
-            _encryptionServiceMock.Setup(e => e.EncryptData(It.IsAny<EncryptModel>()))
-                .ReturnsAsync(new EncryptModel { EncryptedData = "encrypted" });
-
-            var result = await _bidderService.UpdateUser(bidderId, updateDto);
-
-            Assert.That(result.BidderId, Is.Not.EqualTo("bidderId"));
-            Assert.That(result.User.Email, Is.Not.EqualTo("Email"));
-        }
 
     }
 }

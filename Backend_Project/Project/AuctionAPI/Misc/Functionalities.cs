@@ -69,11 +69,14 @@ namespace AuctionAPI.Misc
                                                 ?? throw new Exception("Item not found");
         }
 
-        public async Task<IEnumerable<ItemsBySellerDto>> ItemsBySeller(Guid sellerId)
+        public async Task<IEnumerable<ItemResponse>> ItemsBySeller(Guid sellerId)
         {
             var seller = await _auctionContext.Sellers
-                .Where(s => s.SellerId == sellerId && s.User.Status == "Active")
-                .Include(s => s.Items.Where(i => !i.IsDeleted))
+                .Include(s => s.User)
+                .Include(s => s.Items!.Where(i => !i.IsDeleted))
+                    .ThenInclude(i => i.ItemDetails!)
+                        .ThenInclude(d => d.Bidder)
+                .Where(s => s.SellerId == sellerId && s.User!.Status == "Active")
                 .FirstOrDefaultAsync();
 
             if (seller == null || seller.Items == null || !seller.Items.Any())
@@ -81,36 +84,49 @@ namespace AuctionAPI.Misc
                 throw new Exception("No items posted by the seller");
             }
 
-            var itemSummaries = seller.Items.Select(item => new ItemsBySellerDto
+            var itemSummaries = seller.Items.Select(item => new ItemResponse
             {
-                ItemId = item.Id,
+                ItemID = item.Id,
                 Title = item.Title,
-                Category = item.Category,
+                Description = item.ItemDetails?.Description ?? "",
+                Status = item.Status ?? "",
+                Category = item.Category ?? "",
+                StartingPrice = item.ItemDetails?.StartingPrice ?? 0,
                 StartDate = item.StartDate,
-                EndDate = item.EndDate
+                EndDate = item.EndDate,
+                CurrentBid = item.ItemDetails?.CurrentBid,
+                CurrentBidderName = item.ItemDetails?.Bidder?.User?.Name ?? "No bids yet"
             });
 
             return itemSummaries;
         }
 
+
         public async Task<IEnumerable<BidsByBidderDto>> BidsByBidder(Guid bidderId)
         {
-            var bidder = await _auctionContext.Bidders
-                .Where(b => b.BidderId == bidderId && b.User.Status == "Active")
-                .Include(b => b.User)
-                .Include(b => b.Bids.Where(bid => !bid.IsDeleted))
-                .FirstOrDefaultAsync();
+            var bids = await _auctionContext.Bids
+                            .Where(b => b.BidderId == bidderId && !b.IsDeleted && b.Bidder.User.Status == "Active")
+                            .Include(b => b.Bidder)
+                                .ThenInclude(bidder => bidder.User)
+                            .Include(b => b.Item)
+                            .ToListAsync();
 
-            if (bidder == null || bidder.Bids == null || !bidder.Bids.Any())
-            {
+            if (!bids.Any())
                 throw new Exception("No bids made by the bidder");
-            }
 
-            var bidSummaries = bidder.Bids.Select(bid => new BidsByBidderDto
+            var itemIds = bids.Select(b => b.ItemId).Distinct().ToList();
+
+            var itemMap = await _auctionContext.Items
+                                .Where(i => itemIds.Contains(i.Id))      
+                                .ToDictionaryAsync(i => i.Id, i => i.Title);
+
+
+            var bidSummaries = bids.Select(bid => new BidsByBidderDto
             {
                 BidderId = bid.BidderId,
-                Name = bidder.User.Name,
+                Name = bid.Bidder.User.Name,
                 ItemId = bid.ItemId,
+                Title = itemMap.ContainsKey(bid.ItemId) ? itemMap[bid.ItemId] : "Unknown",
                 Amount = bid.Amount,
                 Timestamp = bid.Timestamp
             });

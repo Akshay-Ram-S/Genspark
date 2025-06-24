@@ -26,7 +26,6 @@ namespace AuctionAPI.Contexts
                         .ToListAsync();
         }
 
-        // For stored function usage
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);

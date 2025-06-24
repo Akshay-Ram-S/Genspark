@@ -7,5 +7,6 @@ namespace AuctionAPI.Models.DTOs
         public string Password { get; set; } = string.Empty;
         public string PAN { get; set; } = string.Empty;
         public string Aadhar { get; set; } = string.Empty;
+        public string Role { get; set; } = string.Empty;
     }
 }

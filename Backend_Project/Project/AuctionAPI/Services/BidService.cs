@@ -103,11 +103,12 @@ namespace AuctionAPI.Services
 
         private async Task IsBidAmountHigh(BidCreateDTO bidDto, Item item, ItemDetails itemDetails)
         {
+            var highestAmount = await HighestBidAmount(item.Id);
             if (bidDto.Amount < itemDetails.StartingPrice)
             {
-                throw new Exception($"Bid value must be greater than start value: {itemDetails.StartingPrice}");
+                throw new Exception($"Bid value must be greater than or equal to start value: {itemDetails.StartingPrice}");
             }
-            var highestAmount = await HighestBidAmount(item.Id);
+            
 
             if (highestAmount.HasValue && bidDto.Amount <= highestAmount)
             {

@@ -135,11 +135,14 @@ namespace AuctionAPI.Services
                 if (!string.IsNullOrWhiteSpace(filter.Category))
                     filteredItems = filteredItems.Where(i => i.Category == filter.Category);
 
-                if (filter.PriceLessThan.HasValue)
-                    filteredItems = filteredItems.Where(i => i.ItemDetails.CurrentBid <= filter.PriceLessThan.Value);
+                if (filter.StartingPrice.HasValue)
+                    filteredItems = filteredItems.Where(i => i.ItemDetails.StartingPrice >= filter.StartingPrice.Value);
+
+                if (filter.EndingPrice.HasValue)
+                    filteredItems = filteredItems.Where(i => i.ItemDetails.StartingPrice <= filter.EndingPrice.Value);
 
                 if (filter.EndDateBefore.HasValue)
-                    filteredItems = filteredItems.Where(i => i.EndDate < filter.EndDateBefore.Value);
+                    filteredItems = filteredItems.Where(i => i.EndDate <= filter.EndDateBefore.Value);
 
                 var inMemoryItems = filteredItems.ToList();
 

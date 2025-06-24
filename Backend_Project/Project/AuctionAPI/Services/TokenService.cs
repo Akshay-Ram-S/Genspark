@@ -19,8 +19,18 @@ namespace FirstAPI.Services
 
         public async Task<string> GenerateToken(User user)
         {
+            Guid Id;
+            if (user.Seller != null)
+            {
+                Id = user.Seller.SellerId;
+            }
+            else
+            {
+                Id = user.Bidder.BidderId;
+            }
             List<Claim> claims = new List<Claim>
             {
+                new Claim("Id", Id.ToString()),
                 new Claim(ClaimTypes.NameIdentifier, user.Name),
                 new Claim(ClaimTypes.Email, user.Email),
                 new Claim(ClaimTypes.Role, user.Role)

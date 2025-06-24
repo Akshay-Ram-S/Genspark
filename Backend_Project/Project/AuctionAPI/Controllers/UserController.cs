@@ -16,18 +16,21 @@ namespace AuctionAPI.Controllers
     {
         private readonly IUserService<Seller> _sellerService;
         private readonly IUserService<Bidder> _bidderService;
+        private readonly ICommonUserService _userService;
         private readonly ILogger<SellerController> _logger;
         private readonly IValidation _validation;
         private readonly IFunctionalities _functionalities;
 
         public UserController(IUserService<Seller> sellerService,
                                 IUserService<Bidder> bidderService,
+                                ICommonUserService userService,
                                 ILogger<SellerController> logger,
                                 IValidation validation,
                                 IFunctionalities functionalities)
         {
             _sellerService = sellerService;
             _bidderService = bidderService;
+            _userService = userService;
             _logger = logger;
             _validation = validation;
             _functionalities = functionalities;
@@ -39,7 +42,7 @@ namespace AuctionAPI.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status409Conflict)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> CreateUser(AddUserDto user, string role)
+        public async Task<IActionResult> CreateUser(AddUserDto user)
         {
             _logger.LogInformation($"Received request to create seller with email: {user.Email}");
 
@@ -60,6 +63,7 @@ namespace AuctionAPI.Controllers
                 if (!_validation.ValidName(user.Name))
                 {
                     _logger.LogWarning($"Bidder registration failed: Name must be more than 2 characters long - {user.Name}");
+                    return BadRequest(ApiResponseMapper.BadRequest<string>("Name must be more than 2 characters long."));
                 }
 
                 if (!await _validation.ValidAadharAndPAN(user.Aadhar, user.PAN.ToUpper()))
@@ -74,14 +78,14 @@ namespace AuctionAPI.Controllers
                     return Conflict(ApiResponseMapper.Conflict<string>("Email already exists."));
                 }
 
-                if (role == "Seller")
+                if (user.Role.ToLower() == "seller")
                 {
                     var result = await _sellerService.AddUser(user);
                     _logger.LogInformation("Seller created successfully with ID: {SellerId}", result.SellerId);
                     return CreatedAtAction("GetSellerById", "Seller", new { id = result.SellerId },
                             ApiResponseMapper.Created(result, "Seller created successfully."));
                 }
-                else if (role == "Bidder")
+                else if (user.Role.ToLower() == "bidder")
                 {
                     var result = await _bidderService.AddUser(user);
                     _logger.LogInformation("Bidder created successfully with ID: {BidderId}", result.BidderId);
@@ -90,7 +94,7 @@ namespace AuctionAPI.Controllers
                 }
                 else
                 {
-                    _logger.LogWarning("Invalid role specified: {Role}", role);
+                    _logger.LogWarning($"Invalid role specified: {user.Role}");
                     return BadRequest(ApiResponseMapper.BadRequest<string>("Invalid role specified."));
                 }
             }
@@ -102,127 +106,72 @@ namespace AuctionAPI.Controllers
         }
 
         [Authorize]
-        [HttpPut("{id}")]
+        [HttpPut()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> UpdateUserByRole(Guid id, UpdateUserDto user)
+        public async Task<IActionResult> UpdateUser(Guid id, UpdateUserDto user)
         {
-            var jwtEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-            var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
+            var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
             try
             {
-                if (jwtEmail == null)
+                if (email == null)
                 {
                     return Unauthorized(ApiResponseMapper.Unauthorized<string>());
                 }
 
-                object? existingUser = role switch
-                {
-                    "Seller" => await _sellerService.GetUser(id),
-                    "Bidder" => await _bidderService.GetUser(id),
-                    _ => null
-                };
-
-                if (existingUser is null)
-                    return NotFound(ApiResponseMapper.NotFound<string>($"{role} not found."));
-
-                var emailFromDb = role switch
-                {
-                    "Seller" => ((Seller)existingUser).User.Email,
-                    "Bidder" => ((Bidder)existingUser).User.Email,
-                    _ => null
-                };
-
-                if (!string.Equals(jwtEmail, emailFromDb, StringComparison.OrdinalIgnoreCase))
-                {
-                    return Forbid();
-                }
-                object? updatedUser = role switch
-                {
-                    "Seller" => await _sellerService.UpdateUser(id, user),
-                    "Bidder" => await _bidderService.UpdateUser(id, user),
-                    _ => null
-                };
+                var updatedUser = await _userService.UpdateUser(email, user); 
 
                 if (updatedUser == null)
                 {
-                    _logger.LogWarning("{Role} update failed. No user found with ID: {UserId}", role, id);
-                    return NotFound(ApiResponseMapper.NotFound<string>($"{role} with ID {id} not found"));
+                    _logger.LogWarning($"Update failed. No user found with ID: {email}");
+                    return NotFound(ApiResponseMapper.NotFound<string>($"{email} not found"));
                 }
 
-                _logger.LogInformation("{Role} {UserId} updated successfully", role, id);
-                return Ok(ApiResponseMapper.Success(updatedUser, $"{role} updated successfully."));
+                _logger.LogInformation($"User with email: {email} updated successfully");
+                return Ok(ApiResponseMapper.Success(updatedUser, $"{email} updated successfully."));
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Error while updating {Role} with ID: {UserId}", role, id);
+                _logger.LogError($"Error while updating User with Email: {email}");
                 return StatusCode(500, ApiResponseMapper.InternalError<string>(e));
             }
         }
 
         [Authorize]
-        [HttpDelete("{id}")]
+        [HttpDelete()]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> DeleteUserByRole(Guid id)
+        public async Task<IActionResult> DeleteUser()
         {
-            var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
-            _logger.LogInformation("Deleting {Role} with ID: {UserId}", role, id);
+            
             try
             {
-                var jwtEmail = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
-                if (jwtEmail == null)
+                var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+                if (email == null)
                 {
                     return Unauthorized(ApiResponseMapper.Unauthorized<string>());
                 }
 
-                object? existingUser = role switch
-                {
-                    "Seller" => await _sellerService.GetUser(id),
-                    "Bidder" => await _bidderService.GetUser(id),
-                    _ => null
-                };
-
-                if (existingUser is null)
-                    return NotFound(ApiResponseMapper.NotFound<string>($"{role} not found."));
-
-                var emailFromDb = role switch
-                {
-                    "Seller" => ((Seller)existingUser).User.Email,
-                    "Bidder" => ((Bidder)existingUser).User.Email,
-                    _ => null
-                };
-
-                if (!string.Equals(jwtEmail, emailFromDb, StringComparison.OrdinalIgnoreCase))
-                {
-                    return Forbid();
-                }
-
-                object? deletedUser = role switch
-                {
-                    "Seller" => await _sellerService.DeleteUser(id),
-                    "Bidder" => await _bidderService.DeleteUser(id),
-                    _ => null
-                };
+                var deletedUser = await _userService.DeleteUser(email);
 
                 if (deletedUser == null)
                 {
-                    _logger.LogWarning("Delete failed: {Role} not found with ID: {UserId}", role, id);
-                    return NotFound(ApiResponseMapper.NotFound<string>($"{role} not found."));
+                    _logger.LogWarning("Delete failed");
+                    return NotFound(ApiResponseMapper.NotFound<string>("User not found."));
                 }
 
-                _logger.LogInformation("{Role} {UserId} deleted successfully", role, id);
-                return Ok(ApiResponseMapper.Success(deletedUser, $"{role} deleted successfully."));
+                _logger.LogInformation($"User with email: {email} deleted successfully");
+                return Ok(ApiResponseMapper.Success(deletedUser, $"User deleted successfully."));
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Error while deleting {Role} with ID: {UserId}", role, id);
+                _logger.LogError(e, "Error while deleting User");
                 return StatusCode(500, ApiResponseMapper.InternalError<string>(e));
             }
         }

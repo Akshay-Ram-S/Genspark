@@ -5,6 +5,7 @@ namespace AuctionAPI.Models.DTOs
         public Guid BidderId { get; set; }
         public string Name { get; set; } = string.Empty;
         public Guid ItemId { get; set; }
+        public string Title { get; set; } = string.Empty;
         public decimal Amount { get; set; }
         public DateTime Timestamp { get; set; }
     }

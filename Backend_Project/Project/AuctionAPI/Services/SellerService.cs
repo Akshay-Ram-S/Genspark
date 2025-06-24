@@ -97,75 +97,7 @@ namespace AuctionAPI.Services
                 throw new Exception(e.Message);
             }
         }
-
-        public async Task<Seller> DeleteUser(Guid id)
-        {
-            try
-            {
-                var user = await _sellerRepository.Get(id);
-                if (user == null)
-                {
-                    throw new Exception($"No seller found with id: {id}");
-                }
-                var userDel = await _userRepository.Get(user.User.Email);
-                userDel.Status = "Deleted";
-                userDel = await _userRepository.Update(user.User.Email, userDel);
-                await _auditRepository.Add(new Audit
-                {
-                    Action = "Create",
-                    CreatedAt = DateTime.UtcNow,
-                    CreatedBy = userDel.Email,
-                    EntityId = userDel.UserId,
-                    EntityType = "Seller"
-                });
-                return user;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
-
-        public async Task<Seller> UpdateUser(Guid id, UpdateUserDto user)
-        {
-            try
-            {
-                var seller = await _sellerRepository.Get(id); 
-                if (seller == null)
-                {
-                    throw new Exception($"No Seller found with id: {id}");
-                }
-
-                var _user = await _userRepository.Get(seller.User.Email); 
-                if (user == null)
-                {
-                    throw new Exception($"User associated with seller ID {id} not found");
-                }
-
-                _user.Name = user.Name;
-                var encryptedData = await _encryptionService.EncryptData(new EncryptModel
-                {
-                    Data = user.Password
-                });
-                _user.Password = encryptedData.EncryptedData;
-
-                await _userRepository.Update(_user.Email, _user); 
-
-                await _auditRepository.Add(new Audit
-                {
-                    Action = "Update",
-                    CreatedAt = DateTime.UtcNow,
-                    CreatedBy = seller.User.Email,
-                    EntityId = seller.UserId,
-                    EntityType = "Seller"
-                });
-                return seller;
-            }
-            catch (Exception e)
-            {
-                throw new Exception(e.Message);
-            }
-        }
+        
 
     }
 

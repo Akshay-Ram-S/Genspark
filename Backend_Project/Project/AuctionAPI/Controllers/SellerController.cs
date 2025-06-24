@@ -85,6 +85,10 @@ namespace AuctionAPI.Controllers
             try
             {
                 var items = await _functionalities.ItemsBySeller(id);
+                if (items == null)
+                {
+                    return NotFound(ApiResponseMapper.Fail<string>("No items posted by this seller."));
+                }
                 _logger.LogInformation($"Items posted by seller with id: {id} is fetched");
                 return Ok(ApiResponseMapper.Success(items, $"Items by seller with id: {id} fetched successfully."));
             }

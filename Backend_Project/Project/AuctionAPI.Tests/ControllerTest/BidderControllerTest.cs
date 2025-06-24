@@ -97,40 +97,6 @@ namespace AuctionAPI.Tests.Controllers
             Assert.That(result!.StatusCode, Is.EqualTo(500));
         }
 
-        [Test]
-        public async Task DeleteBidder_ReturnsDeletedBidder_WhenExists()
-        {
-            var id = Guid.NewGuid();
-            var bidder = new Bidder { BidderId = id, User = new User { Email = "a@test.com" } };
-            _mockBidderService.Setup(s => s.DeleteUser(id)).ReturnsAsync(bidder);
 
-            var result = await _controller.DeleteBidder(id) as OkObjectResult;
-
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result!.StatusCode, Is.EqualTo(200));
-        }
-
-        [Test]
-        public async Task DeleteBidder_ReturnsNotFound_WhenBidderNotFound()
-        {
-            var id = Guid.NewGuid();
-            _mockBidderService.Setup(s => s.DeleteUser(id)).ReturnsAsync((Bidder)null!);
-
-            var result = await _controller.DeleteBidder(id);
-
-            Assert.That(result, Is.TypeOf<NotFoundObjectResult>());
-        }
-
-        [Test]
-        public async Task DeleteBidder_ThrowsException_Returns500()
-        {
-            var id = Guid.NewGuid();
-            _mockBidderService.Setup(s => s.DeleteUser(id)).ThrowsAsync(new Exception("Error"));
-
-            var result = await _controller.DeleteBidder(id) as ObjectResult;
-
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result!.StatusCode, Is.EqualTo(500));
-        }
     }
 }

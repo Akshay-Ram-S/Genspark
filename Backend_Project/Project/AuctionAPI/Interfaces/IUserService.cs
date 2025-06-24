@@ -9,8 +9,6 @@ namespace AuctionAPI.Interfaces
         public Task<T> AddUser(AddUserDto user);
         public Task<T> GetUser(Guid id);
         public Task<IEnumerable<T>> GetAllUsers(int page, int pageSize);
-        public Task<T> UpdateUser(Guid id, UpdateUserDto user);
-        public Task<T> DeleteUser(Guid id);
 
     }
 }
