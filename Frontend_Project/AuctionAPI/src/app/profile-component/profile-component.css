@@ -31,6 +31,12 @@
   color:beige
 }
 
+.del-button{
+  background-color: white;
+  color:red;
+  border: 1px solid red;
+}
+
 .section-title {
   text-align: center;
   color: goldenrod;

@@ -1,0 +1,71 @@
+<div class="live-bid-wrapper" *ngIf="item">
+  <div class="left-section">
+    <div class="glass-card item-card">
+      <img [src]="item.imageUrl" class="item-image" alt="Auction Item" />
+      <div class="item-details">
+        <h2>{{ item.title }}</h2>
+        <p class="price">Starting price: ${{ item.startingPrice }}</p>
+        <p class="ends">Ends at: {{ item.endDate }}</p>
+        <p class="price">Current bid: ${{ item.currentBid }}</p>
+        <p class="description">{{ item.description }}</p>
+      </div>
+    </div>
+
+    <div class="glass-card bid-form-card">
+      <h3>Place Your Bid</h3>
+      <form [formGroup]="bidForm" (ngSubmit)="submitBid()" class="bid-form">
+        <input
+          type="number"
+          formControlName="bidAmount"
+          placeholder="Enter your bid"
+          class="form-control"
+        />
+        <button type="submit" class="btn px-4" [disabled]="bidForm.invalid">
+          Submit Bid
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <div class="right-section glass-card">
+    <h3>Live Bids</h3>
+    <div class="bid-log" *ngIf="bids.length > 0; else noBids">
+        @for (bid of bids; track $index) {
+            <div class="bid-entry" [ngClass]="{ 'highlight-bid': bid.amount === highestAmount }">
+            <strong>{{ bid.name }}</strong> Bid ${{ bid.amount }}
+            <span class="time">{{ bid.bid_timestamp |  date: 'dd MMM yyyy, h:mm a' }}</span>
+            </div>
+        }
+    </div>
+    <ng-template #noBids>
+      <p class="no-bids">No bids yet.</p>
+    </ng-template>
+  </div>
+
+
+  <div class="modal fade" id="confirmBidModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content shadow">
+        <div class="modal-header">
+          <h5 class="modal-title">Confirm Your Bid</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body text-center">
+          <p>Place a bid of <strong>₹{{ bidForm.value.bidAmount }}</strong>?<br />This action cannot be undone.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary px-4" data-bs-dismiss="modal">Cancel</button>
+          <button type="button" class="btn btn-success px-4" (click)="confirmPlaceBid()">Yes, Place Bid</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Alerts -->
+<div *ngIf="successMessage" class="alert alert-success text-center fixed-top mx-auto w-75 mt-3">
+  {{ successMessage }}
+</div>
+<div *ngIf="errorMessage" class="alert alert-danger text-center fixed-top mx-auto w-75 mt-3">
+  {{ errorMessage }}
+</div>

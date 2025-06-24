@@ -19,4 +19,14 @@ export class UserService {
     return this.http.post<any>(url, data);
   }
 
+  delete(): Observable<any> {
+    const token = localStorage.getItem('token');
+
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+
+    return this.http.delete<any>(this.baseUrl, { headers });
+  }
+
 }

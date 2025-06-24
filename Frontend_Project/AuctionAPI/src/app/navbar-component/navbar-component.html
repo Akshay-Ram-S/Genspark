@@ -11,18 +11,41 @@
     <div class="collapse navbar-collapse" id="navbarContent">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item mx-2">
-          <a class="nav-link text-white fs-5" routerLink="/" routerLinkActive="active">Home</a>
+          <a class="nav-link text-white fs-5" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Home</a>
         </li>
         <li class="nav-item mx-2">
           <a class="nav-link text-white fs-5" routerLink="/items" routerLinkActive="active">Items</a>
         </li>
-        <li class="nav-item mx-2">
-          <a class="nav-link text-white fs-5" routerLink="/users" routerLinkActive="active">Users</a>
+        <li class="nav-item dropdown mx-2">
+          <a
+            class="nav-link dropdown-toggle text-white fs-5"
+            href="#"
+            id="userDropdown"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            Users
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="userDropdown">
+            <li>
+              <a class="dropdown-item" routerLink="/users/seller" routerLinkActive="active">Sellers List</a>
+            </li>
+            <li>
+              <a class="dropdown-item" routerLink="/users/bidder" routerLinkActive="active">Bidders List</a>
+            </li>
+          </ul>
         </li>
+
       </ul>
 
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <ng-container *ngIf="isLoggedIn; else showLogin">
+          
+        <li class="nav-item mx-2">
+          <app-notification></app-notification>
+        </li>
+        
           <li class="nav-item mx-2">
             <a class="nav-link text-white fs-5" routerLink="/profile" routerLinkActive="active">Profile</a>
           </li>

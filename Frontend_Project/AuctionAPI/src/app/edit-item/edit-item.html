@@ -1,0 +1,37 @@
+<div class="container my-5" style="max-width: 600px;">
+  <div class="card shadow-lg p-4">
+    <h3 class="mb-4 text-center">Edit Item</h3>
+
+    <form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" formControlName="title" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">End Date</label>
+        <input type="date" class="form-control" formControlName="endDate" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Category</label>
+        <input type="text" class="form-control" formControlName="category" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" rows="3" formControlName="description"></textarea>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Change Image (optional)</label>
+        <input type="file" class="form-control" (change)="onImageSelected($event)" />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="editForm.invalid">
+        Update Item
+      </button>
+    </form>
+  </div>
+</div>

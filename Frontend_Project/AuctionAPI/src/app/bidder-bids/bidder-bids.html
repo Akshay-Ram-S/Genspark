@@ -1,8 +1,30 @@
-<div class="card shadow-sm p-4">
-      <h4 class="mb-3 text-success">Your Bids</h4>
-      <ul class="list-group">
-        <li class="list-group-item" *ngFor="let bid of bids">
-          ₹{{ bid.amount }} on {{ bid.item }}
-        </li>
-      </ul>
+<div class="container mt-4">
+
+  <div *ngIf="isLoading" class="text-center">
+    <p>Loading your bids...</p>
+  </div>
+
+  <div *ngIf="errorMessage" class="alert alert-danger text-center">
+    <strong>{{ errorMessage }}</strong>
+  </div>
+
+  <div *ngIf="!isLoading && !errorMessage && bids.length === 0" class="alert text-center">
+    You haven't placed any bids yet.
+  </div>
+
+  <ul class="list-group" *ngIf="bids.length > 0">
+    <li class="list-group-item" *ngFor="let bid of bids">
+      <div class="row align-items-center text-center text-md-start">
+        <div class="col-md-3 col-12 mb-1"><strong>Item:</strong> {{ bid.title || 'N/A' }}</div>
+        <div class="col-md-3 col-12 mb-1"><strong>Amount:</strong> ${{ bid.amount }}</div>
+        <div class="col-md-3 col-12 mb-1"><strong>Date:</strong> {{ bid.timestamp | date: 'yyyy-MM-dd' }}</div>
+        <div class="col-md-3 col-12 text-md-end text-center">
+          <a (click)="ViewItem(bid.itemId)" class="btn btn-primary btn-sm">
+            View Item
+          </a>
+        </div>
+      </div>
+    </li>
+  </ul>
+
 </div>

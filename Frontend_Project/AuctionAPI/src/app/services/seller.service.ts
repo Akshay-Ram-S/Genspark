@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { TokenService } from './misc.service';
+import { TokenService } from './token.service';
+import { User } from '../models/user';
 
 @Injectable({ providedIn: 'root' })
 export class SellerService {
@@ -9,7 +10,10 @@ export class SellerService {
 
   constructor(private http: HttpClient, public tokenService: TokenService) {}
 
-  getItemsBySeller(): Observable<ApiResponse<any[]>> {
+  getItemsBySeller(id:string): Observable<ApiResponse<any[]>> {
+    if(id){
+      return this.http.get<ApiResponse<any[]>>(`${this.baseUrl}/Items/${id}`);
+    }
     const Id = this.tokenService.getUserId();
     const token = localStorage.getItem('token');
 
@@ -18,5 +22,13 @@ export class SellerService {
     });
 
     return this.http.get<ApiResponse<any[]>>(`${this.baseUrl}/Items/${Id}`,{headers});
+  }
+
+  getSellers(): Observable<ApiResponse<any[]>> {
+    return this.http.get<ApiResponse<any[]>>(`${this.baseUrl}`);
+  }
+
+  getSellerById(sellerId: string): Observable<ApiResponse<any>> {
+    return this.http.get<ApiResponse<any>>(`${this.baseUrl}/${sellerId}`);
   }
 }

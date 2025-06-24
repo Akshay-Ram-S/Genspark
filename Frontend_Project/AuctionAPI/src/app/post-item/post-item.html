@@ -1,0 +1,68 @@
+<div class="container my-5" style="max-width: 600px;">
+  <div class="card shadow-lg p-4">
+    <h3 class="mb-4 text-center">Post Item</h3>
+
+    <form [formGroup]="postForm" (ngSubmit)="onSubmit()" novalidate>
+
+      <div class="mb-3">
+        <label class="form-label">Title</label>
+        <input type="text" class="form-control" formControlName="title" />
+        <div *ngIf="postForm.controls['title'].touched">
+          <div *ngIf="postForm.controls['title'].errors?.['required']" class="text-danger small">
+            Title is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Starting Price <br/>(Can't change afterwards)</label>
+        <input type="number" class="form-control" formControlName="startingPrice" />
+        <div *ngIf="postForm.controls['startingPrice'].touched">
+          <div *ngIf="postForm.controls['startingPrice'].errors?.['required']; else checkMin" class="text-danger small">
+            Starting price is required.
+          </div>
+          <ng-template #checkMin>
+            <div *ngIf="postForm.controls['startingPrice'].errors?.['min']" class="text-danger small">
+              Price cannot be negative.
+            </div>
+          </ng-template>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">End Date</label>
+        <input type="date" class="form-control" formControlName="endDate" />
+        <div *ngIf="postForm.controls['endDate'].touched">
+          <div *ngIf="postForm.controls['endDate'].errors?.['required']" class="text-danger small">
+            End date is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Category</label>
+        <input type="text" class="form-control" formControlName="category" />
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Description</label>
+        <textarea class="form-control" rows="3" formControlName="description"></textarea>
+        <div *ngIf="postForm.controls['description'].touched">
+          <div *ngIf="postForm.controls['description'].errors?.['required']" class="text-danger small">
+            Description is required.
+          </div>
+        </div>
+      </div>
+
+      <div class="mb-3">
+        <label class="form-label">Image</label>
+        <input type="file" class="form-control" (change)="onImageSelected($event)" />
+      </div>
+
+      <button type="submit" class="btn btn-primary w-100" [disabled]="postForm.invalid">
+        Post Item
+      </button>
+
+    </form>
+  </div>
+</div>

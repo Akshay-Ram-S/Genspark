@@ -10,3 +10,10 @@ body {
 p{
   text-align: center;
 }
+
+.alert-danger {
+  text-align: center;
+  color: goldenrod;
+  background-color: beige;
+  border: 1px solid goldenrod;
+}

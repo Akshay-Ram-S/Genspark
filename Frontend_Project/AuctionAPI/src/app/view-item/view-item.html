@@ -1,0 +1,46 @@
+<div class="container my-4">
+
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <app-item *ngIf="item" [item]="item" [viewBidButton]="false"  />
+    </div>
+  </div>
+
+  <div class="row justify-content-center mt-4">
+    <div class="col-md-8">
+      <h5 class="mb-3 text-center text-md-start">Bids on this Item</h5>
+
+      <div *ngIf="isLoading" class="text-center">
+        <p>Loading bids...</p>
+      </div>
+
+      <div *ngIf="errorMessage" class="alert alert-danger text-center">
+        No bids placed yet for this item.
+      </div>
+
+      <ul class="list-group" *ngIf="bids.length > 0">
+        <li
+            class="list-group-item"
+            *ngFor="let bid of bids"
+            [ngClass]="{ 'list-group-item-success': bid.amount === highestAmount }"
+        >
+            <div class="row text-center text-md-start">
+            <div class="col-md-4 col-12 mb-1">
+                <strong>Bidder:</strong> {{ bid.name }}
+            </div>
+            <div class="col-md-4 col-12 mb-1">
+                <strong>Amount:</strong>
+                ${{ bid.amount }}
+                <span *ngIf="bid.amount === highestAmount" class="badge bg-warning text-dark ms-2">Highest</span>
+            </div>
+            <div class="col-md-4 col-12">
+                <strong>Date:</strong> {{ bid.bid_timestamp | date: 'yyyy-MM-dd' }}
+            </div>
+            </div>
+        </li>
+        </ul>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,36 @@
+.user-card {
+  background: rgba(255, 248, 220, 0.75); /* beige with slight transparency */
+  backdrop-filter: blur(8px);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.avatar {
+  background-color: goldenrod;
+  color: white;
+  width: 80px;
+  height: 80px;
+  font-size: 2.5rem;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.text-gold {
+  color: goldenrod;
+}
+
+.btn-golden {
+  background-color: goldenrod;
+  color: white;
+  border: none;
+}
+
+.btn-golden:hover {
+  background-color: darkgoldenrod;
+}

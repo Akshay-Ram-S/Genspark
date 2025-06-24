@@ -21,7 +21,7 @@ export class RegisterComponent {
     this.registerForm = this.fb.group({
       name: ['', Validators.required],
       email: ['', [Validators.required, Validators.email]],
-      password: ['', Validators.required],
+      password: ['', [Validators.required, Validators.minLength(6)]],
       pan: ['', Validators.required],
       aadhar: ['', Validators.required],
       role: ['', Validators.required]
@@ -45,7 +45,13 @@ export class RegisterComponent {
         },
         error: (error) => {
           console.error('Registration failed:', error);
-          this.errorMessage = error.error?.message || 'Registration failed. Please try again.';
+          const exceptionList = error.error?.errors?.Exception;
+
+          this.errorMessage = Array.isArray(exceptionList) && exceptionList.length
+            ? exceptionList[0]
+            : (error.error?.message || 'Registration failed. Please try again.');
+
+          setTimeout(() => this.errorMessage = '', 5000);
         }
       });
 

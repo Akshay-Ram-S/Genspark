@@ -6,3 +6,10 @@ body {
   margin-top: 40px;
   border-radius: 1rem;
 }
+
+.alert-danger{
+  color:goldenrod;
+  text-align: center;
+  background-color: beige;
+  border: 2px solid goldenrod
+}

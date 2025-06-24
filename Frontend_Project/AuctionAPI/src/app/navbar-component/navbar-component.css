@@ -7,3 +7,27 @@
 .a{
     color: rgb(255, 255, 255);
 }
+
+.nav-link.active {
+  color: beige !important;
+  font-weight: bold;
+  border-bottom: 2px solid white;
+}
+
+.btn{
+  background-color:beige;
+  color:goldenrod
+}
+
+.btn:hover{
+  background-color: rgb(233, 205, 133);
+  color: beige;
+}
+
+.dropdown-item.active{
+  background-color: goldenrod;
+  color: beige;
+}
+
+
+

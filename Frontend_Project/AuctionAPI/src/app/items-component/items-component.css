@@ -1,3 +1,43 @@
 .card-header{
     background-color: goldenrod;
 }
+.btn-color{
+    background-color: goldenrod;
+    color:beige;
+    border-color: goldenrod;
+}
+.btn-color:hover{
+    background-color: beige;
+    color: goldenrod;
+    border-color: goldenrod;
+}
+.btn{
+    height: 50px;
+    width: 30%;
+}
+
+.page-link {
+  background-color: white;
+  border: 1px solid goldenrod;
+  color: goldenrod;
+  transition: 0.3s ease;
+}
+
+.page-link:hover {
+  background-color: goldenrod;
+  color: white;
+}
+
+.page-link:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.active-page {
+  background-color: goldenrod !important;
+  color: white !important;
+  font-weight: bold;
+  box-shadow: 0 0 10px goldenrod;
+  border: none;
+}
+

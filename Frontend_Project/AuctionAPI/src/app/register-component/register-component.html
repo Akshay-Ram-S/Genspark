@@ -34,7 +34,7 @@
               }
             </div>
 
-            <div class="mb-3">
+           <div class="mb-3">
               <label for="password" class="form-label">Password</label>
               <input
                 type="password"
@@ -43,8 +43,15 @@
                 formControlName="password"
                 [ngClass]="{ 'is-invalid': isInvalid('password') }"
               />
+
               @if (isInvalid('password')) {
-                <div class="invalid-feedback">Password is required.</div>
+                <div class="invalid-feedback">
+                  @if (registerForm.get('password')?.errors?.['required']) {
+                    Password is required.
+                  } @else if (registerForm.get('password')?.errors?.['minlength']) {
+                    Password must be at least 6 characters long.
+                  }
+                </div>
               }
             </div>
 
