@@ -1,0 +1,12 @@
+@if (recipes()?.length === 0) {
+  <div class="not-found">
+    <h2>No Recipes available</h2>
+  </div>
+}
+@else {
+  <div class="recipe-list">
+    @for (item of recipes(); track item.name) {
+      <app-recipe [recipe]="item"></app-recipe>
+    }
+  </div>
+}

@@ -1,0 +1,14 @@
+<div class="glass-card">
+  <img [src]="recipe?.image" alt="{{ recipe?.name }}" class="glass-card-image" />
+
+  <div class="glass-card-body">
+    <h3 class="glass-title">{{ recipe?.name }}</h3>
+    <p class="glass-sub"><i class="bi bi-globe2"></i> {{ recipe?.cuisine }}</p>
+    <p class="glass-sub"><i class="bi bi-clock"></i> {{ recipe?.cookTimeMinutes }} minutes</p>
+
+    <div class="glass-ingredients">
+      <strong>Ingredients:</strong>
+      <p>{{ recipe?.ingredients }}</p>
+    </div>
+  </div>
+</div>
