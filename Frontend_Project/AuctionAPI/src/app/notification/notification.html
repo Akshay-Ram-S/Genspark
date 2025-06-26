@@ -9,7 +9,7 @@
       </button>
 
       <div class="position-absolute bg-white shadow p-3 border rounded mt-2"
-        style="right: 0; width: 300px; z-index: 1000;"
+        style="right: 0; width: 600px; z-index: 1000;"
         *ngIf="showPanel">
         <h6 class="mb-2">Bid Notifications</h6>
         <div *ngIf="notifications.length === 0" class="text-muted">
@@ -17,7 +17,11 @@
         </div>
         <ul class="list-group list-group-flush">
           <li *ngFor="let n of notifications" class="list-group-item small">
-            Bidder: <strong>{{ n.bidder }}</strong> placed ${{ n.amount }} on <em>{{ n.title }} <span class="text-muted">{{ n.timestamp | date: 'short' }} </span></em>
+            Bidder: <strong>{{ n.bidder }}</strong> placed ${{ n.amount }} on <em>{{ n.title }} </em>
+            <span class="text-muted small" style="float: right;">
+              {{ n.time | date: 'hh:mm a' }}
+            </span>
+            
           </li>
         </ul>
       </div>

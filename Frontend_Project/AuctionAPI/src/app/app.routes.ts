@@ -11,12 +11,14 @@ import { SellerGuard } from './guards/seller-guard';
 import { UnauthorizedComponent } from './unauthorized/unauthorized';
 import { BidderGuard } from './guards/bidder-guard';
 import { LiveBidComponent } from './live-bid/live-bid';
+import { ChangePasswordComponent } from './change-password/change-password';
+import { AuthGuard } from './guards/auth-guard';
 
 export const routes: Routes = [
     //{ path: '', component: HomeComponent },
     { path: 'login', component: LoginComponent},
     { path: 'register', component: RegisterComponent},
-    { path: 'profile', component: ProfileComponent},
+    { path: 'profile', component: ProfileComponent, canActivate: [AuthGuard] },
     { path: 'items', component: ItemsComponent},
     { path: 'post-item', component: PostItemComponent, canActivate: [SellerGuard] },
     { path: 'items/edit-item/:itemId', component: EditItemComponent, canActivate: [SellerGuard]  },
@@ -25,7 +27,8 @@ export const routes: Routes = [
     { path: 'users/:role', component: UsersComponent },
     { path: 'users/seller/:id', component: ProfileComponent },
     { path: 'users/bidder/:id', component: ProfileComponent },
-    { path: 'unauthorized', component: UnauthorizedComponent }
+    { path: 'unauthorized', component: UnauthorizedComponent },
+    { path:'profile/change-password', component: ChangePasswordComponent},
 
 
 ];

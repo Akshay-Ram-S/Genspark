@@ -1,24 +1,15 @@
-.user-card {
-  background: rgba(255, 248, 220, 0.75); /* beige with slight transparency */
-  backdrop-filter: blur(8px);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.user-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-}
-
 .avatar {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
   background-color: goldenrod;
   color: white;
-  width: 80px;
-  height: 80px;
-  font-size: 2.5rem;
-  border-radius: 50%;
+  font-size: 2rem;
   display: flex;
   align-items: center;
   justify-content: center;
+  font-weight: 600;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
 .text-gold {
@@ -29,8 +20,21 @@
   background-color: goldenrod;
   color: white;
   border: none;
+  border-radius: 30px;
+  transition: all 0.3s ease;
 }
 
 .btn-golden:hover {
-  background-color: darkgoldenrod;
+  background-color: #e6b800;
+  transform: translateY(-2px);
+}
+
+.user-card {
+  background-color: #fffdf5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.user-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
 }

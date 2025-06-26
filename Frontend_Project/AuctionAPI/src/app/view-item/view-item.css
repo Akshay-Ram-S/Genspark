@@ -1,8 +1,11 @@
-.alert-danger{
-    background-color: beige;
-    border-color: goldenrod;
+
+.pulse-border {
+  animation: pulse 1.5s infinite;
+  border: 2px solid #28a745 !important;
 }
-.list-group-item{
-    background-color: beige;
-    border-color: goldenrod;
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0.5); }
+  70% { box-shadow: 0 0 0 10px rgba(40, 167, 69, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(40, 167, 69, 0); }
 }

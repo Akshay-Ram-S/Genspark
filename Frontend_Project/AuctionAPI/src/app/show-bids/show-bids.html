@@ -1,0 +1,24 @@
+<h3>Live Bids</h3>
+
+<div class="bid-log" *ngIf="bids.length > 0; else noBids">
+  @for (bid of bids; track $index) {
+    <div class="bid-entry" [ngClass]="{ 'highlight-bid': bid.amount === highestAmount }">
+      <strong>{{ bid.name }}</strong> 
+      Bid ${{ bid.amount }}
+      <span class="time">{{ bid.bid_timestamp | date: 'dd MMM yyyy, h:mm a' }}</span>
+      @if(auctionEnded && bid.amount === highestAmount) {
+        <span class="badge bg-success large-badge">Sold</span>
+      }
+      @else if(bid.amount === highestAmount) {
+        <span class="badge bg-color large-badge">Current Bid</span>
+      }
+      @else {
+        <span class="badge bg-secondary large-badge">Bid</span>
+      }
+    </div>
+  }
+</div>
+
+<ng-template #noBids>
+  <p class="no-bids fs-3">No bids yet.</p>
+</ng-template>

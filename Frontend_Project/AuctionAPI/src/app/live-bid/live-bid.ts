@@ -6,13 +6,16 @@ import { BidService, BidRequest } from '../services/bid.service';
 import { ItemService } from '../services/item.service';
 import { TokenService } from '../services/token.service';
 import { CommonModule } from '@angular/common';
+import { interval, Subscription } from 'rxjs';
+import { ShowBids } from '../show-bids/show-bids';
 
 @Component({
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, ShowBids],
   selector: 'app-live-bid',
   templateUrl: './live-bid.html',
   styleUrls: ['./live-bid.css']
 })
+
 export class LiveBidComponent implements OnInit {
   item: Item | null = null;
   itemId: string | null = null;
@@ -22,10 +25,12 @@ export class LiveBidComponent implements OnInit {
   bids: any[] = [];
   isLoading = true;
   highestAmount: number = 0;
+  auctionEnded: boolean = false;
+  countdown: string = '';
+  private countdownSubscription: Subscription | null = null;
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
     private fb: FormBuilder,
     private itemService: ItemService,
     private bidService: BidService,
@@ -41,7 +46,11 @@ export class LiveBidComponent implements OnInit {
     }
 
     this.itemService.getItemById(this.itemId).subscribe({
-      next: (res) => (this.item = res.data),
+      next: (res) => {
+        this.item = res.data;
+        this.auctionEnded = this.hasAuctionEnded(this.item.endDate);
+        this.startCountdown();
+      },
       error: (err) => console.error('Failed to fetch item', err)
     });
 
@@ -50,6 +59,7 @@ export class LiveBidComponent implements OnInit {
     });
 
     this.loadBids();
+    
   });
   }
 
@@ -93,9 +103,9 @@ export class LiveBidComponent implements OnInit {
   }
 
   closeConfirmModal() {
-    const modalElement = document.getElementById('confirmBidModal');
-    if (modalElement) {
-      const modalInstance = Modal.getInstance(modalElement);
+    const modal = document.getElementById('confirmBidModal');
+    if (modal) {
+      const modalInstance = Modal.getInstance(modal);
       if (modalInstance) {
         modalInstance.hide();
       }
@@ -105,10 +115,10 @@ export class LiveBidComponent implements OnInit {
   showMessage(message: string, type: 'success' | 'error') {
     if (type === 'success') {
       this.successMessage = message;
-      setTimeout(() => (this.successMessage = ''), 3000);
+      setTimeout(() => (this.successMessage = ''), 6000);
     } else {
       this.errorMessage = message;
-      setTimeout(() => (this.errorMessage = ''), 3000);
+      setTimeout(() => (this.errorMessage = ''), 6000);
     }
 
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -122,9 +132,42 @@ export class LiveBidComponent implements OnInit {
         this.isLoading = false;
       },
       error: err => {
-        this.errorMessage = err.error?.message || 'Error loading bids';
         this.isLoading = false;
       }
+    });
+  }
+
+  hasAuctionEnded(endDate: string | Date): boolean {
+    console.log(new Date(endDate) < new Date());
+    return new Date(endDate) < new Date();
+  }
+
+
+  startCountdown() {
+    if (!this.item?.endDate) 
+      return;
+
+    const endDateTime = new Date(`${this.item.endDate}T23:59:00`);
+
+    this.countdownSubscription = interval(1000).subscribe(() => {
+      const now = new Date();
+      const timeDiff = endDateTime.getTime() - now.getTime();
+
+      if (timeDiff <= 0) {
+        this.auctionEnded = true;
+        this.countdown = 'Auction Ended';
+        if (this.countdownSubscription) {
+          this.countdownSubscription.unsubscribe();
+        }
+        return;
+      }
+
+      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+
+      this.countdown = `${days}D ${hours}H ${minutes}M ${seconds}S`;
     });
   }
 }

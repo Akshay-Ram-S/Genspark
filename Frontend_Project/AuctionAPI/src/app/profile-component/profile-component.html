@@ -1,38 +1,41 @@
 <div class="container mt-5 d-flex justify-content-center">
-  <div class="card shadow-lg rounded-4 border-0 overflow-hidden" style="width: 100%; max-width: 500px; background-color: #f5f5dc;">
+  <div class="card profile-card shadow-lg border-0 rounded-4 overflow-hidden w-100" style="max-width: 500px;">
     
-    <div class="text-white text-center py-4" style="background-color: goldenrod;">
-      <h4 class="mb-0">PROFILE</h4>
+    <div class="profile-header text-white text-center py-4">
+      <h4 class="mb-0 fw-bold">User Profile</h4>
     </div>
 
     <div class="card-body text-center p-4">
-      <div class="mb-3">
-        <div class="rounded-circle d-inline-flex justify-content-center align-items-center"
-             style="width: 80px; height: 80px; background-color: goldenrod; color: white; font-size: 2rem;">
-          {{ user?.name?.[0] }}
-        </div>
+      <div class="avatar mx-auto mb-3">
+        <div class="initials">{{ user?.name?.[0] }}</div>
       </div>
 
-      <h4 class="text-capitalize mb-3" style="color: goldenrod;">{{ user?.name }}</h4>
+      <h4 class="text-capitalize mb-3 text-primary-emphasis">{{ user?.name }}</h4>
 
-      <ul class="list-group list-group-flush mb-4 fs-6">
-        <li class="list-group-item d-flex justify-content-between" style="background-color: #f5f5dc;">
-          <strong>Email:</strong>
-          <span>{{ user?.email }}</span>
+      <ul class="list-group list-group-flush mb-4">
+        <li class="list-group-item d-flex align-items-center justify-content-between border-0 bg-transparent">
+          <span><i class="bi bi-envelope-fill text-primary me-2"></i><strong>Email</strong></span>
+          <span class="text-muted text-end">{{ user?.email }}</span>
         </li>
-        <li class="list-group-item d-flex justify-content-between" style="background-color: #f5f5dc;">
-          <strong>Role:</strong>
-          <span>{{ user?.role }}</span>
+        <li class="list-group-item d-flex align-items-center justify-content-between border-0 bg-transparent">
+          <span><i class="bi bi-person-badge-fill text-success me-2"></i><strong>Role</strong></span>
+          <span class="text-muted text-end">{{ user?.role | titlecase }}</span>
         </li>
       </ul>
 
-      <div *ngIf="isOwnProfile" class="d-flex justify-content-center gap-3">
-        <button class="btn btn-outline-goldenrod px-4" (click)="onEdit()">Edit Profile</button>
-        <button class="btn btn-outline-danger px-4" (click)="openModal()">Delete</button>
+      <div *ngIf="isOwnProfile" class="d-flex justify-content-center flex-wrap gap-2 mt-3">
+        <button class="btn btn-outline-primary rounded-pill px-4 shadow-sm" (click)="changePassword()">
+          <i class="bi bi-key-fill me-1"></i> Change Password
+        </button>
+        <button class="btn btn-outline-danger rounded-pill px-4 shadow-sm" (click)="openModal()">
+          <i class="bi bi-trash-fill me-1"></i> Delete
+        </button>
       </div>
     </div>
   </div>
 </div>
+
+
 
 
 <div #deleteModal class="modal fade" id="deleteModal" tabindex="-1" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -56,10 +59,10 @@
 <br />
 <br />
 
-<div class="container mt-4">
+<div class="container mt-4 animate__animated animate__zoomIn animate__faster">
   @if (isSeller(); as seller) {
     <h2 class="section-title">Items Posted</h2>
-    <app-seller-items [id]="sellerId"></app-seller-items>
+    <app-seller-items [id]="sellerId" [sellerName]="user.name"></app-seller-items>
   } 
   @else if(isBidder() && isOwnProfile) {
     <h2 class="section-title">Bids Placed</h2>

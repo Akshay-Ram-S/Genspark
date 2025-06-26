@@ -32,13 +32,12 @@ export class AuthService {
       next: () => {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
-        localStorage.removeItem('notifications');
         this.notficationService.clearNotifications();
+        
       },
       error: () => {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
-        localStorage.removeItem('notifications');
         this.notficationService.clearNotifications();
       }
     });

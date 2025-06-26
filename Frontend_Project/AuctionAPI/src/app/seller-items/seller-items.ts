@@ -14,6 +14,7 @@ import { ItemComponent } from '../item-component/item-component';
 
 export class SellerItems implements OnInit {
   @Input() id: string='';
+  @Input() sellerName: string = '';
   items: Item[] = [];
   isOwnProfile: boolean = true;
   public fallbackImage: string = 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg';
@@ -36,6 +37,7 @@ export class SellerItems implements OnInit {
     this.sellerService.getItemsBySeller(this.id).subscribe({
       next: (res) => {
         this.items = res.data ?? [];
+        console.log('Items fetched:', this.items);
         this.errorMessage = '';
       },
       error: (err) => {

@@ -1,5 +1,5 @@
 import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SellerItems } from '../seller-items/seller-items';
 import { BidderBids } from '../bidder-bids/bidder-bids';
 import { AuthService } from '../services/auth.service';
@@ -12,7 +12,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-profile-component',
   standalone: true,
-  imports: [SellerItems, BidderBids, CommonModule],
+  imports: [SellerItems, BidderBids, CommonModule, RouterModule],
   templateUrl: './profile-component.html',
   styleUrl: './profile-component.css'
 })
@@ -84,8 +84,8 @@ export class ProfileComponent implements OnInit {
     }
   }
 
-  onEdit(): void {
-    this.router.navigate(['/edit-profile']);
+  changePassword(): void {
+    this.router.navigate(['/profile/change-password']);
   }
 
   onDelete(): void {

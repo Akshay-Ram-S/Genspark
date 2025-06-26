@@ -1,41 +1,36 @@
+.profile-header {
+  background: linear-gradient(135deg, #ffc107, #ff9800);
+}
+
+.avatar {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background-color: #ffc107;
+  color: #fff;
+  font-size: 2rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+}
+
+.initials {
+  font-weight: 600;
+  font-size: 2rem;
+}
+
 .profile-card {
-  width: 100%;
-  max-width: 550px;
-  border-radius: 20px;
-  overflow: hidden;
-  background: beige;
-  transition: box-shadow 0.3s ease;
+  background-color: #fffdf5;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .profile-card:hover {
-  box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-.card-header {
-  padding: 1.5rem;
-  background-color: aliceblue;
-  border-bottom: none;
-  border-radius: 20px 20px 0 0;
-}
 
-.card-body {
-  padding: 2rem;
-  font-size: 1.1rem;
-}
-
-.card-color{
-  background-color: goldenrod;
-}
-
-.text-color{
-  color:beige
-}
-
-.del-button{
-  background-color: white;
-  color:red;
-  border: 1px solid red;
-}
 
 .section-title {
   text-align: center;

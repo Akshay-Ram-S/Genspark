@@ -9,6 +9,7 @@ import { SellerService } from './services/seller.service';
 import { ItemService } from './services/item.service';
 import { BidderService } from './services/bidder.service';
 import { NotificationService } from './services/notification.service';
+import { ImageService } from './services/image.service';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +22,7 @@ export const appConfig: ApplicationConfig = {
     SellerService,
     BidderService,
     ItemService,
-    NotificationService
+    NotificationService,
+    ImageService
   ]
 };

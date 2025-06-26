@@ -1,26 +1,27 @@
+<div *ngIf="auctionEnded" class="alert alert-warning text-center fixed-top mx-auto w-75 mt-3">
+  This auction has ended. You can no longer place bids.
+</div>
 <div class="live-bid-wrapper" *ngIf="item">
   <div class="left-section">
-    <div class="glass-card item-card">
-      <img [src]="item.imageUrl" class="item-image" alt="Auction Item" />
-      <div class="item-details">
-        <h2>{{ item.title }}</h2>
-        <p class="price">Starting price: ${{ item.startingPrice }}</p>
-        <p class="ends">Ends at: {{ item.endDate }}</p>
-        <p class="price">Current bid: ${{ item.currentBid }}</p>
-        <p class="description">{{ item.description }}</p>
+    <div class="item-scroll-wrapper">
+      <div class="glass-card item-card">
+        <img [src]="item.imageUrl || 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg'" class="item-image" alt="Auction Item"/>
+        <div class="item-details">
+          <h2>{{ item.title }}</h2>
+          <p class="ends" [ngClass]="{ 'text-danger': auctionEnded }">Time remaining: <span class="text-success">{{ countdown }}</span></p>
+          <p class="ends">Ends: {{ item.endDate | date: 'dd MMM yyyy' }} - 11.59 PM</p>
+          <p class="price">Starting price: ${{ item.startingPrice }}</p>
+          <p class="price">Description:</p>
+            <div class="description">{{ item.description }} </div>
+        </div>
       </div>
     </div>
 
     <div class="glass-card bid-form-card">
       <h3>Place Your Bid</h3>
       <form [formGroup]="bidForm" (ngSubmit)="submitBid()" class="bid-form">
-        <input
-          type="number"
-          formControlName="bidAmount"
-          placeholder="Enter your bid"
-          class="form-control"
-        />
-        <button type="submit" class="btn px-4" [disabled]="bidForm.invalid">
+        <input type="number" formControlName="bidAmount" placeholder="Enter your bid" class="form-control" />
+        <button type="submit" class="btn px-4" [disabled]="bidForm.invalid || auctionEnded">
           Submit Bid
         </button>
       </form>
@@ -28,18 +29,7 @@
   </div>
 
   <div class="right-section glass-card">
-    <h3>Live Bids</h3>
-    <div class="bid-log" *ngIf="bids.length > 0; else noBids">
-        @for (bid of bids; track $index) {
-            <div class="bid-entry" [ngClass]="{ 'highlight-bid': bid.amount === highestAmount }">
-            <strong>{{ bid.name }}</strong> Bid ${{ bid.amount }}
-            <span class="time">{{ bid.bid_timestamp |  date: 'dd MMM yyyy, h:mm a' }}</span>
-            </div>
-        }
-    </div>
-    <ng-template #noBids>
-      <p class="no-bids">No bids yet.</p>
-    </ng-template>
+    <app-show-bids [bids]="bids" [highestAmount]="highestAmount" [auctionEnded]="auctionEnded"/>
   </div>
 
 

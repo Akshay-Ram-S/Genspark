@@ -29,4 +29,12 @@ export class UserService {
     return this.http.delete<any>(this.baseUrl, { headers });
   }
 
+  update(data: any): Observable<any>{
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put<any>(this.baseUrl, data, {headers});
+  }
+
 }

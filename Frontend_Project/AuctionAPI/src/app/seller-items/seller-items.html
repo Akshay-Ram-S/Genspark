@@ -2,10 +2,10 @@
   {{ errorMessage }}
 </div>
 
-<div class="container">
-  <div class="row justify-content-center mt-4">
+<div class="container" style="align-items: center; margin-left: 25rem;">
+  <div class="row justify-content-center mt-4 gap-4 mb-4">
     @for (item of items; track item.itemID) {
-      <app-item [item]="item"></app-item>
+      <app-item [item]="item" [sellerName]="sellerName"></app-item>
     }
   </div>
 </div>

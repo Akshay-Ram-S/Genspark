@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ItemComponent } from '../item-component/item-component';
+import { ImageService } from '../services/image.service';
 
 @Component({
   selector: 'app-items-component',
@@ -35,7 +36,8 @@ export class ItemsComponent implements OnInit, OnDestroy {
   private searchSub!: Subscription;
 
   constructor(private itemService: ItemService,
-              private router: Router
+              private router: Router,
+              private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
