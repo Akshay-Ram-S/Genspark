@@ -76,6 +76,7 @@ namespace AuctionAPI.Misc
                 .Include(s => s.Items!.Where(i => !i.IsDeleted))
                     .ThenInclude(i => i.ItemDetails!)
                         .ThenInclude(d => d.Bidder)
+                        .ThenInclude(b => b.User)
                 .Where(s => s.SellerId == sellerId && s.User!.Status == "Active")
                 .FirstOrDefaultAsync();
 
@@ -95,9 +96,8 @@ namespace AuctionAPI.Misc
                 StartDate = item.StartDate,
                 EndDate = item.EndDate,
                 CurrentBid = item.ItemDetails?.CurrentBid,
-                CurrentBidderName = item.ItemDetails?.Bidder?.User?.Name ?? "No bids yet"
+                CurrentBidderName = item.ItemDetails?.Bidder?.User?.Name ?? "N/A",
             });
-
             return itemSummaries;
         }
 

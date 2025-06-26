@@ -30,10 +30,14 @@ namespace AuctionAPI.Services
                     throw new Exception($"No User found with email: {email}");
                 }
 
-                updUser.Name = user.Name;
+                bool isPasswordValid = BCrypt.Net.BCrypt.Verify(user.CurrentPassword, updUser.Password);
+                if (!isPasswordValid)
+                {
+                    throw new Exception("Incorrect password");
+                }
                 var encryptedData = await _encryptionService.EncryptData(new EncryptModel
                 {
-                    Data = user.Password
+                    Data = user.NewPassword
                 });
                 updUser.Password = encryptedData.EncryptedData;
 
