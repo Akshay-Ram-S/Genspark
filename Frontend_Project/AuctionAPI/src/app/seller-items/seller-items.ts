@@ -16,7 +16,7 @@ export class SellerItems implements OnInit {
   @Input() id: string='';
   @Input() sellerName: string = '';
   items: Item[] = [];
-  isOwnProfile: boolean = true;
+  @Input() ownProfile: boolean = false;
   public fallbackImage: string = 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg';
 
   constructor(private sellerService: SellerService, 
@@ -28,10 +28,11 @@ export class SellerItems implements OnInit {
 
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
-    const urlPath = this.route.snapshot.url[0]?.path;
+    const urlPath = this.route.snapshot.url[1]?.path;
+    console.log(urlPath, id);
 
-    if (id && urlPath) {
-      this.isOwnProfile = false;
+    if (id != null && urlPath == "seller") {
+      this.ownProfile = false;
     }
     
     this.sellerService.getItemsBySeller(this.id).subscribe({
@@ -49,23 +50,9 @@ export class SellerItems implements OnInit {
     });
   }
 
-  editItem(item:Item): void{
-    this.router.navigate(['/items/edit-item', item.itemID]);
-  }
   
   LiveBids(item:Item): void {
     this.router.navigate(['/live-bid', item.itemID]);
   }
 
-  deleteItem(item: Item): void {
-    if (confirm('Are you sure you want to delete this item?')) {
-      this.itemService.deleteItem(item.itemID).subscribe({
-        next: () => {
-          alert('Item deleted successfully');
-          this.router.navigate(['/items']);
-        },
-        error: (err) => console.error('Error deleting item:', err)
-      });
-    }
-  }
 }

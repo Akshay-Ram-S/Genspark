@@ -1,0 +1,55 @@
+<div class="container-fluid d-flex justify-content-start align-items-start ps-5 pt-5" style="min-height: 100vh; z-index: 100;">
+  <div style="max-width: 48%;">
+
+    <h1 class="display-4 fw-bold mb-3 text-color">Welcome to AuctionAPI</h1>
+
+    <p class="text-muted mb-3 fs-5">
+      Dive into the excitement of real-time auctions. <br>
+      Discover rare collectibles, vintage treasures, and one-of-a-kind items.
+    </p>
+
+    <p class="text-muted mb-3 fs-6">
+      Whether you're a seasoned seller or a passionate bidder, AuctionAPI empowers you with the tools to win or sell items effortlessly. Our real-time bidding engine ensures transparency, fairness, and lightning-fast interactions.
+    </p>
+
+    <p *ngIf="!isAuthenticated"  class="text-muted mb-4 fs-6">
+      Join our trusted community and experience auctions like never before — secure, reliable, and thrilling. Sign up today and become part of the marketplace revolution.
+    </p>
+
+    <div *ngIf="!isAuthenticated" class="d-flex flex-column gap-3">
+      <a class="btn btn-warning btn-lg shadow-sm px-4 py-2 fw-semibold"
+         [routerLink]="['/login']"
+         (mouseenter)="hovering=true" (mouseleave)="hovering=false"
+         [style.transform]="hovering ? 'scale(1.05)' : 'scale(1)'">
+        🔐 Login
+      </a>
+
+      <a class="btn btn-warning btn-lg shadow-sm px-4 py-2 fw-semibold"
+         [routerLink]="['/register']"
+         (mouseenter)="hovering=true" (mouseleave)="hovering=false"
+         [style.transform]="hovering ? 'scale(1.05)' : 'scale(1)'">
+        📝 Register
+      </a>
+    </div>
+
+    <!-- Buttons for authenticated roles -->
+    <div *ngIf="isAuthenticated" class="d-flex flex-column gap-3">
+      <a *ngIf="userRole === 'bidder' || userRole === 'admin'" 
+         class="btn btn-warning btn-lg shadow-sm px-4 py-2 fw-semibold"
+         [routerLink]="['/items']"
+         (mouseenter)="hovering=true" (mouseleave)="hovering=false"
+         [style.transform]="hovering ? 'scale(1.05)' : 'scale(1)'">
+        🛎️ Place Live Bids
+      </a>
+
+      <a *ngIf="userRole === 'seller' || userRole === 'admin'" 
+         class="btn btn-warning btn-lg shadow-sm px-4 py-2 fw-semibold"
+         [routerLink]="['/post-item']"
+         (mouseenter)="hovering=true" (mouseleave)="hovering=false"
+         [style.transform]="hovering ? 'scale(1.05)' : 'scale(1)'">
+        📦 Post an Item
+      </a>
+    </div>
+
+  </div>
+</div>

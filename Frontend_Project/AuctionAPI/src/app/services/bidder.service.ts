@@ -22,4 +22,7 @@ export class BidderService {
     return this.http.get<ApiResponse<any>>(`${this.baseUrl}/${id}`);
   }
 
+  getItemsBought(id: string): Observable<ApiResponse<any>>{
+    return this.http.get<ApiResponse<any>>(`${this.baseUrl}/Items/${id}`);
+  }
 }

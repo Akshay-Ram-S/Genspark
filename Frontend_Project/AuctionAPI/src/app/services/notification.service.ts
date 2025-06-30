@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import * as signalR from '@microsoft/signalr';
-import { BehaviorSubject } from 'rxjs';
+import { BehaviorSubject, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -12,6 +12,8 @@ export class NotificationService {
   private unreadCount = 0;
   private unreadSubject = new BehaviorSubject<number>(0);
   unreadCount$ = this.unreadSubject.asObservable();
+  private bidPlaced = new Subject<any>();
+  bidPlaced$ = this.bidPlaced.asObservable();
 
   constructor(){
     const stored = localStorage.getItem('notifications');
@@ -43,6 +45,8 @@ export class NotificationService {
 
         this.unreadCount++;
         this.unreadSubject.next(this.unreadCount);
+
+        this.bidPlaced.next(bid);
     });
   }
 

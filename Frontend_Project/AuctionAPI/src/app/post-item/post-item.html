@@ -1,6 +1,13 @@
+<div *ngIf="errorMessage" class="alert alert-danger text-center small">
+  {{ errorMessage }}
+</div>
+
 <div class="container my-5" style="max-width: 600px;">
   <div class="card shadow-lg p-4">
-    <h3 class="mb-4 text-center">Post Item</h3>
+    <div *ngIf="errorMessage" class="alert alert-danger text-center small">
+      {{ errorMessage }}
+    </div>
+    <h3 class="mb-4 text-center" style="color:goldenrod">Post Item</h3>
 
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()" novalidate>
 
@@ -11,37 +18,49 @@
           <div *ngIf="postForm.controls['title'].errors?.['required']" class="text-danger small">
             Title is required.
           </div>
+          <div *ngIf="postForm.controls['title'].errors?.['minlength']" class="text-danger small">
+            Title must be at least 3 characters.
+          </div>
         </div>
       </div>
 
       <div class="mb-3">
-        <label class="form-label">Starting Price <br/>(Can't change afterwards)</label>
+        <label class="form-label">Starting Price $ <br />(Can't change afterwards)</label>
         <input type="number" class="form-control" formControlName="startingPrice" />
         <div *ngIf="postForm.controls['startingPrice'].touched">
-          <div *ngIf="postForm.controls['startingPrice'].errors?.['required']; else checkMin" class="text-danger small">
+          <div *ngIf="postForm.controls['startingPrice'].errors?.['required']" class="text-danger small">
             Starting price is required.
           </div>
-          <ng-template #checkMin>
-            <div *ngIf="postForm.controls['startingPrice'].errors?.['min']" class="text-danger small">
-              Price cannot be negative.
-            </div>
-          </ng-template>
+          <div *ngIf="postForm.controls['startingPrice'].errors?.['min']" class="text-danger small">
+            Price cannot be negative.
+          </div>
         </div>
       </div>
 
       <div class="mb-3">
         <label class="form-label">End Date</label>
-        <input type="date" class="form-control" formControlName="endDate" />
+        <input type="datetime-local" class="form-control" formControlName="endDate" />
         <div *ngIf="postForm.controls['endDate'].touched">
           <div *ngIf="postForm.controls['endDate'].errors?.['required']" class="text-danger small">
             End date is required.
+          </div>
+          <div *ngIf="postForm.controls['endDate'].errors?.['pastDate']" class="text-danger small">
+            End date and time must be in the future.
           </div>
         </div>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Category</label>
-        <input type="text" class="form-control" formControlName="category" />
+        <select class="form-select" formControlName="category">
+          <option value="" disabled selected>Select a category</option>
+          @for (category of categories; track category) {
+            <option [value]="category">{{ category }}</option>
+          }
+        </select>
+        <div *ngIf="postForm.controls['category'].touched && postForm.controls['category'].errors?.['required']" class="text-danger small">
+          Category is required.
+        </div>
       </div>
 
       <div class="mb-3">
@@ -51,12 +70,18 @@
           <div *ngIf="postForm.controls['description'].errors?.['required']" class="text-danger small">
             Description is required.
           </div>
+          <div *ngIf="postForm.controls['description'].errors?.['minlength']" class="text-danger small">
+            Description must be at least 10 characters.
+          </div>
+          <div *ngIf="postForm.controls['description'].errors?.['maxlength']" class="text-danger small">
+            Description cannot exceed 1000 characters.
+          </div>
         </div>
       </div>
 
       <div class="mb-3">
         <label class="form-label">Image</label>
-        <input type="file" class="form-control" (change)="onImageSelected($event)" />
+        <input type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" (change)="onImageSelected($event)" />
       </div>
 
       <button type="submit" class="btn btn-primary w-100" [disabled]="postForm.invalid">

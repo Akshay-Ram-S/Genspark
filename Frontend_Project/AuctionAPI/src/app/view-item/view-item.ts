@@ -17,7 +17,7 @@ import { ItemComponent } from "../item-component/item-component";
   standalone: true,
   imports: [CommonModule, ItemComponent, FormsModule, NgChartsModule, InfiniteScrollModule]
 })
-export class ViewItemComponent implements OnInit {
+export class ViewItem implements OnInit {
   item!: Item;
   bids: ItemAllBids[] = [];
   displayedBids: ItemAllBids[] = [];
@@ -37,7 +37,7 @@ export class ViewItemComponent implements OnInit {
     datasets: [
       {
         data: [],
-        label: 'Bid Amounts',
+        label: 'Bid Amount',
         fill: false,
         borderColor: 'beige',
         backgroundColor: 'goldenrod',
@@ -63,7 +63,7 @@ export class ViewItemComponent implements OnInit {
     },
     scales: {
       x: {
-        ticks: { color: '#000', font: { size: 14 } },
+        ticks: { color: 'black', font: { size: 16 }, weight: 'bold'},
         title: {
           display: true,
           text: 'Bidder',
@@ -72,7 +72,7 @@ export class ViewItemComponent implements OnInit {
         }
       },
       y: {
-        ticks: { color: '#000', font: { size: 14 } },
+        ticks: { color: '#000', font: { size: 16 }, weight: 'bold' },
         title: {
           display: true,
           text: 'Bid Amount ($)',
@@ -166,7 +166,7 @@ export class ViewItemComponent implements OnInit {
       datasets: [
         {
           data: filtered.map(b => b.amount),
-          label: 'Bid Amounts',
+          label: 'Bid Amount',
           fill: false,
           borderColor: 'beige',
           backgroundColor: 'goldenrod',

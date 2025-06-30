@@ -1,7 +1,7 @@
 import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BidderService } from '../services/bidder.service'; 
 import { Router, RouterModule } from '@angular/router';
+import { BidderService } from '../services/bidder.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { Router, RouterModule } from '@angular/router';
   styleUrl: './bidder-bids.css'
 })
 export class BidderBids implements OnInit {
-  @Input() id: string='';
+  @Input() id: string = '';
   bids: any[] = [];
   errorMessage = '';
   isLoading = false;
@@ -21,7 +21,7 @@ export class BidderBids implements OnInit {
 
   ngOnInit(): void {
     this.isLoading = true;
-    this.bidderService.getBidsByBidder(this.id).subscribe({
+    this.bidderService.getBidsByBidder(this.id ?? '').subscribe({
       next: (response) => {
         if (response.success) {
           this.bids = response.data;

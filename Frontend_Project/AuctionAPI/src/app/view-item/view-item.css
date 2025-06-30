@@ -1,7 +1,11 @@
+.bg-color{
+  background-color: goldenrod;
+  color:beige
+}
 
 .pulse-border {
   animation: pulse 1.5s infinite;
-  border: 2px solid #28a745 !important;
+  border: 5px solid goldenrod !important;
 }
 
 @keyframes pulse {

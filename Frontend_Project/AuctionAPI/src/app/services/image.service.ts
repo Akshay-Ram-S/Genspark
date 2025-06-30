@@ -8,6 +8,6 @@ export class ImageService {
   constructor(private http: HttpClient) {}
 
   getItemImage(itemId: string) {
-    return this.http.get(`${this.baseUrl}/View/${itemId}`);
+    return `${this.baseUrl}/View/${itemId}`;
   }
 }

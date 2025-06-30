@@ -4,7 +4,6 @@ import { TokenService } from '../services/token.service';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 import { ImageService } from '../services/image.service';
-import {Modal} from 'bootstrap';
 
 @Component({
   selector: 'app-item',
@@ -21,13 +20,22 @@ export class ItemComponent implements OnInit {
   @Input() bidButton: boolean = true;
   @Input() viewBidButton: boolean = true;
   @Input() sellerName: string = '';
+  @Input() isOwnProfile: boolean = false; 
   imageLoaded = false;
   imageUrl: string  = '';
+  isAdmin = false;
+  showDescriptionModal = false;
+  modalDescription: string = '';
+  modalTitle: string = '';
+
 
   ngOnInit() {
-    this.imageUrl = 'http://localhost:5205/api/v1/Image/view/' + this.item.itemID;
-    
-    console.log('Image URL:', this.imageUrl);
+    this.imageUrl = this.imageService.getItemImage(this.item.itemID);
+    const token = localStorage.getItem('token');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      this.isAdmin = payload?.role?.toLowerCase() === 'admin';
+    }
   }
 
   onImageLoad() {
@@ -37,24 +45,40 @@ export class ItemComponent implements OnInit {
   constructor(private tokenService: TokenService, 
               private authService: AuthService, 
               private router: Router,
-              private imageService: ImageService
+              private imageService: ImageService,
             ) {
     this.currentUserRole = this.tokenService.getRole();
     this.isAuthenticated = this.authService.isAuthenticated();
     
   }
 
+
+
   onPlaceBid(): void {
     if(!this.isAuthenticated){
        this.router.navigate(['/login']);
        return;
     }
-    this.router.navigate(['/live-bid', this.item.itemID]);
+    this.router.navigate(['/items/live-bid', this.item.itemID]);
   }
 
   onViewAllBids(): void {
     this.router.navigate(['/view-item', this.item.itemID]);
   }
 
-  
+  editItem(): void{
+    this.router.navigate(['/items/edit-item', this.item.itemID]);
+  }
+
+  openDescriptionModal(description: string, title: string): void {
+    this.modalDescription = description;
+    this.modalTitle = title;
+    this.showDescriptionModal = true;
+  }
+
+  closeDescriptionModal(): void {
+    this.showDescriptionModal = false;
+  }
+
+
 }

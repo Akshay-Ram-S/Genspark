@@ -16,7 +16,13 @@
                 [ngClass]="{ 'is-invalid': isInvalid('name') }"
               />
               @if (isInvalid('name')) {
-                <div class="invalid-feedback">Name is required.</div>
+                <div class="invalid-feedback mt-1">
+                  @if (registerForm.get('name')?.errors?.['required']) {
+                    Name is required.
+                  } @else if (registerForm.get('name')?.errors?.['minlength']) {
+                    Name should be minimum 2 characters long.
+                  }
+                </div>
               }
             </div>
 
@@ -35,17 +41,23 @@
             </div>
 
            <div class="mb-3">
-              <label for="password" class="form-label">Password</label>
+            <label for="password" class="form-label">Password</label>
+
+            <div class="password-wrapper">
               <input
-                type="password"
+                [type]="showPassword ? 'text' : 'password'"
                 id="password"
                 class="form-control"
                 formControlName="password"
                 [ngClass]="{ 'is-invalid': isInvalid('password') }"
               />
 
+              <span class="toggle-password" (click)="togglePasswordVisibility()">
+                {{ showPassword ? 'Hide' : 'Show' }}
+              </span>
+
               @if (isInvalid('password')) {
-                <div class="invalid-feedback">
+                <div class="invalid-feedback mt-1">
                   @if (registerForm.get('password')?.errors?.['required']) {
                     Password is required.
                   } @else if (registerForm.get('password')?.errors?.['minlength']) {
@@ -54,6 +66,43 @@
                 </div>
               }
             </div>
+          </div>
+
+          <div class="mb-3">
+            <label for="confirmPassword" class="form-label">Confirm Password</label>
+
+            <input
+              [type]="showPassword ? 'text' : 'password'"
+              id="confirmPassword"
+              class="form-control"
+              formControlName="confirmPassword"
+              [ngClass]="{ 'is-invalid': isInvalid('confirmPassword') }"
+            />
+
+            @if (isInvalid('confirmPassword')) {
+              <div class="invalid-feedback mt-1">
+                @if (registerForm.get('confirmPassword')?.errors?.['required']) {
+                  Confirm Password is required.
+                } @else if (registerForm.get('confirmPassword')?.errors?.['passwordMismatch']) {
+                  Passwords do not match.
+                }
+              </div>
+            }
+          </div>
+
+            <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input
+              type="tel"
+              id="phone"
+              class="form-control"
+              formControlName="phone"
+              [ngClass]="{ 'is-invalid': isInvalid('phone') }"
+            />
+            @if (isInvalid('phone')) {
+              <div class="invalid-feedback">Phone number is required.</div>
+            }
+          </div>
 
             <div class="mb-3">
               <label for="pan" class="form-label">PAN</label>
@@ -64,9 +113,13 @@
                 formControlName="pan"
                 [ngClass]="{ 'is-invalid': isInvalid('pan') }"
               />
-              @if (isInvalid('pan')) {
-                <div class="invalid-feedback">PAN is required.</div>
-              }
+              <div *ngIf="registerForm.get('pan')?.touched && registerForm.get('pan')?.invalid">
+                <small *ngIf="registerForm.get('pan')?.errors?.['required']">PAN is required.</small>
+                <small *ngIf="registerForm.get('pan')?.errors?.['panLength']">PAN must be exactly 10 characters.</small>
+                <small *ngIf="registerForm.get('pan')?.errors?.['panStart']">PAN must start with 5 capital letters.</small>
+                <small *ngIf="registerForm.get('pan')?.errors?.['panDigits']">PAN must have 4 digits after the letters.</small>
+                <small *ngIf="registerForm.get('pan')?.errors?.['panEnd']">PAN must end with a capital letter.</small>
+              </div>
             </div>
 
             <div class="mb-3">
@@ -78,9 +131,11 @@
                 formControlName="aadhar"
                 [ngClass]="{ 'is-invalid': isInvalid('aadhar') }"
               />
-              @if (isInvalid('aadhar')) {
-                <div class="invalid-feedback">Aadhar is required.</div>
-              }
+              <div *ngIf="registerForm.get('aadhar')?.touched && registerForm.get('aadhar')?.invalid">
+                <small *ngIf="registerForm.get('aadhar')?.errors?.['required']">Aadhar is required.</small>
+                <small *ngIf="registerForm.get('aadhar')?.errors?.['aadharNotDigits']">Aadhar must contain only digits.</small>
+                <small *ngIf="registerForm.get('aadhar')?.errors?.['aadharLength']">Aadhar must be 12 digits long.</small>
+              </div>
             </div>
 
             <div class="mb-4">
@@ -112,7 +167,7 @@
               </div>
             </div>
 
-            <button type="submit" class="btn btn-success w-100" [disabled]="registerForm.invalid">
+            <button type="submit" class="btn w-100" [disabled]="registerForm.invalid">
               Register
             </button>
           </form>
@@ -127,3 +182,6 @@
     </div>
   </div>
 </div>
+<br>
+<br>
+

@@ -1,15 +1,27 @@
-<div class="card user-card border-0 shadow-sm rounded-4 text-center h-100">
+<div class="card user-card border-0 shadow-sm rounded-4 text-center h-100 position-relative">
+
+ <div *ngIf="isAdmin" class="position-absolute top-0 end-0 m-3">
+  <div class="form-check form-switch">
+    <input class="form-check-input" type="checkbox"
+           id="statusToggle"
+           [checked]="user.status.toLowerCase() === 'active'"
+           (change)="onToggleStatus()" />
+    <label class="form-check-label small text-muted" for="statusToggle">
+      {{ user.status }}
+    </label>
+  </div>
+</div>
+ 
   <div class="card-body px-4 py-5 d-flex flex-column justify-content-between">
-    
-    <!-- Avatar -->
+
     <div>
       <div class="avatar mb-3 mx-auto">
         {{ user.name[0] }}
       </div>
       <h4 class="card-title mb-1 text-capitalize text-gold">{{ user.name }}</h4>
+      <p class="card-title mb-1 text-capitalize"> {{user.status}} </p>
     </div>
 
-    <!-- Action -->
     <div>
       <button class="btn btn-golden px-4 py-2 mt-2" (click)="onViewProfile()">
         <i class="bi bi-person-lines-fill me-2"></i> View Profile

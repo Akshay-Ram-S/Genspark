@@ -15,7 +15,7 @@ import { AuthService } from '../services/auth.service';
   styleUrls: ['./login-component.css']
 })
 
-export class LoginComponent {
+export class Login {
   loginForm: FormGroup;
   errorMessage: string = '';
 
@@ -45,12 +45,15 @@ export class LoginComponent {
           next: (response) => {
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('refreshToken', response.data.refreshToken);
-            this.router.navigate(['/']); 
+            this.router.navigate(['/']).then(() => {
+              window.location.reload(); 
+            }); 
           }
         });
     } 
     else {
       this.loginForm.markAllAsTouched();
     }
+  
   }
 }

@@ -1,68 +1,70 @@
 .bid-log {
-  overflow-y: auto;
-  flex-grow: 1;
   display: flex;
   flex-direction: column;
-  gap: 0.75rem;
+  gap: 12px;
+  margin-top: 1rem;
+  
 }
 
 .bid-entry {
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 0.6rem 1rem;
-  border-left: 4px solid goldenrod;
-  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.05);
+  padding: 12px 20px;
+  border-radius: 10px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.15);
   display: flex;
   justify-content: space-between;
   align-items: center;
+  flex-wrap: wrap;
+  border-left: 7px solid goldenrod;
+  border-right: 7px solid goldenrod;
 }
 
-.bid-entry .time {
-  font-size: 0.8rem;
-  color: #666;
+.bidder-info {
+  flex: 1;
+  font-size: 1rem;
+  font-weight: 500;
 }
 
-.no-bids {
-  font-style: italic;
-  color: #777;
+.bid-time {
+  flex: 1;
   text-align: center;
+  font-size: 0.9rem;
+  color: #ccc;
 }
 
-.btn {
-  background-color: goldenrod;
-  color: beige;
-  border-color: goldenrod;
-}
 
-.btn:hover {
-  background-color: darkgoldenrod;
-  color: beige;
+.bid-status {
+  flex: 0 0 auto;
+  text-align: right;
 }
-
 
 .highlight-bid {
   background-color: goldenrod;
-  color: beige;
-  font-weight: bold;
-  padding: 0.5rem;
-  border-radius: 0.5rem;
-  transition: all 0.3s ease-in-out;
-  box-shadow: 0 0 10px rgba(218, 165, 32, 0.6);
 }
 
-.large-badge {
-  font-size: 1rem;         
-  padding: 0.5em 0.8em;
-  border-radius: 0.75rem; 
+.medium-badge {
+  font-size: 0.9rem;        
+  padding: 0.5em 1em;     
+  border-radius: 0.7rem; 
 }
 
-.bg-color{
-  color:beige
+
+.custom-modal-backdrop {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw; height: 100vh;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
 }
 
-.time-remaining{
-  font-size: 1rem;
-  font-weight: bold;
-  color: darkred;
-  margin: 0.5rem 0;
+.custom-modal {
+  background: white;
+  padding: 1.5rem;
+  border-radius: 10px;
+  max-width: 400px;
+  width: 90%;
+  box-shadow: 0 0 20px rgba(0,0,0,0.3);
 }
-

@@ -1,0 +1,26 @@
+.card {
+  transition: transform 0.2s ease;
+  border-radius: 1rem;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+}
+
+canvas {
+  max-height: 300px;
+}
+
+h1{
+  color:goldenrod;
+}
+
+.sidebar {
+  min-height: 100%;
+  background-color: #f8f9fa;
+  border-radius: 1rem;
+}
+
+.bg-color{
+  background-color: ivory;;
+}

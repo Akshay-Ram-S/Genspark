@@ -5,6 +5,7 @@ import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { RegisterRequest } from '../models/register';
+import { aadharValidator, matchPasswords, panValidator } from '../validators/customValidator';
 
 @Component({
   standalone: true,
@@ -13,18 +14,28 @@ import { RegisterRequest } from '../models/register';
   templateUrl: './register-component.html',
   styleUrls: ['./register-component.css']
 })
-export class RegisterComponent {
+export class Register {
   registerForm: FormGroup;
   errorMessage = '';
+  showPassword = false;
+
+  togglePasswordVisibility() {
+    this.showPassword = !this.showPassword;
+  }
 
   constructor(private fb: FormBuilder, private http: HttpClient, public userService: UserService, public router: Router) {
     this.registerForm = this.fb.group({
-      name: ['', Validators.required],
+      name: ['', [Validators.required, Validators.minLength(2)]],
       email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
-      pan: ['', Validators.required],
-      aadhar: ['', Validators.required],
+      confirmPassword: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern(/^[6-9]\d{9}$/)] ],
+      pan: ['', [Validators.required, panValidator]],
+      aadhar: ['', [Validators.required, aadharValidator ]],
       role: ['', Validators.required]
+    },
+    {
+      validators: matchPasswords('password', 'confirmPassword')
     });
   }
 

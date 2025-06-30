@@ -8,6 +8,7 @@ import { TokenService } from '../services/token.service';
 import { CommonModule } from '@angular/common';
 import { interval, Subscription } from 'rxjs';
 import { ShowBids } from '../show-bids/show-bids';
+import { NotificationService } from '../services/notification.service';
 
 @Component({
   imports: [CommonModule, ReactiveFormsModule, ShowBids],
@@ -16,7 +17,7 @@ import { ShowBids } from '../show-bids/show-bids';
   styleUrls: ['./live-bid.css']
 })
 
-export class LiveBidComponent implements OnInit {
+export class LiveBid implements OnInit {
   item: Item | null = null;
   itemId: string | null = null;
   bidForm!: FormGroup;
@@ -27,6 +28,8 @@ export class LiveBidComponent implements OnInit {
   highestAmount: number = 0;
   auctionEnded: boolean = false;
   countdown: string = '';
+  progressPercent: number = 0;
+  userRole: string | null = '';
   private countdownSubscription: Subscription | null = null;
 
   constructor(
@@ -34,13 +37,14 @@ export class LiveBidComponent implements OnInit {
     private fb: FormBuilder,
     private itemService: ItemService,
     private bidService: BidService,
-    private tokenService: TokenService
+    private tokenService: TokenService,
+    private notificationService: NotificationService
   ) {}
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
     this.itemId = params.get('itemId');
-
+    this.userRole = this.tokenService.getRole();
     if (!this.itemId) {
       return;
     }
@@ -59,6 +63,11 @@ export class LiveBidComponent implements OnInit {
     });
 
     this.loadBids();
+    this.notificationService.bidPlaced$.subscribe(bid => {
+      if (bid.itemId === this.itemId) {
+        this.loadBids();
+      }
+    });
     
   });
   }
@@ -138,36 +147,50 @@ export class LiveBidComponent implements OnInit {
   }
 
   hasAuctionEnded(endDate: string | Date): boolean {
-    console.log(new Date(endDate) < new Date());
     return new Date(endDate) < new Date();
   }
 
 
   startCountdown() {
-    if (!this.item?.endDate) 
+    if (!this.item?.endDate || !this.item?.startDate) {
+      this.countdown = 'Auction Ended';
       return;
+    }
 
-    const endDateTime = new Date(`${this.item.endDate}T23:59:00`);
+    const startDateUTC = new Date(this.item.startDate);
+    const endDateUTC = new Date(this.item.endDate);
 
     this.countdownSubscription = interval(1000).subscribe(() => {
-      const now = new Date();
-      const timeDiff = endDateTime.getTime() - now.getTime();
+      const nowIST = new Date(new Date().toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+      const startIST = new Date(startDateUTC.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
+      const endIST = new Date(endDateUTC.toLocaleString('en-US', { timeZone: 'Asia/Kolkata' }));
 
-      if (timeDiff <= 0) {
-        this.auctionEnded = true;
+      const total = endIST.getTime() - startIST.getTime();
+      const left = endIST.getTime() - nowIST.getTime();
+
+      if (left <= 0) {
         this.countdown = 'Auction Ended';
-        if (this.countdownSubscription) {
-          this.countdownSubscription.unsubscribe();
-        }
+        this.progressPercent = 0;
+        this.auctionEnded = true;
+        this.countdownSubscription?.unsubscribe();
         return;
       }
 
-      const days = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
-      const hours = Math.floor((timeDiff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      const minutes = Math.floor((timeDiff % (1000 * 60 * 60)) / (1000 * 60));
-      const seconds = Math.floor((timeDiff % (1000 * 60)) / 1000);
+      const days = Math.floor(left / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((left % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      const minutes = Math.floor((left % (1000 * 60 * 60)) / (1000 * 60));
+      const seconds = Math.floor((left % (1000 * 60)) / 1000);
 
       this.countdown = `${days}D ${hours}H ${minutes}M ${seconds}S`;
+      this.progressPercent = (left / total) * 100;
     });
   }
+
+
+  ngOnDestroy() {
+    if (this.countdownSubscription) {
+      this.countdownSubscription.unsubscribe();
+    }
+  }
+
 }

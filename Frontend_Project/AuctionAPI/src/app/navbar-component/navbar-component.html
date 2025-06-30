@@ -33,6 +33,16 @@
             <li><a class="dropdown-item" routerLink="/users/bidder" routerLinkActive="active">Bidders List</a></li>
           </ul>
         </li>
+        <li class="nav-item mx-2" *ngIf="isSeller || isAdmin">
+          <a class="nav-link fs-5" routerLink="/post-item" routerLinkActive="active">
+            <span class="bi bi-pencil-square"></span> Post Item
+          </a>
+        </li>
+        <li class="nav-item mx-2" *ngIf="isAdmin">
+          <a class="nav-link fs-5" routerLink="/dashboard" routerLinkActive="active">
+            <span class="bi bi-grid-fill"></span> Dashboard
+          </a>
+        </li>
       </ul>
 
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
@@ -63,7 +73,7 @@
 
         <ng-template #showLogin>
           <li class="nav-item mx-1">
-            <a class="btn btn-light fs-8 d-flex align-items-center" routerLink="/login">
+            <a class="btn btn-light fs-5 d-flex align-items-center" routerLink="/login">
               <i class="bi bi-box-arrow-in-right me-1"></i> Login
             </a>
           </li>

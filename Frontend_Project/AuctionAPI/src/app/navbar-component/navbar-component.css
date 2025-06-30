@@ -1,6 +1,10 @@
 .custom-navbar {
-  background-color: goldenrod;
-  z-index: 1000;
+  background: goldenrod;
+  z-index: 100;
+}
+
+.nav-item:hover{
+  transform: scale(1.1);
 }
 
 .navbar .btn {
@@ -21,14 +25,12 @@
 .btn {
   margin-top:7px;
   margin-left: 10px;
-  background-color: beige;
-  color: goldenrod;
   border: none;
 }
 
-.btn:hover {
-  background-color: rgb(233, 205, 133);
-  color: beige;
+.btn:hover{
+    border: none;
+    background-color: goldenrod;
 }
 
 .dropdown-menu {

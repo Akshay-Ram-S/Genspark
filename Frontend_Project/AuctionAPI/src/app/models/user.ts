@@ -3,6 +3,7 @@ export interface User {
   email: string;
   role: string;
   userId: string;
+  status: string;
   sellerId?: string;
   bidderId?: string;
 }

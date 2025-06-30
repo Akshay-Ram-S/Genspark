@@ -30,11 +30,13 @@
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
 }
 
-
+.no-link-style {
+  color: inherit;        
+  text-decoration: none;
+}
 
 .section-title {
   text-align: center;
-  color: goldenrod;
   font-size: 2rem;
   font-weight: 600;
   margin-top: 2rem;

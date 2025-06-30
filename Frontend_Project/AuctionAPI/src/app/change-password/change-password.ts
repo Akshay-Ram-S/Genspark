@@ -1,9 +1,8 @@
 import { Component, inject } from '@angular/core';
 import { FormBuilder, Validators, ReactiveFormsModule, ValidatorFn, FormGroup, ValidationErrors, AbstractControl } from '@angular/forms';
 import { CommonModule } from '@angular/common';
-import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
-import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   standalone: true,
@@ -12,7 +11,7 @@ import { ActivatedRoute, Router } from '@angular/router';
   templateUrl: './change-password.html',
   styleUrl: './change-password.css'
 })
-export class ChangePasswordComponent {
+export class ChangePassword{
   changeForm: FormGroup;
 
   constructor(
@@ -23,7 +22,7 @@ export class ChangePasswordComponent {
   {
     this.changeForm = this.fb.group({
       oldPassword: ['', Validators.required],
-      newPassword: ['', [Validators.required]],
+      newPassword: ['', [Validators.required, Validators.minLength(6)]],
       confirmPassword: ['', Validators.required]
     }, {
       validators: [this.passwordMatchValidator()]

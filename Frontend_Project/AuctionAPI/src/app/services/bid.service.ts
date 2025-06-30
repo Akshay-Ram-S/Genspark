@@ -26,5 +26,14 @@ export class BidService {
     return this.http.post<ApiResponse<any>>(this.apiUrl, bid, {headers});
   }
 
+  deleteBid(bidId: string) {
+    const token = localStorage.getItem('token'); 
+
+    const headers = new HttpHeaders({
+        Authorization: `Bearer ${token}`
+    });
+    return this.http.delete(`${this.apiUrl}/${bidId}`, {headers});
+  }
+
   
 }

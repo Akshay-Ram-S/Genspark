@@ -1,7 +1,8 @@
 <div class="container my-4 d-flex flex-column align-items-center">
+  <br>
 
   <div class="w-100 d-flex justify-content-center mb-4">
-    <div style="max-width: 450px; width: 100%;">
+    <div style="max-width: 850px; width: 100%;">
       <app-item *ngIf="item" [item]="item" [viewBidButton]="false" />
     </div>
   </div>
@@ -19,17 +20,20 @@
   </div>
 
   <br />
-  <div *ngIf="filteredBids.length !== 0" class="mb-4 w-100" style="max-width: 700px;">
+  <div *ngIf="filteredBids.length !== 0" class="align-items-center w-100" style="max-width: 700px;">
     <canvas baseChart
       [data]="chartData"
       [options]="chartOptions"
       chartType="line"
-      height="500px"
+      height="600px"
       width="1500px">
     </canvas>
   </div>
 
-  <h5 class="mb-3 text-center">Bids on this Item</h5>
+  <br/>
+  <br/>
+
+  <h3 class="mb-3 text-center">Bids on this Item</h3>
 
   <div *ngIf="filteredBids.length === 0" class="alert alert-warning text-center">
     No bids found.
@@ -43,7 +47,7 @@
       class="d-flex flex-column align-items-center gap-3 w-100">
 
     <div class="card shadow-sm w-100 px-3 py-2"
-        style="max-width: 700px;"
+        style="max-width: 850px;"
         *ngFor="let bid of displayedBids"
         [ngClass]="{ 'border-success pulse-border': bid.amount === highestAmount }">
       <div class="card-body py-2">
@@ -52,13 +56,20 @@
             <i class="bi bi-person-circle me-1 text-secondary"></i>
             <strong>Bidder:</strong> {{ bid.name }}
           </div>
-          <div class="col-md-4 col-12 mb-2 mb-md-0">
+          <div class="col-md-4 text-center col-12 mb-2 mb-md-0">
             <strong>Amount:</strong> ${{ bid.amount }}
-            <span *ngIf="bid.amount === highestAmount" class="badge bg-success text-white ms-2">Highest</span>
+            <span *ngIf="bid.amount === highestAmount" class="badge bg-color fs-6 text-white ms-2">
+              @if(item.status == 'Sold'){
+                Sold
+              }
+              @else {
+                Highest
+              }
+            </span>
           </div>
-          <div class="col-md-4 col-12">
+          <div class="col-md-4 col-12 text-end">
             <i class="bi bi-calendar-event me-1 text-secondary"></i>
-            <strong>Date:</strong> {{ bid.bid_timestamp | date: 'yyyy-MM-dd' }}
+            <strong>Date:</strong> {{ bid.bid_timestamp | date: 'dd MMM yyyy, h:mm a' }}
           </div>
         </div>
       </div>

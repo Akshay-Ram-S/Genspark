@@ -14,20 +14,23 @@
 
       <ul class="list-group list-group-flush mb-4">
         <li class="list-group-item d-flex align-items-center justify-content-between border-0 bg-transparent">
-          <span><i class="bi bi-envelope-fill text-primary me-2"></i><strong>Email</strong></span>
+          <span><a [href]="'mailto:' + user?.email" class="no-link-style"><i class="bi bi-envelope-fill text-primary me-2"></i></a><strong>Email</strong></span>
           <span class="text-muted text-end">{{ user?.email }}</span>
         </li>
         <li class="list-group-item d-flex align-items-center justify-content-between border-0 bg-transparent">
           <span><i class="bi bi-person-badge-fill text-success me-2"></i><strong>Role</strong></span>
           <span class="text-muted text-end">{{ user?.role | titlecase }}</span>
         </li>
+        <li class="list-group-item d-flex align-items-center justify-content-between border-0 bg-transparent">
+    <span><i class="bi bi-telephone-fill text-warning me-2"></i><strong>Phone</strong></span>
+    <span class="text-muted text-end">{{ user?.phone ?? '' }}</span>
       </ul>
 
       <div *ngIf="isOwnProfile" class="d-flex justify-content-center flex-wrap gap-2 mt-3">
         <button class="btn btn-outline-primary rounded-pill px-4 shadow-sm" (click)="changePassword()">
           <i class="bi bi-key-fill me-1"></i> Change Password
         </button>
-        <button class="btn btn-outline-danger rounded-pill px-4 shadow-sm" (click)="openModal()">
+        <button class="btn btn-outline-danger rounded-pill px-4 shadow-sm" data-bs-toggle="modal" data-bs-target="#deleteModal" >
           <i class="bi bi-trash-fill me-1"></i> Delete
         </button>
       </div>
@@ -59,13 +62,22 @@
 <br />
 <br />
 
-<div class="container mt-4 animate__animated animate__zoomIn animate__faster">
-  @if (isSeller(); as seller) {
+<div class="flex-column gap-4">
+  @if (isSeller()) {
     <h2 class="section-title">Items Posted</h2>
-    <app-seller-items [id]="sellerId" [sellerName]="user.name"></app-seller-items>
+    <app-seller-items [id]="sellerId ?? ''" [sellerName]="user.name" [ownProfile]="isOwnProfile"></app-seller-items>
   } 
   @else if(isBidder() && isOwnProfile) {
-    <h2 class="section-title">Bids Placed</h2>
-    <app-bidder-bids [id]="bidderId"></app-bidder-bids>
+    <div class="row">
+      <div class="col-12 col-md-6 mb-4">
+        <h2 class="section-title">Items Bought</h2>
+        <app-items-bought [bidderId]="bidderId ?? ''"></app-items-bought>
+      </div>
+
+      <div class="col-12 col-md-6 mb-4">
+        <h2 class="section-title">Bids Placed</h2>
+        <app-bidder-bids [id]="bidderId ?? ''"></app-bidder-bids>
+      </div>
+    </div>
   } 
 </div>

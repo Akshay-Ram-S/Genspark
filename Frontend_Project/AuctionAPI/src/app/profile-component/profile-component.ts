@@ -1,28 +1,27 @@
-import { Component, ElementRef, ViewChild, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SellerItems } from '../seller-items/seller-items';
 import { BidderBids } from '../bidder-bids/bidder-bids';
+import { CommonModule } from '@angular/common';
+import { ItemsBought } from '../items-bought/items-bought';
 import { AuthService } from '../services/auth.service';
+import { UserService } from '../services/user.service';
 import { SellerService } from '../services/seller.service';
 import { BidderService } from '../services/bidder.service';
-import { UserService } from '../services/user.service';
-import { Modal } from 'bootstrap';
-import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-profile-component',
   standalone: true,
-  imports: [SellerItems, BidderBids, CommonModule, RouterModule],
+  imports: [SellerItems, BidderBids, CommonModule, RouterModule,ItemsBought],
   templateUrl: './profile-component.html',
   styleUrl: './profile-component.css'
 })
-export class ProfileComponent implements OnInit {
+export class Profile implements OnInit {
   user: any = null;
   isOwnProfile: boolean = true;
-  bidderId: string = '';
-  sellerId: string = '';
+  bidderId: string | null = '';
+  sellerId: string | null = '';
 
-  @ViewChild('deleteModal', { static: false }) deleteModal!: ElementRef;
 
   constructor(
     private router: Router,
@@ -48,6 +47,7 @@ export class ProfileComponent implements OnInit {
             this.sellerId = res.data.sellerId;
             this.user.email = res.data.user.email;
             this.user.name = res.data.user.name;
+            this.user.phone = res.data.user.phone;
           },
           error: (err) => console.error('Error loading seller profile', err)
         });
@@ -60,6 +60,7 @@ export class ProfileComponent implements OnInit {
             this.bidderId = res.data.bidderId;
             this.user.email = res.data.user.email;
             this.user.name = res.data.user.name;
+            this.user.phone = res.data.user.phone;
           },
           error: (err) => console.error('Error loading bidder profile', err)
         });
@@ -69,18 +70,11 @@ export class ProfileComponent implements OnInit {
       this.authService.getMe().subscribe({
         next: (res) => {
           this.user = res.data;
-          this.sellerId = res.data.sellerId;
-          this.bidderId = res.data.bidder.bidderId;
+          this.sellerId = res.data.sellerId ?? '';
+          this.bidderId = res.data.bidder.bidderId ?? '';
         },
         error: () => this.router.navigate(['/login'])
       });
-    }
-  }
-
-  openModal(): void {
-    if (this.deleteModal?.nativeElement) {
-      const modal = new Modal(this.deleteModal.nativeElement);
-      modal.show();
     }
   }
 

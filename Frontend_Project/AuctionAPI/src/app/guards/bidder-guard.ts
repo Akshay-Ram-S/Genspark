@@ -18,7 +18,7 @@ export class BidderGuard implements CanActivate {
     }
     const role = this.tokenService.getRole();
 
-    if (role === 'Bidder') {
+    if (role === 'Bidder' || role ==='Admin') {
       return true;
     }
 

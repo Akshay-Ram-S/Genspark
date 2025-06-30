@@ -20,7 +20,7 @@ export class SellerGuard implements CanActivate {
 
     const role = this.tokenService.getRole();
 
-    if (role === 'Seller') {
+    if (role === 'Seller' || role ==='Admin') {
       return true;
     }
 

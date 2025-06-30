@@ -16,3 +16,11 @@ export class TokenService {
     return this.getDecodedToken()?.role ?? null;
   }
 }
+
+//For testing purpose only
+@Injectable({ providedIn: 'root' })
+export class JwtWrapperService {
+  decode(token: string): any {
+    return jwtDecode(token);
+  }
+}

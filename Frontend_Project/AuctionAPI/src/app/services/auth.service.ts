@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { LoginRequest } from '../models/login-request';
-import { RegisterRequest } from '../models/register';
 import { NotificationService } from './notification.service';
-import { not } from 'rxjs/internal/util/not';
 
 @Injectable({ providedIn: 'root' })
 
@@ -33,6 +31,7 @@ export class AuthService {
         localStorage.removeItem('token');
         localStorage.removeItem('refreshToken');
         this.notficationService.clearNotifications();
+        window.location.reload();
         
       },
       error: () => {

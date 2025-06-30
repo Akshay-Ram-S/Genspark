@@ -41,3 +41,6 @@
   border: none;
 }
 
+.body::before{
+  filter: blur(10px); 
+}

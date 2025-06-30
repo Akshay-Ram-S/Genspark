@@ -6,7 +6,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { ItemComponent } from '../item-component/item-component';
-import { ImageService } from '../services/image.service';
 
 @Component({
   selector: 'app-items-component',
@@ -17,8 +16,19 @@ import { ImageService } from '../services/image.service';
 })
 export class ItemsComponent implements OnInit, OnDestroy {
   items: Item[] = [];
-  categories: string[] = ['Electronics', 'Sports', 'Collectibles'];
-  isSeller = false;
+  categories: string[] = [
+    'Electronics',
+    'Fashion & Apparel',
+    'Home & Furniture',
+    'Collectibles & Antiques',
+    'Automotive',
+    'Books, Music & Media',
+    'Sports & Outdoors',
+    'Toys & Games',
+    'Art & Crafts',
+    'Real Estate',
+    'Other'
+  ];
   noItemsFound: boolean = false;
   isLoading: boolean = false;
 
@@ -27,9 +37,11 @@ export class ItemsComponent implements OnInit, OnDestroy {
   startingPrice: number | null = null;
   endingPrice: number | null = null;
   endDateBefore: string = '';
+  selectedStatus: string = '';
+  status: string[] = ['Active', 'Sold', 'Unsold'];
 
   currentPage: number = 1;
-  pageSize: number = 5;
+  pageSize: number = 10;
   totalPages: number = 1;
 
   private searchSubject = new Subject<string>();
@@ -37,16 +49,10 @@ export class ItemsComponent implements OnInit, OnDestroy {
 
   constructor(private itemService: ItemService,
               private router: Router,
-              private imageService: ImageService
   ) {}
 
   ngOnInit(): void {
     this.isLoading = true;
-    const token = localStorage.getItem('token');
-    if (token) {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      this.isSeller = payload?.role?.toLowerCase() === 'seller';
-    }
     this.fetchFilteredItems();
 
     this.searchSub = this.searchSubject.pipe(
@@ -80,7 +86,19 @@ export class ItemsComponent implements OnInit, OnDestroy {
     }).subscribe({
       next: (response) => {
         this.noItemsFound = false;
-        this.items = response.data ?? [];
+        const statusOrder: Record<string, number> = {
+          active: 1,
+          sold: 2,
+          unsold: 3
+        };
+
+        this.items = (response.data ?? [])
+        .filter(item => this.applyStatusFilter([item]).length > 0)
+        .sort((a, b) => {
+          const statusA = statusOrder[a.status.toLowerCase()] ?? 999;
+          const statusB = statusOrder[b.status.toLowerCase()] ?? 999;
+          return statusA - statusB;
+        });
         this.totalPages = response.pagination?.totalPages ?? 1;
         this.isLoading = false;
       },
@@ -93,7 +111,9 @@ export class ItemsComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.searchSub.unsubscribe();
+    if (this.searchSub) {
+      this.searchSub.unsubscribe();
+    }
   }
 
   onPostItem(): void {
@@ -122,6 +142,24 @@ export class ItemsComponent implements OnInit, OnDestroy {
       this.currentPage++;
       this.fetchFilteredItems();
     }
+  }
+
+  clearFilters(): void {
+    this.selectedCategory = '';
+    this.endDateBefore = '';
+    this.searchTerm = '';
+    this.selectedStatus = '';
+    this.currentPage = 1; 
+    this.endingPrice = null;
+    this.startingPrice = null;
+
+    this.onFilterChange(); 
+  }
+
+  applyStatusFilter(items: Item[]): Item[] {
+    if (!this.selectedStatus) 
+      return items;
+    return items.filter(item => item.status.toLowerCase() === this.selectedStatus.toLowerCase());
   }
 
 }

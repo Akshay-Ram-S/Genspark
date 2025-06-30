@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 import { Notification } from "../notification/notification";
@@ -12,16 +12,27 @@ import { TokenService } from '../services/token.service';
   styleUrl: './navbar-component.css'
 })
 
-export class NavbarComponent {
+export class Navbar implements OnInit{
 
+  isSeller: boolean = false;
+  isAdmin: boolean = false;
   get isLoggedIn(): boolean {
     return this.authService.isAuthenticated();
   }
 
   constructor(private authService: AuthService, 
-              private router: Router,
-              private tokenService: TokenService) {
+              private router: Router) {
     }
+
+  ngOnInit(){
+    const token = localStorage.getItem('token');
+    if (token) {
+      const payload = JSON.parse(atob(token.split('.')[1]));
+      this.isSeller = payload?.role?.toLowerCase() === 'seller';
+      this.isAdmin = payload?.role?.toLowerCase() === 'admin';
+    }
+  
+  }
 
   logout(): void {
     this.authService.logout();

@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   templateUrl: './unauthorized.html',
   styleUrl: './unauthorized.css'
 })
-export class UnauthorizedComponent {
+export class Unauthorized {
 
 }

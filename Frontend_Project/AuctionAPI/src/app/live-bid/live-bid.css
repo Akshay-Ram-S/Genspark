@@ -2,16 +2,15 @@
   display: flex;
   gap: 2rem;
   padding: 2rem;
-  background-color: beige;
   width: 100vw; 
   border-radius: 16px;
   margin: 2rem auto;
-  height: 100vh;
+  height: 90vh;
   overflow: hidden; 
 }
 
 .glass-card {
-  background: rgba(255, 248, 220, 0.6);
+  background: ivory;
   border: 1px solid goldenrod;
   backdrop-filter: blur(8px);
   border-radius: 16px;
@@ -122,34 +121,6 @@
   margin-bottom: 1rem;
 }
 
-.bid-log {
-  overflow-y: auto;
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.bid-entry {
-  background-color: rgba(255, 255, 255, 0.9);
-  padding: 0.6rem 1rem;
-  border-left: 4px solid goldenrod;
-  border-radius: 8px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
-.bid-entry .time {
-  font-size: 0.8rem;
-  color: #666;
-}
-
-.no-bids {
-  font-style: italic;
-  color: #777;
-  text-align: center;
-}
 
 .btn {
   background-color: goldenrod;
@@ -161,4 +132,15 @@
   background-color: darkgoldenrod;
   color: beige;
 }
+
+.countdown-text {
+  animation: pulse 1.2s infinite;
+  display: inline-block;
+  font-weight: bold;
+}
+
+.bg-color{
+  background-color: goldenrod;
+}
+
 

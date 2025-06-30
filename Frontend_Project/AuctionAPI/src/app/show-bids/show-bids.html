@@ -1,24 +1,52 @@
-<h3>Live Bids</h3>
+<h3 style="color:goldenrod">Live Bids</h3>
 
 <div class="bid-log" *ngIf="bids.length > 0; else noBids">
-  @for (bid of bids; track $index) {
-    <div class="bid-entry" [ngClass]="{ 'highlight-bid': bid.amount === highestAmount }">
-      <strong>{{ bid.name }}</strong> 
-      Bid ${{ bid.amount }}
-      <span class="time">{{ bid.bid_timestamp | date: 'dd MMM yyyy, h:mm a' }}</span>
-      @if(auctionEnded && bid.amount === highestAmount) {
-        <span class="badge bg-success large-badge">Sold</span>
-      }
-      @else if(bid.amount === highestAmount) {
-        <span class="badge bg-color large-badge">Current Bid</span>
-      }
-      @else {
-        <span class="badge bg-secondary large-badge">Bid</span>
-      }
+  @for (bid of bids | slice:0:10; track $index) {
+    <div class="bid-entry d-flex justify-content-between align-items-center" 
+         [ngClass]="{ 'highlight-bid': bid.amount === highestAmount }">
+
+      <div class="bidder-info">
+        <strong>{{ bid.name }}</strong> - ${{ bid.amount }}
+      </div>
+
+      <div class="bid-time text-muted">
+        {{ bid.bid_timestamp | date: 'medium' }}
+      </div>
+
+      <div class="bid-status">
+        @if (auctionEnded && bid.amount === highestAmount) {
+          <span class="badge bg-success medium-badge">Sold</span>
+        } @else if (bid.amount === highestAmount) {
+          <span class="badge bg-success medium-badge">Current</span>
+        } @else {
+          <span class="badge bg-secondary medium-badge"> Bid</span>
+        }
+
+        <i *ngIf="isAdmin"
+           class="bi bi-trash-fill text-danger fs-5 m-3"
+           role="button"
+           title="Delete Bid"
+           (click)="openConfirmModal(bid)">
+        </i>
+      </div>
     </div>
   }
 </div>
 
 <ng-template #noBids>
-  <p class="no-bids fs-3">No bids yet.</p>
+  <p class="text-center text-muted fs-3 mt-5">No bids</p>
 </ng-template>
+
+@if (showConfirmModal) {
+  <div class="custom-modal-backdrop">
+    <div class="custom-modal">
+      <h5>Confirm Deletion</h5>
+      <p>Are you sure you want to delete the bid of ${{ selectedBid?.amount }} by {{ selectedBid?.name }}?</p>
+
+      <div class="d-flex justify-content-end gap-2 mt-3">
+        <button class="btn btn-secondary" (click)="closeConfirmModal()">Cancel</button>
+        <button class="btn btn-danger" (click)="confirmDeleteBid()">Yes, Delete</button>
+      </div>
+    </div>
+  </div>
+}

@@ -1,4 +1,6 @@
 <app-navbar-component></app-navbar-component>
-
+<div [ngClass]="{ 'blur-background': !isHomePage, 'plain-background': isHomePage }"></div>
 <router-outlet></router-outlet>
+
+
 <!-- <app-live-bid></app-live-bid> -->

@@ -37,4 +37,12 @@ export class UserService {
     return this.http.put<any>(this.baseUrl, data, {headers});
   }
 
+  changeState(data: any): Observable<any>{
+    const token = localStorage.getItem('token');
+    const headers = new HttpHeaders({
+      'Authorization': `Bearer ${token}`
+    });
+    return this.http.put<any>(`${this.baseUrl}/change-state`, data, {headers});
+  }
+
 }

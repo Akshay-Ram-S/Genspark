@@ -30,12 +30,14 @@ export class UsersComponent implements OnInit {
       if (this.roleType === 'seller') {
         this.sellerService.getSellers().subscribe({
           next: (res) => {
+            console.log(res.data);
             this.users = res.data.map(s => ({
               name: s.user.name,
               email: s.user.email,
               role: s.user.role,
               userId: s.user.userId,
-              sellerId: s.sellerId
+              sellerId: s.sellerId,
+              status: s.user.status
             }));
           },
           error: (err) => console.error('Error loading sellers:', err)
@@ -49,7 +51,8 @@ export class UsersComponent implements OnInit {
               email: b.user.email,
               role: b.user.role,
               userId: b.user.userId,
-              bidderId: b.bidderId
+              bidderId: b.bidderId,
+              status: b.user.status
             }));
           },
           error: (err) => console.error('Error loading bidders:', err)
