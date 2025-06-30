@@ -1,8 +1,11 @@
+using System.Net;
+using System.Security.Claims;
 using System.Text.RegularExpressions;
 using AuctionAPI.Interfaces;
 using AuctionAPI.Mappers;
 using AuctionAPI.Models;
 using AuctionAPI.Models.DTOs;
+using AuctionAPI.Repositories;
 using FuzzySharp;
 
 #pragma warning disable CS8604 // Possible null reference argument.
@@ -17,6 +20,7 @@ namespace AuctionAPI.Services
         private readonly IRepository<Guid, ItemDetails> _itemDetailsRepository;
         private readonly IRepository<Guid, Bidder> _bidderRepository;
         private readonly IRepository<Guid, Audit> _auditRepository;
+        private readonly IRepository<string, User> _userRepository;
         private readonly ItemMapper _mapper;
         private readonly ItemResponseMapper _mapperResponse;
         private readonly IRepository<Guid, Seller> _sellerRepository;
@@ -25,7 +29,8 @@ namespace AuctionAPI.Services
                             IRepository<Guid, Seller> sellerRepository,
                             IRepository<Guid, ItemDetails> itemDetailsRepository,
                             IRepository<Guid, Bidder> bidderRepository,
-                            IRepository<Guid, Audit> auditRepository)
+                            IRepository<Guid, Audit> auditRepository,
+                            IRepository<string, User> userRepository)
         {
             _mapper = new ItemMapper();
             _mapperResponse = new ItemResponseMapper();
@@ -34,18 +39,36 @@ namespace AuctionAPI.Services
             _itemDetailsRepository = itemDetailsRepository;
             _bidderRepository = bidderRepository;
             _auditRepository = auditRepository;
+            _userRepository = userRepository;
         }
 
-        public async Task<ItemResponse> CreateItemAsync(ItemCreateDto dto)
-        {
+       public async Task<ItemResponse> CreateItemAsync(ItemCreateDto dto, string email)
+       {
             try
             {
                 var item = _mapper.MapItem(dto);
 
                 var seller = await _sellerRepository.Get(dto.SellerID);
+                bool isAdmin = false;
+
                 if (seller == null)
                 {
-                    throw new Exception($"Seller with ID {dto.SellerID} not found");
+                    var user = await _userRepository.Get(email);
+                    if (user == null)
+                        throw new Exception($"User with ID {dto.SellerID} not found");
+
+                    if (user.Role != "Admin")
+                        throw new Exception($"User with ID {dto.SellerID} is not authorized to post items");
+
+                    isAdmin = true;
+                    // For Admin only
+                    seller = new Seller
+                    {
+                        SellerId = user.UserId,
+                        User = user,
+                        Items = new List<Item>()
+                    };
+                    await _sellerRepository.Add(seller);
                 }
 
                 item = await _itemRepository.Add(item);
@@ -68,14 +91,22 @@ namespace AuctionAPI.Services
 
                 await _itemDetailsRepository.Add(itemDetails);
 
-                seller.Items ??= new List<Item>();
-                seller.Items.Add(item);
-                await _sellerRepository.Update(seller.SellerId, seller);
+                if (!isAdmin)
+                {
+                    seller!.Items ??= new List<Item>();
+                    seller.Items.Add(item);
+                    await _sellerRepository.Update(seller.SellerId, seller);
+                }
+
+                var userEmail = isAdmin
+                    ? (await _userRepository.Get(email))?.Email
+                    : seller!.User.Email;
+
                 await _auditRepository.Add(new Audit
                 {
                     Action = "Create",
                     CreatedAt = DateTime.UtcNow,
-                    CreatedBy = seller.User.Email,
+                    CreatedBy = userEmail,
                     EntityId = item.Id,
                     EntityType = "Item"
                 });
@@ -87,8 +118,9 @@ namespace AuctionAPI.Services
             {
                 throw new Exception(e.Message);
             }
-
         }
+
+
 
         public async Task<ItemResponse?> GetItemById(Guid id)
 
@@ -111,6 +143,9 @@ namespace AuctionAPI.Services
                 }
 
                 var itemResponse = _mapperResponse.MapItemResponse(item, itemDetail, seller, bidder);
+                if (item.Status == "Sold") {
+                    itemResponse.BoughtBy = bidder?.User?.Name ?? "";
+                }
                 return itemResponse;
             }
             catch (Exception e)
@@ -142,7 +177,10 @@ namespace AuctionAPI.Services
                     filteredItems = filteredItems.Where(i => i.ItemDetails.StartingPrice <= filter.EndingPrice.Value);
 
                 if (filter.EndDateBefore.HasValue)
-                    filteredItems = filteredItems.Where(i => i.EndDate <= filter.EndDateBefore.Value);
+                {
+                    var endDateBeforeDateTime = filter.EndDateBefore.Value.ToDateTime(TimeOnly.MaxValue);
+                    filteredItems = filteredItems.Where(i => i.EndDate <= endDateBeforeDateTime);
+                }
 
                 var inMemoryItems = filteredItems.ToList();
 
@@ -176,6 +214,9 @@ namespace AuctionAPI.Services
                     }
 
                     var itemResponse = _mapperResponse.MapItemResponse(item, itemDetail, seller, bidder);
+                    if (item.Status == "Sold") {
+                        itemResponse.BoughtBy = bidder?.User?.Name ?? "";
+                    }
                     itemResponses.Add(itemResponse);
                 }
 
@@ -214,13 +255,17 @@ namespace AuctionAPI.Services
         }
 
 
-        public async Task<Item> DeleteItem(Guid id, string userEmail)
+        public async Task<Item> DeleteItem(Guid id, string userEmail, string role)
         {
             try
             {
                 var item = await _itemRepository.Get(id);
                 var seller = await _sellerRepository.Get(item.SellerID);
-                if (item == null || item.Seller == null || seller.User == null || seller.User.Email != userEmail)
+                if (role == "Admin")
+                {
+                    item.IsDeleted = true;
+                }
+                else if (item == null || item.Seller == null || seller.User == null || seller.User.Email != userEmail)
                 {
                     return null;
                 }
@@ -231,7 +276,7 @@ namespace AuctionAPI.Services
                 {
                     Action = "Delete",
                     CreatedAt = DateTime.UtcNow,
-                    CreatedBy = seller.User.Email,
+                    CreatedBy = seller?.User?.Email ?? "Admin",
                     EntityId = item.Id,
                     EntityType = "Item"
                 });
@@ -243,18 +288,28 @@ namespace AuctionAPI.Services
             }
         }
 
-        public async Task<ItemResponse> UpdateItem(Guid itemId, ItemUpdateDto dto, string userEmail)
+        public async Task<ItemResponse> UpdateItem(Guid itemId, ItemUpdateDto dto, string userEmail, string role)
         {
             try
             {
+                
                 var item = await _itemRepository.Get(itemId);
+
+                if (item.EndDate <= DateTime.UtcNow)
+                {
+                    throw new Exception("Auction ended for this item.");
+                }
                 if (item == null)
                 {
                     throw new Exception($"Item with ID {itemId} not found");
                 }
 
                 var seller = await _sellerRepository.Get(item.SellerID);
-                if (item.Seller == null || seller.User.Email != userEmail)
+                if (role == "Admin")
+                {
+                    
+                }
+                else if (item.Seller == null || seller.User.Email != userEmail)
                 {
                     return null;
                 }
@@ -266,9 +321,10 @@ namespace AuctionAPI.Services
                 }
 
                 item.Title = dto.Title;
-                item.EndDate = dto.EndDate;
+                item.EndDate = DateTime.SpecifyKind(dto.EndDate, DateTimeKind.Utc);
                 item.Category = dto.Category;
                 itemDetails.Description = dto.Description;
+                item.BidderID = null;
 
                 if (dto.Image != null && dto.Image.Length > 0)
                 {

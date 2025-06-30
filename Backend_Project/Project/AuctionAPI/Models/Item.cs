@@ -11,12 +11,14 @@ namespace AuctionAPI.Models
         public string Title { get; set; } = string.Empty;
         public string? Status { get; set; }
         public string? Category { get; set; } = string.Empty;
-        public DateOnly StartDate { get; set; }
-        public DateOnly EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public Guid SellerID { get; set; }
+        public Guid? BidderID { get; set; }
         public bool IsDeleted { get; set; } = false;
         public Collection<Bid>? Bids { get; set; }
-        public Seller? Seller{ get; set; }
+        public Seller? Seller { get; set; }
+        public Bidder? Bidder { get; set; }
         public ItemDetails? ItemDetails { get; set; }
     }
 }

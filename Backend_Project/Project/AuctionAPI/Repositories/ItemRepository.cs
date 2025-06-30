@@ -24,7 +24,7 @@ namespace AuctionAPI.Repositories
 
         public override async Task<IEnumerable<Item>> GetAll()
         {
-            var items = await _auctionContext.Items.Where(i => i.Status == "Active").Include(i => i.ItemDetails).ToListAsync();
+            var items = await _auctionContext.Items.Where(i => i.IsDeleted == false).Include(i => i.ItemDetails).ToListAsync();
             if (items.Count() == 0)
                 throw new CollectionEmptyException("No Items in the database");
             return items;

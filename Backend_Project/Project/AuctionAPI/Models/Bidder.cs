@@ -9,6 +9,7 @@ namespace AuctionAPI.Models
         public Guid UserId { get; set; }
         public ICollection<Bid>? Bids { get; set; }
         public User? User { get; set; }
+        public ICollection<Item>? Items{ get; set; }
 
     }
 }

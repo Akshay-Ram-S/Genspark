@@ -13,7 +13,7 @@ namespace AuctionAPI.Models.DTOs
         public decimal StartingPrice { get; set; }
 
         [Required]
-        public DateOnly EndDate { get; set; }
+        public DateTime EndDate { get; set; }
 
         [Required]
         public Guid SellerID { get; set; }

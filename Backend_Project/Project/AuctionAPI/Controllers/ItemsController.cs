@@ -25,7 +25,7 @@ namespace AuctionAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = "Seller,Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -39,7 +39,7 @@ namespace AuctionAPI.Controllers
             _logger.LogInformation("User {User} initiated item creation", userEmail);
 
             DateOnly today = DateOnly.FromDateTime(DateTime.UtcNow);
-            if (dto.EndDate < today)
+            if (DateOnly.FromDateTime(dto.EndDate) < today)
             {
                 _logger.LogWarning("Item creation failed by user {User}: EndDate {EndDate} < Today {Today}", userEmail, dto.EndDate, today);
                 return BadRequest(ApiResponseMapper.BadRequest<string>("EndDate must not be before StartDate."));
@@ -47,7 +47,7 @@ namespace AuctionAPI.Controllers
 
             try
             {
-                var item = await _itemService.CreateItemAsync(dto);
+                var item = await _itemService.CreateItemAsync(dto, userEmail);
                 _logger.LogInformation("Item {ItemId} created successfully by user {User}", item.ItemID, userEmail);
                 return CreatedAtAction(nameof(GetItem), new { id = item.ItemID },
                     ApiResponseMapper.Created(item, "Item created successfully."));
@@ -92,7 +92,7 @@ namespace AuctionAPI.Controllers
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
-        public async Task<IActionResult> GetAllItems([FromQuery] ItemFilter? filter, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
+        public async Task<IActionResult> GetFilterItems([FromQuery] ItemFilter? filter, [FromQuery] int page = 1, [FromQuery] int pageSize = 10)
         {
 
             try
@@ -156,8 +156,7 @@ namespace AuctionAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        [Authorize(Roles = "Seller")]
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = "Seller, Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -166,17 +165,19 @@ namespace AuctionAPI.Controllers
         public async Task<IActionResult> UpdateItemById(Guid id, [FromForm] ItemUpdateDto item)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var role = User.FindFirst(ClaimTypes.Role)?.Value;
             _logger.LogInformation("Updating item {ItemId}", id);
             try
             {
                 DateOnly today = DateOnly.FromDateTime(DateTime.UtcNow);
-                if (item.EndDate < today)
+                DateOnly itemEndDate = DateOnly.FromDateTime(item.EndDate);
+                if (itemEndDate < today)
                 {
                     _logger.LogWarning("Item creation failed by user {User}: EndDate {EndDate} <= Today {Today}", userEmail, item.EndDate, today);
                     return BadRequest(ApiResponseMapper.BadRequest<string>("EndDate must not be before StartDate."));
                 }
 
-                var result = await _itemService.UpdateItem(id, item, userEmail);
+                var result = await _itemService.UpdateItem(id, item, userEmail, role);
                 if (result == null)
                     return StatusCode(403, ApiResponseMapper.Forbidden<string>("User not authorized to update this item."));
                 return Ok(ApiResponseMapper.Success(result, "Item updated successfully."));
@@ -190,7 +191,7 @@ namespace AuctionAPI.Controllers
 
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Seller")]
+        [Authorize(Roles = "Seller, Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -199,10 +200,11 @@ namespace AuctionAPI.Controllers
         public async Task<IActionResult> DeleteItemById(Guid id)
         {
             var userEmail = User.FindFirst(ClaimTypes.Email)?.Value;
+            var role = User.FindFirst(ClaimTypes.Role)?.Value;
 
             try
             {
-                var result = await _itemService.DeleteItem(id, userEmail);
+                var result = await _itemService.DeleteItem(id, userEmail, role);
                 if (result == null)
                 {
                     _logger.LogWarning("User {User} is not authorized to cancel item {ItemId}", userEmail, id);
@@ -218,5 +220,9 @@ namespace AuctionAPI.Controllers
                 return StatusCode(500, ApiResponseMapper.InternalError<string>(e));
             }
         }
+
+        
+
+
     }
 }

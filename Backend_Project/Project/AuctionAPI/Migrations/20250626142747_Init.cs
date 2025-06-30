@@ -31,10 +31,10 @@ namespace AuctionAPI.Migrations
                 name: "ItemBids",
                 columns: table => new
                 {
-                    title = table.Column<string>(type: "text", nullable: false),
-                    bidder_id = table.Column<Guid>(type: "uuid", nullable: false),
-                    name = table.Column<string>(type: "text", nullable: false),
-                    amount = table.Column<decimal>(type: "numeric", nullable: false),
+                    Title = table.Column<string>(type: "text", nullable: false),
+                    Bidder_id = table.Column<Guid>(type: "uuid", nullable: false),
+                    Name = table.Column<string>(type: "text", nullable: false),
+                    Amount = table.Column<decimal>(type: "numeric", nullable: false),
                     bid_timestamp = table.Column<DateTime>(type: "timestamp with time zone", nullable: false)
                 },
                 constraints: table =>
@@ -64,6 +64,7 @@ namespace AuctionAPI.Migrations
                     UserId = table.Column<Guid>(type: "uuid", nullable: false),
                     Name = table.Column<string>(type: "text", nullable: false),
                     Email = table.Column<string>(type: "text", nullable: false),
+                    Phone = table.Column<string>(type: "text", nullable: false),
                     Status = table.Column<string>(type: "text", nullable: false),
                     PAN = table.Column<string>(type: "text", nullable: false),
                     Aadhar = table.Column<string>(type: "text", nullable: false),
@@ -119,14 +120,21 @@ namespace AuctionAPI.Migrations
                     Title = table.Column<string>(type: "text", nullable: false),
                     Status = table.Column<string>(type: "text", nullable: true),
                     Category = table.Column<string>(type: "text", nullable: true),
-                    StartDate = table.Column<DateOnly>(type: "date", nullable: false),
-                    EndDate = table.Column<DateOnly>(type: "date", nullable: false),
+                    StartDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
+                    EndDate = table.Column<DateTime>(type: "timestamp with time zone", nullable: false),
                     SellerID = table.Column<Guid>(type: "uuid", nullable: false),
+                    BidderID = table.Column<Guid>(type: "uuid", nullable: true),
                     IsDeleted = table.Column<bool>(type: "boolean", nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Items", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Items_Bidders_BidderID",
+                        column: x => x.BidderID,
+                        principalTable: "Bidders",
+                        principalColumn: "BidderId",
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_Items_Sellers_SellerID",
                         column: x => x.SellerID,
@@ -215,6 +223,11 @@ namespace AuctionAPI.Migrations
                 column: "CurrentBidderID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_Items_BidderID",
+                table: "Items",
+                column: "BidderID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Items_SellerID",
                 table: "Items",
                 column: "SellerID");
@@ -245,10 +258,10 @@ namespace AuctionAPI.Migrations
                 name: "RefreshTokens");
 
             migrationBuilder.DropTable(
-                name: "Bidders");
+                name: "Items");
 
             migrationBuilder.DropTable(
-                name: "Items");
+                name: "Bidders");
 
             migrationBuilder.DropTable(
                 name: "Sellers");

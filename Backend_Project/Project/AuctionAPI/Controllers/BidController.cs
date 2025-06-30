@@ -23,7 +23,7 @@ namespace AuctionAPI.Controllers
         }
 
         [HttpPost]
-        [Authorize(Roles = "Bidder")]
+        [Authorize(Roles = "Bidder,Admin")]
         [ProducesResponseType(StatusCodes.Status201Created)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
@@ -34,10 +34,11 @@ namespace AuctionAPI.Controllers
         {
             _logger.LogInformation("Attempting to place a bid on item {ItemId} by bidder {BidderId} for amount {Amount}",
                 bidDto.ItemId, bidDto.BidderId, bidDto.Amount);
+            var role = User.FindFirst(ClaimTypes.Role)?.Value;
 
             try
             {
-                var bid = await _bidService.PlaceBid(bidDto);
+                var bid = await _bidService.PlaceBid(bidDto, role);
 
                 _logger.LogInformation("Bid placed successfully with ID {BidId}", bid.Id);
 
@@ -83,38 +84,31 @@ namespace AuctionAPI.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Authorize(Roles = "Bidder")]
+        [Authorize(Roles = "Admin")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status401Unauthorized)]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> CancelBid(Guid id)
         {
-            var email = User.FindFirst(ClaimTypes.Email)?.Value;
-
-            if (string.IsNullOrEmpty(email))
-            {
-                _logger.LogWarning("Unauthorized cancel attempt for bid {BidId} - email claim missing", id);
-                return Unauthorized(ApiResponseMapper.Fail<string>("Invalid token: email not found."));
-            }
 
             try
             {
-                var result = await _bidService.CancelBid(id, email);
+                var result = await _bidService.CancelBid(id);
 
                 if (result == null)
                 {
-                    _logger.LogWarning("Unauthorized cancel attempt: User {Email} is not the owner of bid {BidId}", email, id);
+                    _logger.LogWarning("Unauthorized cancel attempt");
                     return StatusCode(403, ApiResponseMapper.Forbidden<string>("User not authorized to cancel this bid."));
                 }
 
-                _logger.LogInformation("Bid {BidId} cancelled successfully by user {Email}", id, email);
+                _logger.LogInformation("Bid {BidId} cancelled successfully by admin", id);
 
                 return Ok(ApiResponseMapper.Success(result, "Bid cancelled successfully."));
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Error cancelling bid {BidId} by user {Email}", id, email);
+                _logger.LogError(e, "Error cancelling bid {BidId} by admin", id);
                 return StatusCode(500, ApiResponseMapper.InternalError<string>(e));
             }
         }

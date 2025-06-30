@@ -24,9 +24,13 @@ namespace FirstAPI.Services
             {
                 Id = user.Seller.SellerId;
             }
-            else
+            else if (user.Bidder != null)
             {
                 Id = user.Bidder.BidderId;
+            }
+            else
+            {
+                Id = user.UserId;
             }
             List<Claim> claims = new List<Claim>
             {

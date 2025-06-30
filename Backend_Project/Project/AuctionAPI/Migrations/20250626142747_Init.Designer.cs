@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace AuctionAPI.Migrations
 {
     [DbContext(typeof(AuctionContext))]
-    [Migration("20250611155638_Init")]
+    [Migration("20250626142747_Init")]
     partial class Init
     {
         /// <inheritdoc />
@@ -107,22 +107,22 @@ namespace AuctionAPI.Migrations
 
             modelBuilder.Entity("AuctionAPI.Models.DTOs.ItemAllBids", b =>
                 {
-                    b.Property<decimal>("amount")
+                    b.Property<decimal>("Amount")
                         .HasColumnType("numeric");
+
+                    b.Property<Guid>("Bidder_id")
+                        .HasColumnType("uuid");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("text");
 
                     b.Property<DateTime>("bid_timestamp")
                         .HasColumnType("timestamp with time zone");
-
-                    b.Property<Guid>("bidder_id")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("name")
-                        .IsRequired()
-                        .HasColumnType("text");
-
-                    b.Property<string>("title")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.ToTable("ItemBids");
                 });
@@ -133,11 +133,14 @@ namespace AuctionAPI.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("BidderID")
+                        .HasColumnType("uuid");
+
                     b.Property<string>("Category")
                         .HasColumnType("text");
 
-                    b.Property<DateOnly>("EndDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("EndDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
@@ -145,8 +148,8 @@ namespace AuctionAPI.Migrations
                     b.Property<Guid>("SellerID")
                         .HasColumnType("uuid");
 
-                    b.Property<DateOnly>("StartDate")
-                        .HasColumnType("date");
+                    b.Property<DateTime>("StartDate")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<string>("Status")
                         .HasColumnType("text");
@@ -156,6 +159,8 @@ namespace AuctionAPI.Migrations
                         .HasColumnType("text");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("BidderID");
 
                     b.HasIndex("SellerID");
 
@@ -266,6 +271,10 @@ namespace AuctionAPI.Migrations
                         .IsRequired()
                         .HasColumnType("text");
 
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Role")
                         .IsRequired()
                         .HasColumnType("text");
@@ -311,11 +320,18 @@ namespace AuctionAPI.Migrations
 
             modelBuilder.Entity("AuctionAPI.Models.Item", b =>
                 {
+                    b.HasOne("AuctionAPI.Models.Bidder", "Bidder")
+                        .WithMany("Items")
+                        .HasForeignKey("BidderID")
+                        .OnDelete(DeleteBehavior.Cascade);
+
                     b.HasOne("AuctionAPI.Models.Seller", "Seller")
                         .WithMany("Items")
                         .HasForeignKey("SellerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Bidder");
 
                     b.Navigation("Seller");
                 });
@@ -352,6 +368,8 @@ namespace AuctionAPI.Migrations
             modelBuilder.Entity("AuctionAPI.Models.Bidder", b =>
                 {
                     b.Navigation("Bids");
+
+                    b.Navigation("Items");
                 });
 
             modelBuilder.Entity("AuctionAPI.Models.Item", b =>

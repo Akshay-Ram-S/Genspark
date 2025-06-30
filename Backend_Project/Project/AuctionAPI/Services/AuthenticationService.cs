@@ -28,10 +28,17 @@ namespace AuctionAPI.Services
         public async Task<UserLoginResponse> Login(UserLoginRequest user)
         {
             var dbUser = await _userRepository.Get(user.Email.ToLower());
+            _logger.LogInformation($"User fetched: Email={dbUser?.Email}, Role={dbUser?.Role}, Status={dbUser?.Status}");
+
             if (dbUser == null)
             {
                 _logger.LogCritical("User not found");
                 throw new CollectionEmptyException("No such user");
+            }
+            if (dbUser.Status == "Disabled")
+            {
+                _logger.LogCritical("User Disabled");
+                throw new Exception("User is disabled");
             }
 
             bool isPasswordValid = BCrypt.Net.BCrypt.Verify(user.Password, dbUser.Password);

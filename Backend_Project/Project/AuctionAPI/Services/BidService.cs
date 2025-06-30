@@ -34,24 +34,22 @@ namespace AuctionAPI.Services
             _hubContext = hubContext;
         }
 
-        public async Task<BidResponse> PlaceBid(BidCreateDTO bidDto)
+        public async Task<BidResponse> PlaceBid(BidCreateDTO bidDto, string role)
         {
             try
             {
                 if (bidDto == null)
                     throw new ArgumentNullException(nameof(bidDto), "Bid data cannot be null.");
+
                 if (bidDto.ItemId == Guid.Empty)
                     throw new ArgumentException("ItemId must be a valid GUID.", nameof(bidDto.ItemId));
-                if (bidDto.BidderId == Guid.Empty)
+
+                if (role != "Admin" && bidDto.BidderId == Guid.Empty)
                     throw new ArgumentException("BidderId must be a valid GUID.", nameof(bidDto.BidderId));
 
                 var item = await _itemRepository.Get(bidDto.ItemId);
                 if (item == null)
                     throw new Exception("Item not found");
-
-                var bidder = await _bidderRepository.Get(bidDto.BidderId);
-                if (bidder == null)
-                    throw new Exception("Bidder not found");
 
                 var itemDetails = await _itemDetailsRepository.Get(bidDto.ItemId);
                 if (itemDetails == null)
@@ -60,7 +58,25 @@ namespace AuctionAPI.Services
                 await IsBidAmountHigh(bidDto, item, itemDetails);
 
                 item.Bids ??= new Collection<Bid>();
-                bidder.Bids ??= new List<Bid>();
+
+                Bidder bidder;
+
+                if (role == "Admin")
+                {
+                    bidder = new Bidder
+                    {
+                        BidderId = Guid.NewGuid(),
+                        User = new User { Name = "Admin" }, 
+                        Bids = new List<Bid>()
+                    };
+                }
+                else
+                {
+                    bidder = await _bidderRepository.Get(bidDto.BidderId);
+                    if (bidder == null)
+                        throw new Exception("Bidder not found");
+                    bidder.Bids ??= new List<Bid>();
+                }
 
                 var bid = _mapper.MapBid(bidDto);
                 if (bid == null)
@@ -81,8 +97,10 @@ namespace AuctionAPI.Services
 
                 if (bidder.User == null)
                     throw new Exception("Bidder's user data not found.");
+
                 if (_hubContext == null)
                     throw new InvalidOperationException("SignalR hub context is not initialized.");
+
                 await _hubContext.Clients.All.SendAsync("ReceiveBid", new
                 {
                     ItemId = item.Id,
@@ -97,9 +115,10 @@ namespace AuctionAPI.Services
             }
             catch (Exception e)
             {
-                throw new Exception(e.Message); 
+                throw new Exception(e.Message);
             }
         }
+
 
         private async Task IsBidAmountHigh(BidCreateDTO bidDto, Item item, ItemDetails itemDetails)
         {
@@ -148,28 +167,19 @@ namespace AuctionAPI.Services
             }
         }
 
-        public async Task<BidResponse?> CancelBid(Guid bidId, string bidderEmail)
+        public async Task<Bid> CancelBid(Guid bidId)
         {
             try
             {
                 var bid = await _bidRepository.Get(bidId);
-                var bidder = await _bidderRepository.Get(bid.BidderId);
-                var item = await _itemRepository.Get(bid.ItemId);
-                if (bid == null || bid.Bidder == null || bidder.User == null || bidder.User.Email != bidderEmail)
+                if (bid == null)
                 {
                     return null;
                 }
-                var highestBid = await HighestBidAmount(item.Id);
                 
-                if (bid.Amount != highestBid)
-                {
-                    throw new Exception("Your bid is not the highest bid");
-                }
-
                 bid.IsDeleted = true;
                 bid = await _bidRepository.Update(bidId, bid);
-                var bidResponse = _mapperResponse.MapBidResponse(bid, bidder, item);
-                return bidResponse;
+                return bid;
             }
             catch (Exception e)
             {

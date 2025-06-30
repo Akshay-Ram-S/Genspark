@@ -82,7 +82,12 @@ namespace AuctionAPI.Contexts
                 .WithOne(bid => bid.Bidder)
                 .HasForeignKey(bid => bid.BidderId)
                 .OnDelete(DeleteBehavior.Cascade);
-
+            
+            modelBuilder.Entity<Bidder>()
+                .HasMany(s => s.Items)
+                .WithOne(i => i.Bidder)
+                .HasForeignKey(i => i.SellerID)
+                .OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Item>()
                 .HasKey(i => i.Id);
@@ -96,6 +101,13 @@ namespace AuctionAPI.Contexts
                 .WithMany(s => s.Items)
                 .HasForeignKey(i => i.SellerID)
                 .OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<Item>()
+                .HasOne(i => i.Bidder)
+                .WithMany(s => s.Items)
+                .HasForeignKey(i => i.BidderID)
+                .OnDelete(DeleteBehavior.Cascade)
+                .IsRequired(false);    
 
             modelBuilder.Entity<Item>()
                 .HasMany(i => i.Bids)

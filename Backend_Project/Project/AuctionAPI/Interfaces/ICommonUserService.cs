@@ -7,6 +7,8 @@ namespace AuctionAPI.Interfaces
     {
         public Task<User> UpdateUser(string email, UpdateUserDto user);
         public Task<User> DeleteUser(string email);
+        public Task<User> ChangeUserState(UserStatusUpdate statusDto);
+        public  Task<User> CreateAdmin(AddUserDto user);
 
     }
 }

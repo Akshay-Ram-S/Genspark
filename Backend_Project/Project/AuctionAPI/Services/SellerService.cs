@@ -80,6 +80,8 @@ namespace AuctionAPI.Services
                 {
                     throw new Exception($"No sellers found in the databse");
                 }
+                allUsers = allUsers.Where(s => s.User != null && s.User.Role?.ToLower() != "admin")
+                                    .ToList();
                 var users = allUsers
                     .OrderBy(i => i.User.Name)
                     .ToList();

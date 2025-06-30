@@ -22,6 +22,7 @@ namespace AuctionAPI.Tests
         private Mock<IRepository<Guid, Audit>> _auditRepoMock = null!;
         private Mock<IRepository<Guid, Seller>> _sellerRepoMock = null!;
         private ItemService _itemService = null!;
+        private Mock<IRepository<string, User>> _userRepoMock = null!;
 
         [SetUp]
         public void Setup()
@@ -31,13 +32,15 @@ namespace AuctionAPI.Tests
             _bidderRepoMock = new Mock<IRepository<Guid, Bidder>>();
             _auditRepoMock = new Mock<IRepository<Guid, Audit>>();
             _sellerRepoMock = new Mock<IRepository<Guid, Seller>>();
+            _userRepoMock = new Mock<IRepository<string, User>>();
 
             _itemService = new ItemService(
                 _itemRepoMock.Object,
                 _sellerRepoMock.Object,
                 _itemDetailsRepoMock.Object,
                 _bidderRepoMock.Object,
-                _auditRepoMock.Object
+                _auditRepoMock.Object,
+                _userRepoMock.Object
             );
         }
 
@@ -47,6 +50,7 @@ namespace AuctionAPI.Tests
             var dto = new ItemCreateDto { Title = "Item", StartingPrice = 100, Description = "Test", SellerID = Guid.NewGuid() };
             var item = new Item { Id = Guid.NewGuid(), SellerID = dto.SellerID };
             var seller = new Seller { SellerId = dto.SellerID, User = new User { Email = "seller@gmail.com" } };
+            var email = "seller@gmail.com";
 
             _sellerRepoMock.Setup(x => x.Get(dto.SellerID)).ReturnsAsync(seller);
             _itemRepoMock.Setup(x => x.Add(It.IsAny<Item>())).ReturnsAsync(item);
@@ -54,7 +58,7 @@ namespace AuctionAPI.Tests
             _sellerRepoMock.Setup(x => x.Update(seller.SellerId, seller)).ReturnsAsync(seller);
             _auditRepoMock.Setup(x => x.Add(It.IsAny<Audit>())).ReturnsAsync(new Audit());
 
-            var result = await _itemService.CreateItemAsync(dto);
+            var result = await _itemService.CreateItemAsync(dto, email);
 
             Assert.That(result, Is.Not.Null);
             Assert.That(result.ItemID, Is.EqualTo(item.Id));
@@ -65,8 +69,9 @@ namespace AuctionAPI.Tests
         {
             var dto = new ItemCreateDto { SellerID = Guid.NewGuid() };
             _sellerRepoMock.Setup(x => x.Get(dto.SellerID)).ReturnsAsync((Seller?)null);
+            var email = "seller@gmail.com";
 
-            Assert.ThrowsAsync<Exception>(async () => await _itemService.CreateItemAsync(dto));
+            Assert.ThrowsAsync<Exception>(async () => await _itemService.CreateItemAsync(dto, email));
         }
 
         [Test]
@@ -108,7 +113,7 @@ namespace AuctionAPI.Tests
             _itemRepoMock.Setup(x => x.Update(id, It.IsAny<Item>())).ReturnsAsync(item);
             _auditRepoMock.Setup(x => x.Add(It.IsAny<Audit>())).ReturnsAsync(new Audit());
 
-            var result = await _itemService.DeleteItem(id, "email");
+            var result = await _itemService.DeleteItem(id, "email","admin");
             Assert.That(result.IsDeleted, Is.True);
         }
 
@@ -122,7 +127,7 @@ namespace AuctionAPI.Tests
             _itemRepoMock.Setup(x => x.Get(id)).ReturnsAsync(item);
             _sellerRepoMock.Setup(x => x.Get(item.SellerID)).ReturnsAsync(seller);
 
-            var result = await _itemService.DeleteItem(id, "dummy@gmail.com");
+            var result = await _itemService.DeleteItem(id, "dummy@gmail.com", "seller");
             Assert.That(result, Is.Null);
         }
 
@@ -141,7 +146,7 @@ namespace AuctionAPI.Tests
             _itemRepoMock.Setup(x => x.Update(id, item)).ReturnsAsync(item);
             _itemDetailsRepoMock.Setup(x => x.Update(id, itemDetails)).ReturnsAsync(itemDetails);
 
-            var result = await _itemService.UpdateItem(id, dto, "user@gmail.com");
+            var result = await _itemService.UpdateItem(id, dto, "user@gmail.com", "Seller");
             Assert.That(result, Is.Not.Null);
             Assert.That(result.Title, Is.EqualTo("New"));
         }
@@ -151,7 +156,7 @@ namespace AuctionAPI.Tests
         {
             var id = Guid.NewGuid();
             _itemRepoMock.Setup(x => x.Get(id)).ReturnsAsync((Item?)null);
-            Assert.ThrowsAsync<Exception>(async () => await _itemService.UpdateItem(id, new ItemUpdateDto(), "email"));
+            Assert.ThrowsAsync<Exception>(async () => await _itemService.UpdateItem(id, new ItemUpdateDto(), "email", "Admin"));
         }
 
         [Test]
@@ -165,7 +170,7 @@ namespace AuctionAPI.Tests
             _sellerRepoMock.Setup(x => x.Get(item.SellerID)).ReturnsAsync(seller);
             _itemDetailsRepoMock.Setup(x => x.Get(id)).ReturnsAsync((ItemDetails?)null);
 
-            Assert.ThrowsAsync<Exception>(async () => await _itemService.UpdateItem(id, new ItemUpdateDto(), "test@gmail.com"));
+            Assert.ThrowsAsync<Exception>(async () => await _itemService.UpdateItem(id, new ItemUpdateDto(), "test@gmail.com","Seller"));
         }
 
         [Test]
@@ -174,7 +179,7 @@ namespace AuctionAPI.Tests
             var id = Guid.NewGuid();
             _itemRepoMock.Setup(x => x.Get(id)).ReturnsAsync((Item?)null);
 
-            Assert.ThrowsAsync<Exception>(async () => await _itemService.DeleteItem(id, "email"));
+            Assert.ThrowsAsync<Exception>(async () => await _itemService.DeleteItem(id, "email", "Admin"));
         }
     }
 }

@@ -1,0 +1,157 @@
+2025-07-01 00:03:01.132 +05:30 [INF] User profile is available. Using '/Users/presidio/.aspnet/DataProtection-Keys' as key repository; keys will not be encrypted at rest.
+2025-07-01 00:03:02.219 +05:30 [WRN] The WebRootPath was not found: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/wwwroot. Static files may be unavailable.
+2025-07-01 00:03:02.237 +05:30 [INF] Now listening on: http://localhost:5205
+2025-07-01 00:03:02.239 +05:30 [INF] Application started. Press Ctrl+C to shut down.
+2025-07-01 00:03:02.239 +05:30 [INF] Hosting environment: Development
+2025-07-01 00:03:02.239 +05:30 [INF] Content root path: /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI
+2025-07-01 00:03:02.306 +05:30 [INF] Executed DbCommand (18ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:03:02.464 +05:30 [INF] Executed DbCommand (4ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:03:02.529 +05:30 [INF] Executed DbCommand (7ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:03:32.553 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:03:32.555 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:03:32.557 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:04:02.614 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:04:02.616 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:04:02.619 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:04:32.620 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:04:32.623 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:04:32.625 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:05:02.629 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:05:02.632 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:05:02.634 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:05:32.637 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:05:32.639 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:05:32.641 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:06:02.645 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:06:02.647 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:06:02.648 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:06:32.651 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:06:32.652 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:06:32.653 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:07:02.656 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:07:02.658 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:07:02.659 +05:30 [INF] Executed DbCommand (0ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:07:32.661 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title"
+FROM "Items" AS i
+WHERE i."Status" = 'Active' AND i."EndDate" <= now()
+2025-07-01 00:07:32.662 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[], CommandType='"Text"', CommandTimeout='30']
+SELECT b."Id", b."Amount", b."BidderId", b."IsDeleted", b."ItemId", b."Status", b."Timestamp", b0."BidderId", b0."UserId"
+FROM "Bids" AS b
+INNER JOIN "Bidders" AS b0 ON b."BidderId" = b0."BidderId"
+WHERE NOT (b."IsDeleted")
+2025-07-01 00:07:32.663 +05:30 [INF] Executed DbCommand (1ms) [Parameters=[@__key_0='?' (DbType = Guid)], CommandType='"Text"', CommandTimeout='30']
+SELECT i."Id", i."BidderID", i."Category", i."EndDate", i."IsDeleted", i."SellerID", i."StartDate", i."Status", i."Title", i0."ItemId", i0."CurrentBid", i0."CurrentBidderID", i0."Description", i0."ImageData", i0."ImageMimeType", i0."StartingPrice"
+FROM "Items" AS i
+LEFT JOIN "ItemDetails" AS i0 ON i."Id" = i0."ItemId"
+WHERE NOT (i."IsDeleted") AND i."Id" = @__key_0
+LIMIT 2
+2025-07-01 00:07:44.243 +05:30 [INF] Application is shutting down...

@@ -81,6 +81,8 @@ namespace AuctionAPI.Services
                 {
                     throw new Exception($"No sellers found in the databse");
                 }
+                allUsers = allUsers.Where(s => s.User != null && s.User.Role?.ToLower() != "admin")
+                                    .ToList();
                 var users = allUsers
                     .OrderBy(i => i.User.Name)
                     .ToList();
@@ -90,7 +92,7 @@ namespace AuctionAPI.Services
                 var pagedItems = users
                     .Skip((page - 1) * pageSize)
                     .Take(pageSize);
-                    
+
                 return users;
             }
             catch (Exception e)
@@ -98,6 +100,7 @@ namespace AuctionAPI.Services
                 throw new Exception(e.Message);
             }
         }
+
 
         
     }

@@ -14,9 +14,10 @@ namespace AuctionAPI.Mappers
                 Title = dto.Title,
                 Status = "Active",
                 Category = dto.Category,
-                StartDate = DateOnly.FromDateTime(DateTime.UtcNow),
-                EndDate = dto.EndDate,
-                SellerID = dto.SellerID
+                StartDate = DateTime.UtcNow,
+                EndDate = DateTime.SpecifyKind(dto.EndDate, DateTimeKind.Utc),
+                SellerID = dto.SellerID,
+                BidderID = null
             };
             return item;
         }

@@ -8,11 +8,12 @@ namespace AuctionAPI.Models.DTOs
         public string Status { get; set; } = string.Empty;
         public string Category { get; set; } = string.Empty;
         public decimal StartingPrice { get; set; }
-        public DateOnly StartDate { get; set; }
-        public DateOnly EndDate { get; set; }
+        public DateTime StartDate { get; set; }
+        public DateTime EndDate { get; set; }
         public decimal? CurrentBid { get; set; }
         public string CurrentBidderName { get; set; } = string.Empty;
         public string SellerName { get; set; } = string.Empty;
+        public string BoughtBy { get; set; } = string.Empty;
         
     }
 }

@@ -11,6 +11,7 @@ namespace AuctionAPI.Mappers
             User newUser = new();
             newUser.Name = user.Name;
             newUser.Email = user.Email.ToLower();
+            newUser.Phone = user.Phone;
             newUser.Aadhar = user.Aadhar;
             newUser.PAN = user.PAN.ToUpper();
             newUser.Status = "Active";

@@ -15,7 +15,7 @@ namespace AuctionAPI.Repositories
 
         public override async Task<User> Get(string key)
         {
-            var user = await _auctionContext.Users.Where(u => u.Status == "Active")
+            var user = await _auctionContext.Users.Where(u => u.Status != "Deleted")
                                                     .Include(u => u.Seller)
                                                     .Include(u => u.Bidder)
                                                     .SingleOrDefaultAsync(u => u.Email == key);
@@ -25,7 +25,7 @@ namespace AuctionAPI.Repositories
 
         public override async Task<IEnumerable<User>> GetAll()
         {
-            var users = await _auctionContext.Users.Where(u => u.Status == "Active")
+            var users = await _auctionContext.Users.Where(u => u.Status != "Deleted")
                                         .Include(u => u.Seller)
                                         .Include(u => u.Bidder)
                                         .ToListAsync();

@@ -9,6 +9,7 @@ using AuctionAPI.Misc;
 using AuctionAPI.Models;
 using AuctionAPI.Models.DTOs;
 using AuctionAPI.Repositories;
+using AuctionAPI.Service;
 using AuctionAPI.Services;
 using AuctionAPI.Validation;
 using FirstAPI.Services;
@@ -18,7 +19,6 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using Serilog;
-using Serilog.Sinks.ApplicationInsights.TelemetryConverters;
 
 
 Log.Logger = new LoggerConfiguration()
@@ -85,8 +85,8 @@ builder.Services.AddRateLimiter(options =>
     options.GlobalLimiter = PartitionedRateLimiter.Create<HttpContext, string>(_ =>
         RateLimitPartition.GetTokenBucketLimiter("global", _ => new TokenBucketRateLimiterOptions
         {
-            TokenLimit = 1000,                   
-            TokensPerPeriod = 1000,              
+            TokenLimit = 10000,                   
+            TokensPerPeriod = 10000,              
             ReplenishmentPeriod = TimeSpan.FromHours(1),
             AutoReplenishment = true,
             QueueProcessingOrder = QueueProcessingOrder.OldestFirst,
@@ -188,7 +188,9 @@ builder.Services.AddControllers()
                 {
                     opts.JsonSerializerOptions.ReferenceHandler = System.Text.Json.Serialization.ReferenceHandler.Preserve;
                     opts.JsonSerializerOptions.WriteIndented = true;
+
                 });
+
 builder.Services.AddControllers()
     .AddJsonOptions(options =>
     {
@@ -202,6 +204,8 @@ builder.Services.AddCors(options =>
                         .AllowAnyMethod()
                         .AllowAnyHeader());
 });
+
+builder.Services.AddHostedService<AuctionMonitorService>();
 
 // builder.Services.AddCors(options =>
 // {

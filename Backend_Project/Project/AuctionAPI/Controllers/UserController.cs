@@ -92,11 +92,13 @@ namespace AuctionAPI.Controllers
                     return CreatedAtAction("GetBidderById", "Bidder", new { id = result.BidderId },
                             ApiResponseMapper.Created(result, "Bidder created successfully."));
                 }
-                else
+                else if (user.Role.ToLower() == "admin")
                 {
+                    var result = await _userService.CreateAdmin(user);
                     _logger.LogWarning($"Invalid role specified: {user.Role}");
-                    return BadRequest(ApiResponseMapper.BadRequest<string>("Invalid role specified."));
+                    return Ok(ApiResponseMapper.Success(result, $"Admin created"));
                 }
+                return Ok(ApiResponseMapper.Success("Done", $"Admin created"));
             }
             catch (Exception e)
             {
@@ -123,7 +125,7 @@ namespace AuctionAPI.Controllers
                     return Unauthorized(ApiResponseMapper.Unauthorized<string>());
                 }
 
-                var updatedUser = await _userService.UpdateUser(email, user); 
+                var updatedUser = await _userService.UpdateUser(email, user);
 
                 if (updatedUser == null)
                 {
@@ -149,10 +151,11 @@ namespace AuctionAPI.Controllers
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public async Task<IActionResult> DeleteUser()
         {
-            
+
             try
             {
                 var email = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Email)?.Value;
+                var role = User.Claims.FirstOrDefault(c => c.Type == ClaimTypes.Role)?.Value;
                 if (email == null)
                 {
                     return Unauthorized(ApiResponseMapper.Unauthorized<string>());
@@ -176,6 +179,40 @@ namespace AuctionAPI.Controllers
             }
         }
 
+
+        [Authorize(Roles = "Admin")]
+        [HttpPut("change-state")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status401Unauthorized)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ChangeUserStatus([FromBody]UserStatusUpdate statusDto)
+        {
+
+            try
+            {
+                if (statusDto.Email == null)
+                {
+                    return Unauthorized(ApiResponseMapper.Unauthorized<string>());
+                }
+
+                var deletedUser = await _userService.ChangeUserState(statusDto);
+
+                if (deletedUser == null)
+                {
+                    _logger.LogWarning("Delete failed");
+                    return NotFound(ApiResponseMapper.NotFound<string>("User not found."));
+                }
+
+                _logger.LogInformation($"User with email: {statusDto.Email} {statusDto.Status} successfully");
+                return Ok(ApiResponseMapper.Success(deletedUser, $"User status changed successfully."));
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error while deleting User");
+                return StatusCode(500, ApiResponseMapper.InternalError<string>(e));
+            }
+        }    
 
 
     }

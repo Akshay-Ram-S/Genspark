@@ -12,6 +12,11 @@ namespace AuctionAPI.Misc
     public class Functionalities : IFunctionalities
     {
         private readonly AuctionContext _auctionContext;
+        private readonly IRepository<Guid, ItemDetails> _itemDetailsRepository;
+        private readonly ItemResponseMapper _itemResponseMapper;
+        private readonly IRepository<Guid, Item> _itemRepository;
+        private readonly IRepository<Guid, Bidder> _bidderRepository;
+        private readonly IRepository<Guid, Seller> _sellerRepository;
         private readonly IValidation _validation;
         private readonly IEncryptionService _encryptionService;
         private readonly UserMapper _mapper;
@@ -20,8 +25,17 @@ namespace AuctionAPI.Misc
         public Functionalities(AuctionContext auctionContext,
                                IEncryptionService encryptionService,
                                IValidation validationService,
-                               IRepository<string, User> userRepository)
+                               IRepository<string, User> userRepository,
+                               IRepository<Guid, Seller> sellerRepository,
+                               IRepository<Guid, Bidder> bidderRepository,
+                               IRepository<Guid, Item>itemRepository,
+                               IRepository<Guid, ItemDetails>itemDetailsRepository)
         {
+            _itemDetailsRepository = itemDetailsRepository;
+            _itemResponseMapper = new ItemResponseMapper();
+            _itemRepository = itemRepository;
+            _bidderRepository = bidderRepository;
+            _sellerRepository = sellerRepository;
             _validation = validationService;
             _encryptionService = encryptionService;
             _mapper = new UserMapper();
@@ -117,7 +131,7 @@ namespace AuctionAPI.Misc
             var itemIds = bids.Select(b => b.ItemId).Distinct().ToList();
 
             var itemMap = await _auctionContext.Items
-                                .Where(i => itemIds.Contains(i.Id))      
+                                .Where(i => itemIds.Contains(i.Id))
                                 .ToDictionaryAsync(i => i.Id, i => i.Title);
 
 
@@ -148,6 +162,42 @@ namespace AuctionAPI.Misc
             }
 
             return user;
+        }
+        
+        public async Task<IEnumerable<ItemResponse>> GetItemsBought(Guid id)
+        {
+            try
+            {
+                var bidder = await _bidderRepository.Get(id);
+                var items = await _itemRepository.GetAll();
+
+                var bidderItemIds = bidder.Items.Select(i => i.Id).ToHashSet();
+
+                var filteredItems = items
+                    .Where(i => bidderItemIds.Contains(i.Id) && i.Status == "Sold" && i.BidderID == bidder.BidderId)
+                    .ToList();
+
+                var itemResponses = new List<ItemResponse>();
+
+                foreach (var item in filteredItems)
+                {
+                    var itemDetail = await _itemDetailsRepository.Get(item.Id);
+                    var seller = await _sellerRepository.Get(item.SellerID);
+
+                    var response = _itemResponseMapper.MapItemResponse(item, itemDetail, seller, bidder);
+                    if (response != null)
+                    {
+                        response.BoughtBy = bidder.User?.Name ?? string.Empty;
+                        itemResponses.Add(response);
+                    }
+                }
+
+                return itemResponses;
+            }
+            catch (Exception e)
+            {
+                throw new Exception($"Error retrieving bought items: {e.Message}");
+            }
         }
         
     }

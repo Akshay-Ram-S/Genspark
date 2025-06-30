@@ -2,7 +2,6 @@ using AuctionAPI.Models.DTOs;
 using AuctionAPI.Models;
 using Microsoft.AspNetCore.Mvc;
 using AuctionAPI.Interfaces;
-using Microsoft.AspNetCore.Authorization;
 using AuctionAPI.Mappers;
 
 namespace AuctionAPI.Controllers
@@ -13,17 +12,14 @@ namespace AuctionAPI.Controllers
     {
         private readonly IUserService<Bidder> _bidderService;
         private readonly ILogger<BidderController> _logger;
-        private readonly IValidation _validation;
         private readonly IFunctionalities _functionalities;
 
         public BidderController(IUserService<Bidder> bidderService,
                                 ILogger<BidderController> logger,
-                                IValidation validation,
                                 IFunctionalities functionalities)
         {
             _bidderService = bidderService;
             _logger = logger;
-            _validation = validation;
             _functionalities = functionalities;
         }
 
@@ -90,6 +86,26 @@ namespace AuctionAPI.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e, $"Error while fetching bids by Bidder ID: {id}");
+                return StatusCode(500, ApiResponseMapper.InternalError<string>(e));
+            }
+        }
+
+        [HttpGet("Items/{id}")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status500InternalServerError)]
+        public async Task<IActionResult> ItemsBoughtByBidder(Guid id)
+        {
+            try
+            {
+                var items = await _functionalities.GetItemsBought(id);
+                _logger.LogInformation($"Items bought by bidder with id: {id} is fetched");
+                return Ok(ApiResponseMapper.Success(items, $"Items bought by bidder with id: {id} fetched successfully"));
+
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, $"Error while fetching items by Bidder ID: {id}");
                 return StatusCode(500, ApiResponseMapper.InternalError<string>(e));
             }
         }

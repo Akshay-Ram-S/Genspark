@@ -11,13 +11,17 @@ namespace AuctionAPI.Services
         private readonly IRepository<string, User> _userRepository;
         private readonly IRepository<Guid, Audit> _auditRepository;
         private readonly IEncryptionService _encryptionService;
+        private readonly IFunctionalities _functionalities;
+
         public CommonUserService(IRepository<string, User> userRepository,
                                     IRepository<Guid, Audit> auditRepository,
-                                    IEncryptionService encryptionService)
+                                    IEncryptionService encryptionService,
+                                    IFunctionalities functionalities)
         {
             _userRepository = userRepository;
             _auditRepository = auditRepository;
             _encryptionService = encryptionService;
+            _functionalities = functionalities;
         }
 
         public async Task<User> UpdateUser(string email, UpdateUserDto user)
@@ -86,5 +90,48 @@ namespace AuctionAPI.Services
                 throw new Exception(e.Message);
             }
         }
+
+        public async Task<User> ChangeUserState(UserStatusUpdate statusDto)
+        {
+            try
+            {
+                var user = await _userRepository.Get(statusDto.Email);
+                if (user == null)
+                {
+                    throw new Exception($"No User found with email: {statusDto.Email}");
+                }
+                user.Status = statusDto.Status;
+                user = await _userRepository.Update(user.Email, user);
+                await _auditRepository.Add(new Audit
+                {
+                    Action = "Disable",
+                    CreatedAt = DateTime.UtcNow,
+                    CreatedBy = "Admin",
+                    EntityId = new Guid(),
+                    EntityType = "User"
+                });
+                return user;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
+        public async Task<User> CreateAdmin(AddUserDto user)
+        {
+            try
+            {
+                var newUser = await _functionalities.RegisterUser(user);
+                newUser.Role = "Admin";
+                var admin = await _userRepository.Add(newUser);
+                return admin;
+            }
+            catch (Exception e)
+            {
+                throw new Exception(e.Message);
+            }
+        }
+
     }
 }

@@ -41,7 +41,7 @@ namespace AuctionAPI.Controllers
             catch (Exception e)
             {
                 _logger.LogError(e, "Login failed for user: {Email}", loginRequest.Email);
-                return Unauthorized(ApiResponseMapper.Unauthorized<string>("Invalid email or password"));
+                return Unauthorized(ApiResponseMapper.Unauthorized<string>(e.Message));
             }
         }
 
