@@ -1,4 +1,4 @@
-<h3 style="color:goldenrod">Live Bids</h3>
+<h3>Live Bids</h3>
 
 <div class="bid-log" *ngIf="bids.length > 0; else noBids">
   @for (bid of bids | slice:0:10; track $index) {

@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SellerItems } from '../seller-items/seller-items';
 import { BidderBids } from '../bidder-bids/bidder-bids';
 import { CommonModule } from '@angular/common';
-import { ItemsBought } from '../items-bought/items-bought';
+import { ItemsBought } from '../bidder-items/items-bought';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { SellerService } from '../services/seller.service';
@@ -77,6 +77,7 @@ export class Profile implements OnInit {
       });
     }
   }
+  
 
   changePassword(): void {
     this.router.navigate(['/profile/change-password']);

@@ -17,7 +17,8 @@ describe('App', () => {
   const routerSpy = {
     events: of(new NavigationEnd(0, '/', '/')),
     navigate: jasmine.createSpy('navigate'),
-    createUrlTree: jasmine.createSpy('createUrlTree').and.returnValue({})  // fix here
+    createUrlTree: jasmine.createSpy('createUrlTree').and.returnValue({}),
+    serializeUrl: jasmine.createSpy('serializeUrl').and.callFake((url) => url)
   };
 
   beforeEach(async () => {
@@ -36,10 +37,10 @@ describe('App', () => {
     expect(app).toBeTruthy();
   });
 
-  it('should render title', () => {
+  it('should render navbar component', () => {
     const fixture = TestBed.createComponent(App);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, AuctionAPI');
+    expect(compiled.querySelector('app-navbar-component')).toBeTruthy();
   });
 });

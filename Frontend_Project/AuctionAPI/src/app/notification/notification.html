@@ -1,29 +1,28 @@
 <div class="position-relative" #bellWrapper>
-      <button class="btn" (click)="togglePanel()" title="Notifications">
-        <i class="bi bi-bell fs-5"></i>
-        @if (unreadCount > 0) {
-            <span class="position-absolute badge bg-danger"
-            style="top: 7px; right: 0px; transform: translate(-20%, -50%);">
-                {{ unreadCount }}
-            </span>
-        }
-      </button>
+  <a class="nav-link d-flex align-items-center p-2" style="cursor: pointer;" (click)="togglePanel()" title="Notifications">
+    <i class="bi bi-bell fs-5"></i>
+    @if (unreadCount > 0) {
+      <span class="position-absolute badge text-white"
+            style="top: 7px; right: 0px; transform: translate(-20%, -50%); background: linear-gradient(135deg, #dc3545, #e4606d);">
+        {{ unreadCount }}
+      </span>
+    }
+  </a>
 
-      <div class="position-absolute bg-white shadow p-3 border rounded mt-2"
-        style="right: 0; width: 600px; z-index: 1000;"
-        *ngIf="showPanel">
-        <h6 class="mb-2">Bid Notifications</h6>
-        <div *ngIf="notifications.length === 0" class="text-muted">
-          No new bids.
-        </div>
-        <ul class="list-group list-group-flush">
-          <li *ngFor="let n of notifications" class="list-group-item small">
-            Bidder: <strong>{{ n.bidder }}</strong> placed ${{ n.amount }} on <em>{{ n.title }} </em>
-            <span class="text-muted small" style="float: right;">
-              {{ n.time | date: 'hh:mm a' }}
-            </span>
-            
-          </li>
-        </ul>
-      </div>
+  <div class="position-absolute shadow p-3 border rounded mt-2"
+       style="right: 0; width: 600px; z-index: 1000; background: linear-gradient(135deg, #ffffff, #f8f9fa);"
+       *ngIf="showPanel">
+    <h6 class="mb-2" style="color: #007bff;">Bid Notifications</h6>
+    <div *ngIf="notifications.length === 0" class="text-muted">
+      No new bids.
+    </div>
+    <ul class="list-group list-group-flush">
+      <li *ngFor="let n of notifications" class="list-group-item small" style="border-left: 4px solid #007bff;">
+        Bidder: <strong style="color: #343a40;">{{ n.bidder }}</strong> placed ${{ n.amount }} on <em>{{ n.title }}</em>
+        <span class="text-muted small" style="float: right;">
+          {{ n.time | date: 'hh:mm a' }}
+        </span>
+      </li>
+    </ul>
+  </div>
 </div>

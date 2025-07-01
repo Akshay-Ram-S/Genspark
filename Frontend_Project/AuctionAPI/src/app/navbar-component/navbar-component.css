@@ -1,49 +1,31 @@
 .custom-navbar {
-  background: goldenrod;
-  z-index: 100;
+  background: linear-gradient(135deg, #007bff, #00b7eb);
 }
 
-.nav-item:hover{
-  transform: scale(1.1);
-}
-
-.navbar .btn {
-  padding: 0.375rem 0.75rem;
-  font-weight: 500;
-}
-
-.nav-link {
+.navbar-brand, .nav-link {
   color: white !important;
+  transition: color 0.2s ease;
 }
 
-.nav-link.active {
-  color: beige !important;
-  font-weight: bold;
-  border-bottom: 2px solid white;
-}
-
-.btn {
-  margin-top:7px;
-  margin-left: 10px;
-  border: none;
-}
-
-.btn:hover{
-    border: none;
-    background-color: goldenrod;
+.nav-link:hover, .nav-link.active {
+  color: rgb(24, 24, 24) !important;
+  transform: scale(1.10);
 }
 
 .dropdown-menu {
-  border-radius: 8px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  background: linear-gradient(135deg, #ffffff, #f8f9fa);
+  border: 1px solid rgba(0, 123, 255, 0.3);
 }
 
-.dropdown-item.active {
-  background-color: goldenrod;
-  color: beige;
+.dropdown-item {
+  color: #343a40;
 }
 
-.profile-icon {
-  font-size: 2rem; 
+.dropdown-item.active{
+  background-color: #00b7eb;
 }
 
+.dropdown-item:hover {
+  background: linear-gradient(135deg, #e9ecef, #dee2e6);
+  color: #007bff;
+}

@@ -71,4 +71,11 @@ export class Register {
     }
   }
 
+  onPanInput(event: Event) {
+    const input = event.target as HTMLInputElement;
+    const value = input.value.toUpperCase();
+    input.value = value;
+    this.registerForm.get('pan')?.setValue(value, { emitEvent: false });
+  }
+
 }

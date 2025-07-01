@@ -20,15 +20,14 @@ export class EditItem implements OnInit {
   errorMessage = '';
   categories: string[] = [
     'Electronics',
-    'Fashion & Apparel',
-    'Home & Furniture',
-    'Collectibles & Antiques',
+    'Fashion',
+    'Home',
+    'Antiques',
     'Automotive',
-    'Books, Music & Media',
-    'Sports & Outdoors',
-    'Toys & Games',
-    'Art & Crafts',
-    'Real Estate',
+    'Books',
+    'Sports',
+    'Toys',
+    'Art',
     'Other'
   ];
 

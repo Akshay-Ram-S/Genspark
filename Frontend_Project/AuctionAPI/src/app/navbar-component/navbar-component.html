@@ -1,7 +1,6 @@
 <nav class="navbar navbar-expand-lg shadow-sm py-3 custom-navbar">
   <div class="container-fluid px-4">
-
-    <a class="navbar-brand fs-3 d-flex align-items-center" routerLink="/">
+    <a class="navbar-brand fs-3 text-white d-flex align-items-center" routerLink="/">
       <i class="bi bi-gem me-2"></i> AuctionAPI
     </a>
 
@@ -11,7 +10,6 @@
     </button>
 
     <div class="collapse navbar-collapse" id="navbarContent">
-
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
         <li class="nav-item mx-2">
           <a class="nav-link fs-5" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
@@ -35,51 +33,40 @@
         </li>
         <li class="nav-item mx-2" *ngIf="isSeller || isAdmin">
           <a class="nav-link fs-5" routerLink="/post-item" routerLinkActive="active">
-            <span class="bi bi-pencil-square"></span> Post Item
+            <i class="bi bi-pencil-square me-1"></i> Post Item
           </a>
         </li>
         <li class="nav-item mx-2" *ngIf="isAdmin">
           <a class="nav-link fs-5" routerLink="/dashboard" routerLinkActive="active">
-            <span class="bi bi-grid-fill"></span> Dashboard
+            <i class="bi bi-grid-fill me-1"></i> Dashboard
           </a>
         </li>
       </ul>
 
       <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
         <ng-container *ngIf="isLoggedIn; else showLogin">
-
           <li class="nav-item mx-2">
             <app-notification></app-notification>
           </li>
-
           <li class="nav-item mx-2">
-            <a
-              class="nav-link d-flex align-items-left justify-content-left"
-              routerLink="/profile"
-              routerLinkActive="active"
-              title="Profile"
-              style="padding: 0.25rem;"
-            >
-              <i class="bi bi-person-circle profile-icon"></i>
+            <a class="nav-link fs-5 d-flex align-items-center" routerLink="/profile" routerLinkActive="active" title="Profile">
+              <i class="bi bi-person-circle me-1"></i> Profile
             </a>
           </li>
-
           <li class="nav-item mx-2">
-            <button class="btn btn-light fs-5 d-flex align-items-center" (click)="logout()">
+            <a class="nav-link fs-5 d-flex align-items-center" style="cursor: pointer;" (click)="logout()" routerLinkActive="active">
               <i class="bi bi-box-arrow-right me-1"></i> Logout
-            </button>
+            </a>
           </li>
         </ng-container>
-
         <ng-template #showLogin>
-          <li class="nav-item mx-1">
-            <a class="btn btn-light fs-5 d-flex align-items-center" routerLink="/login">
+          <li class="nav-item mx-2">
+            <a class="nav-link fs-5 d-flex align-items-center" style="cursor: pointer;" routerLink="/login">
               <i class="bi bi-box-arrow-in-right me-1"></i> Login
             </a>
           </li>
         </ng-template>
       </ul>
-
     </div>
   </div>
 </nav>

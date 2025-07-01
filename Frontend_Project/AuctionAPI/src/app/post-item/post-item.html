@@ -7,11 +7,11 @@
     <div *ngIf="errorMessage" class="alert alert-danger text-center small">
       {{ errorMessage }}
     </div>
-    <h3 class="mb-4 text-center" style="color:goldenrod">Post Item</h3>
+    <h3 class="mb-4 text-center">Post Item</h3>
 
     <form [formGroup]="postForm" (ngSubmit)="onSubmit()" novalidate>
 
-      <div class="mb-3">
+      <div class="mb-4">
         <label class="form-label">Title</label>
         <input type="text" class="form-control" formControlName="title" />
         <div *ngIf="postForm.controls['title'].touched">
@@ -24,8 +24,8 @@
         </div>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Starting Price $ <br />(Can't change afterwards)</label>
+      <div class="mb-4">
+        <label class="form-label">Starting Price $ <br /><span class="text-muted">(Can not change)</span></label>
         <input type="number" class="form-control" formControlName="startingPrice" />
         <div *ngIf="postForm.controls['startingPrice'].touched">
           <div *ngIf="postForm.controls['startingPrice'].errors?.['required']" class="text-danger small">
@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-4">
         <label class="form-label">End Date</label>
         <input type="datetime-local" class="form-control" formControlName="endDate" />
         <div *ngIf="postForm.controls['endDate'].touched">
@@ -50,7 +50,7 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-4">
         <label class="form-label">Category</label>
         <select class="form-select" formControlName="category">
           <option value="" disabled selected>Select a category</option>
@@ -63,8 +63,8 @@
         </div>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Description</label>
+      <div class="mb-4">
+        <label class="form-label">Description <span class="text-muted">(Max 1000 characters)</span></label>
         <textarea class="form-control" rows="3" formControlName="description"></textarea>
         <div *ngIf="postForm.controls['description'].touched">
           <div *ngIf="postForm.controls['description'].errors?.['required']" class="text-danger small">
@@ -79,8 +79,9 @@
         </div>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Image</label>
+      <div class="mb-4">
+        <label class="form-label">Image <br/><span class="text-muted">(.jpg, .jpeg, .png, .webp)</span></label>
+        
         <input type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" (change)="onImageSelected($event)" />
       </div>
 

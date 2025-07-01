@@ -17,10 +17,3 @@ export class TokenService {
   }
 }
 
-//For testing purpose only
-@Injectable({ providedIn: 'root' })
-export class JwtWrapperService {
-  decode(token: string): any {
-    return jwtDecode(token);
-  }
-}

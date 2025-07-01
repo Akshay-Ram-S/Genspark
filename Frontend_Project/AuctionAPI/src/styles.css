@@ -4,18 +4,21 @@
 @import '../node_modules/animate.css/animate.min.css';
 
 .btn{
-  background-color: goldenrod;
-  color:beige;
-  border-color: goldenrod;
+  background: linear-gradient(135deg, #007bff, #00b7eb);
+  color:white;
+  border-color: #007bff;
 }
 
 .btn:hover{
-  background-color: darkgoldenrod;
-  color:beige;
+  background: linear-gradient(135deg, #343a40, #6c757d);
+  color:white;
   border-color: darkgoldenrod;
   transform: scale(1.05);
 }
 
+.html{
+  min-height: 50vh;
+}
 
 .plain-background{
   position: fixed;

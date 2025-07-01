@@ -27,8 +27,9 @@
       <div *ngIf="item.status === 'Sold'" class="sold-ribbon">Sold</div>
       <div *ngIf="item.status === 'Unsold'" class="sold-ribbon unsold">Unsold</div>
 
-      <img [src]="fallbackImage"
+      <img [src]="imageUrl || fallbackImage"
            (load)="onImageLoad()"
+           (click)="openImageModal()"
            (error)="imageUrl = fallbackImage"
            [alt]="'Image of ' + item.title"
            class="w-100 h-100 object-fit-cover rounded" />
@@ -55,7 +56,7 @@
           <li><i class="bi bi-person me-1 text-secondary"></i><strong>Seller:</strong> {{ item.sellerName || sellerName }}</li>
         </ul>
 
-        <div class="bg-color rounded p-2 border larger">
+        <div class="back-color rounded p-2 border larger">
           <p class="mb-1"><strong>Starting Price:</strong> ${{ item.startingPrice }}</p>
           @if(item.status == 'Sold'){
             <p class="mb-1"><strong>Sold Price:</strong> ${{ item.currentBid }}</p>
@@ -104,3 +105,25 @@
   </div>
 </div>
 
+<div *ngIf="showImageModal" class="modal-backdrop fade show"></div>
+
+<div *ngIf="showImageModal"
+     class="modal fade show d-block"
+     tabindex="-1"
+     role="dialog"
+     aria-modal="true"
+     style="background-color: rgba(0, 0, 0, 0.7);">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content bg-transparent border-0 shadow-none">
+      <div class="modal-header border-0">
+        <button type="button" class="btn-close btn-close-white ms-auto" (click)="closeImageModal()"></button>
+      </div>
+      <div class="modal-body d-flex justify-content-center align-items-center">
+        <img [src]="modalImageUrl"
+             alt="Full Image"
+             class="img-fluid rounded shadow-lg"
+             style="max-height: 80vh;" />
+      </div>
+    </div>
+  </div>
+</div>

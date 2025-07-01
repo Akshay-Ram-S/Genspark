@@ -32,7 +32,6 @@
       </a>
     </div>
 
-    <!-- Buttons for authenticated roles -->
     <div *ngIf="isAuthenticated" class="d-flex flex-column gap-3">
       <a *ngIf="userRole === 'bidder' || userRole === 'admin'" 
          class="btn btn-warning btn-lg shadow-sm px-4 py-2 fw-semibold"

@@ -109,6 +109,7 @@
               <input
                 type="text"
                 id="pan"
+                (input)="onPanInput($event)"
                 class="form-control"
                 formControlName="pan"
                 [ngClass]="{ 'is-invalid': isInvalid('pan') }"
@@ -116,9 +117,9 @@
               <div *ngIf="registerForm.get('pan')?.touched && registerForm.get('pan')?.invalid">
                 <small *ngIf="registerForm.get('pan')?.errors?.['required']">PAN is required.</small>
                 <small *ngIf="registerForm.get('pan')?.errors?.['panLength']">PAN must be exactly 10 characters.</small>
-                <small *ngIf="registerForm.get('pan')?.errors?.['panStart']">PAN must start with 5 capital letters.</small>
+                <small *ngIf="registerForm.get('pan')?.errors?.['panStart']">PAN must start with 5 letters.</small>
                 <small *ngIf="registerForm.get('pan')?.errors?.['panDigits']">PAN must have 4 digits after the letters.</small>
-                <small *ngIf="registerForm.get('pan')?.errors?.['panEnd']">PAN must end with a capital letter.</small>
+                <small *ngIf="registerForm.get('pan')?.errors?.['panEnd']">PAN must end with a letter.</small>
               </div>
             </div>
 

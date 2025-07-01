@@ -7,10 +7,15 @@ export function panValidator(control: AbstractControl): ValidationErrors | null 
   const panRegex = /^[A-Z]{5}[0-9]{4}[A-Z]{1}$/;
 
   if (!panRegex.test(value)) {
-    if (value.length !== 10) return { panLength: true };
-    if (!/^[A-Z]{5}/.test(value)) return { panStart: true };
-    if (!/[0-9]{4}/.test(value.slice(5, 9))) return { panDigits: true };
-    if (!/[A-Z]$/.test(value)) return { panEnd: true };
+    if (value.length !== 10) 
+      return { panLength: true };
+    if (!/^[A-Z]{5}/.test(value)) 
+      return { panStart: true };
+    if (!/[0-9]{4}/.test(value.slice(5, 9))) 
+      return { panDigits: true };
+    if (!/[A-Z]$/.test(value)) 
+      return { panEnd: true };
+    
     return { panInvalid: true };
   }
 
@@ -19,10 +24,13 @@ export function panValidator(control: AbstractControl): ValidationErrors | null 
 
 export function aadharValidator(control: AbstractControl): ValidationErrors | null {
   const value = control.value;
-  if (!value) return null;
+  if (!value) 
+    return null;
 
-  if (!/^\d+$/.test(value)) return { aadharNotDigits: true };
-  if (value.length !== 12) return { aadharLength: true };
+  if (!/^\d+$/.test(value)) 
+    return { aadharNotDigits: true };
+  if (value.length !== 12) 
+    return { aadharLength: true };
 
   return null;
 }
@@ -34,7 +42,8 @@ export function matchPasswords(passwordKey: string, confirmPasswordKey: string) 
 
     if (password !== confirmPassword) {
       group.get(confirmPasswordKey)?.setErrors({ passwordMismatch: true });
-    } else {
+    } 
+    else {
       group.get(confirmPasswordKey)?.setErrors(null);
     }
     return null;

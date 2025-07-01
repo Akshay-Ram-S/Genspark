@@ -1,22 +1,11 @@
-import { TestBed } from '@angular/core/testing';
-import { TokenService, JwtWrapperService } from '../token.service';
+import { TokenService } from '../token.service';
+import { jwtDecode } from 'jwt-decode';
 
 describe('TokenService', () => {
   let service: TokenService;
-  let jwtWrapperSpy: jasmine.SpyObj<JwtWrapperService>;
 
   beforeEach(() => {
-    const spy = jasmine.createSpyObj('JwtWrapperService', ['decode']);
-
-    TestBed.configureTestingModule({
-      providers: [
-        TokenService,
-        { provide: JwtWrapperService, useValue: spy }
-      ]
-    });
-
-    service = TestBed.inject(TokenService);
-    jwtWrapperSpy = TestBed.inject(JwtWrapperService) as jasmine.SpyObj<JwtWrapperService>;
+    service = new TokenService();
     localStorage.clear();
   });
 
@@ -25,14 +14,14 @@ describe('TokenService', () => {
   });
 
   it('should decode token when present', () => {
-    const fakeToken = 'fake.token';
-    const decodedPayload = { Id: 'user123', role: 'Seller' };
+    const payload = { Id: 'user123', role: 'Seller' };
+    const base64Payload = btoa(JSON.stringify(payload));
+    const fakeToken = `eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.${base64Payload}.signature`;
+
     localStorage.setItem('token', fakeToken);
-    jwtWrapperSpy.decode.and.returnValue(decodedPayload);
 
     const result = service.getDecodedToken();
-    expect(jwtWrapperSpy.decode).toHaveBeenCalledWith(fakeToken);
-    expect(result).toEqual(decodedPayload);
+    expect(result).toEqual(jasmine.objectContaining(payload));
   });
 
   it('should return null if no token', () => {
@@ -40,30 +29,26 @@ describe('TokenService', () => {
   });
 
   it('should return user Id from token', () => {
-    localStorage.setItem('token', 'x');
-    jwtWrapperSpy.decode.and.returnValue({ Id: 'abc123' });
+    const mockPayload = { Id: 'abc123' };
+    spyOn(service, 'getDecodedToken').and.returnValue(mockPayload);
 
     expect(service.getUserId()).toBe('abc123');
   });
 
   it('should return null if Id is missing', () => {
-    localStorage.setItem('token', 'x');
-    jwtWrapperSpy.decode.and.returnValue({});
-
+    spyOn(service, 'getDecodedToken').and.returnValue({});
     expect(service.getUserId()).toBeNull();
   });
 
   it('should return role from token', () => {
-    localStorage.setItem('token', 'x');
-    jwtWrapperSpy.decode.and.returnValue({ role: 'Bidder' });
+    const mockPayload = { role: 'Bidder' };
+    spyOn(service, 'getDecodedToken').and.returnValue(mockPayload);
 
     expect(service.getRole()).toBe('Bidder');
   });
 
   it('should return null if role is missing', () => {
-    localStorage.setItem('token', 'x');
-    jwtWrapperSpy.decode.and.returnValue({});
-
+    spyOn(service, 'getDecodedToken').and.returnValue({});
     expect(service.getRole()).toBeNull();
   });
 });

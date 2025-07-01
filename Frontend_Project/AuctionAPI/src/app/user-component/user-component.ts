@@ -23,7 +23,6 @@ export class UserComponent implements OnInit {
   ngOnInit(): void {
     const role = this.tokenService.getRole();
     this.isAdmin = role?.toLowerCase() === 'admin';
-    console.log(this.isAdmin);
   }
 
   onViewProfile(): void {

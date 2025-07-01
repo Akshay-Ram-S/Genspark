@@ -30,7 +30,6 @@ export class UsersComponent implements OnInit {
       if (this.roleType === 'seller') {
         this.sellerService.getSellers().subscribe({
           next: (res) => {
-            console.log(res.data);
             this.users = res.data.map(s => ({
               name: s.user.name,
               email: s.user.email,

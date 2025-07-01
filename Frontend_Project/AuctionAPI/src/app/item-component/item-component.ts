@@ -27,6 +27,8 @@ export class ItemComponent implements OnInit {
   showDescriptionModal = false;
   modalDescription: string = '';
   modalTitle: string = '';
+  showImageModal: boolean = false;
+  modalImageUrl: string = '';
 
 
   ngOnInit() {
@@ -78,6 +80,15 @@ export class ItemComponent implements OnInit {
 
   closeDescriptionModal(): void {
     this.showDescriptionModal = false;
+  }
+
+  openImageModal(): void {
+    this.modalImageUrl = this.imageUrl || this.fallbackImage;
+    this.showImageModal = true;
+  }
+
+  closeImageModal(): void {
+    this.showImageModal = false;
   }
 
 

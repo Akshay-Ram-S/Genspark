@@ -39,8 +39,8 @@ export class ViewItem implements OnInit {
         data: [],
         label: 'Bid Amount',
         fill: false,
-        borderColor: 'beige',
-        backgroundColor: 'goldenrod',
+        borderColor: '#007bff',
+        backgroundColor: 'rgba(0, 123, 255, 0.2)',
         tension: 0.3
       }
     ]

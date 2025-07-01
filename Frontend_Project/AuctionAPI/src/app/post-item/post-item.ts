@@ -19,15 +19,14 @@ export class PostItem implements OnInit {
   errorMessage: string = '';
   categories: string[] = [
     'Electronics',
-    'Fashion & Apparel',
-    'Home & Furniture',
-    'Collectibles & Antiques',
+    'Fashion',
+    'Home',
+    'Antiques',
     'Automotive',
-    'Books, Music & Media',
-    'Sports & Outdoors',
-    'Toys & Games',
-    'Art & Crafts',
-    'Real Estate',
+    'Books',
+    'Sports',
+    'Toys',
+    'Art',
     'Other'
   ];
 
@@ -58,21 +57,26 @@ export class PostItem implements OnInit {
 
     const file = input.files[0];
     const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
-    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.webp'];
-
-    const fileTypeValid = allowedTypes.includes(file.type);
     const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-    const extensionValid = allowedExtensions.includes(fileExtension);
+    const extensionValid = ['.jpg', '.jpeg', '.png', '.webp'].includes(fileExtension);
 
-    if (!fileTypeValid || !extensionValid) {
+    if (!allowedTypes.includes(file.type) || !extensionValid) {
       this.errorMessage = 'Only image files (.jpg, .jpeg, .png, .webp) are allowed.';
       this.imageFile = null;
       return;
     }
 
-    this.errorMessage = '';
-    this.imageFile = file;
+    this.convertToWebp(file)
+      .then(webpFile => {
+        this.errorMessage = '';
+        this.imageFile = webpFile;
+      })
+      .catch(err => {
+        console.error('Image conversion failed:', err);
+        this.errorMessage = 'Failed to convert image to WebP.';
+      });
   }
+
 
 
   onSubmit(): void {
@@ -106,5 +110,36 @@ export class PostItem implements OnInit {
       }
     });
   }
+
+  private convertToWebp(file: File): Promise<File> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) return reject('Canvas context not available');
+
+          ctx.drawImage(img, 0, 0);
+
+          canvas.toBlob((blob) => {
+            if (!blob) return reject('WebP conversion failed');
+            const webpFile = new File([blob], file.name.replace(/\.\w+$/, '.webp'), { type: 'image/webp' });
+            resolve(webpFile);
+          }, 'image/webp', 1); 
+        };
+        img.onerror = reject;
+        img.src = e.target?.result as string;
+      };
+
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+  
 
 }

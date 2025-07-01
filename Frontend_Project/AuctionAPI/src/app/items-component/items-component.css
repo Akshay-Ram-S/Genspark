@@ -1,16 +1,7 @@
 .card-header{
-    background-color: goldenrod;
+    background: linear-gradient(135deg, #007bff, #00b7eb);
 }
-.btn-color{
-    background-color: goldenrod;
-    color:beige;
-    border-color: goldenrod;
-}
-.btn-color:hover{
-    background-color: beige;
-    color: goldenrod;
-    border-color: goldenrod;
-}
+
 .btn{
     height: 50px;
     width: 30%;
@@ -34,7 +25,7 @@
 }
 
 .active-page {
-  background-color: goldenrod !important;
+  background: linear-gradient(135deg, #007bff, #00b7eb) !important;
   color: white !important;
   font-weight: bold;
   box-shadow: 0 0 10px goldenrod;

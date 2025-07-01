@@ -10,11 +10,10 @@
 }
 
 .glass-card {
-  background: ivory;
-  border: 1px solid goldenrod;
-  backdrop-filter: blur(8px);
+  background-color: #e9f0fa;
+  border: 1px solid rgba(0, 123, 255, 0.3); 
   border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(218, 165, 32, 0.2);
+  box-shadow: 0 8px 24px rgba(0, 123, 255, 0.2); 
   padding: 1.5rem;
   box-sizing: border-box;
 }
@@ -62,7 +61,7 @@
 }
 
 .item-details h2 {
-  color: goldenrod;
+  color: #007bff; 
   font-size: 1.8rem;
 }
 
@@ -70,18 +69,18 @@
 .ends {
   font-size: 1rem;
   font-weight: bold;
-  color: #5d5d5d;
+  color: #6c757d; 
   margin: 0.5rem 0;
 }
 
 .description {
-  color: #555;
+  color: #5d5d5d;
   font-size: 0.95rem;
   margin-top: 0.5rem;
 }
 
 .bid-form-card h3 {
-  color: goldenrod;
+  color: #007bff;
   margin-bottom: 1rem;
 }
 
@@ -93,16 +92,16 @@
 
 .bid-form input {
   padding: 0.75rem 1rem;
-  border: 1px solid goldenrod;
+  border: 1px solid #007bff; 
   border-radius: 8px;
   font-size: 1rem;
-  background-color: #fffdf5;
+  background-color: rgba(255, 255, 255, 0.9);
   outline: none;
 }
 
 .bid-form button {
   padding: 0.75rem;
-  background-color: goldenrod;
+  background: linear-gradient(135deg, #007bff, #00b7eb); 
   color: white;
   border: none;
   border-radius: 25px;
@@ -113,34 +112,25 @@
 }
 
 .bid-form button:hover:enabled {
-  background-color: #daa520;
+  background: linear-gradient(135deg, #0056b3, #0098c7); 
 }
 
 .right-section h3 {
-  color: goldenrod;
+  color: #007bff; 
   margin-bottom: 1rem;
 }
 
-
 .btn {
-  background-color: goldenrod;
-  color: beige;
-  border-color: goldenrod;
+  background: linear-gradient(135deg, #007bff, #00b7eb);
+  color: white;
+  border-color: #007bff; 
 }
 
 .btn:hover {
-  background-color: darkgoldenrod;
-  color: beige;
+  background: linear-gradient(135deg, #0056b3, #0098c7);
+  color: white;
 }
 
-.countdown-text {
-  animation: pulse 1.2s infinite;
-  display: inline-block;
-  font-weight: bold;
+.bg-color {
+  background: linear-gradient(135deg, #007bff, #00b7eb);
 }
-
-.bg-color{
-  background-color: goldenrod;
-}
-
-

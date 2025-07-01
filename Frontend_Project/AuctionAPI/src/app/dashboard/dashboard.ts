@@ -21,6 +21,8 @@ export class Dashboard implements OnInit, AfterViewInit {
   soldItems: number = 0;
   unsoldItems: number = 0;
   allItems: any;
+  sellers: any;
+  bidders: any;
 
   constructor(
     private sellerService: SellerService,
@@ -53,14 +55,14 @@ export class Dashboard implements OnInit, AfterViewInit {
   loadCounts() {
     this.sellerService.getSellers().subscribe(
       res => {
-      const sellers = res.data;
-      this.sellerCount = sellers.length;
+      this.sellers = res.data;
+      this.sellerCount = this.sellers.length;
     });
 
     this.bidderService.getBidders().subscribe(
       res => {
-      const bidders = res.data;
-      this.bidderCount = bidders.length;
+      this.bidders = res.data;
+      this.bidderCount = this.bidders.length;
     });
 
     this.itemService.getFilteredItems({ page: 1, pageSize: 1000 }).subscribe(res => {
@@ -110,6 +112,8 @@ export class Dashboard implements OnInit, AfterViewInit {
   }
 
   downloadItemsCSV(status: 'Sold' | 'Unsold' | 'Active' | 'All'): void {
+    if (!this.allItems) return;
+
     const headers = [
       'Item ID',
       'Title',
@@ -141,7 +145,7 @@ export class Dashboard implements OnInit, AfterViewInit {
     ]);
 
     const csvContent = [headers, ...rows]
-      .map((row: any[]) => row.map((v: any) => `"${v}"`).join(','))
+      .map(row => row.map((val: any) => `"${val}"`).join(','))
       .join('\n');
 
     const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
@@ -156,6 +160,42 @@ export class Dashboard implements OnInit, AfterViewInit {
     link.click();
     document.body.removeChild(link);
   }
+
+
+  downloadUsersCSV(type: 'seller' | 'bidder'): void {
+    const headers = ['User ID', 'Name', 'Email', 'Phone', 'Role'];
+
+    const users = type === 'seller' ? this.sellers : this.bidders;
+
+    if (!users || users.length === 0) {
+      alert(`No ${type}s found to export.`);
+      return;
+    }
+
+    const rows = users.map((user: any) => [
+      user.id || user.sellerId || user.bidderId || '-',
+      user.user.name,
+      user.user.email,
+      user.user.phone || '-'
+    ]);
+
+    const csvContent = [headers, ...rows]
+      .map(row => row.map((cell:any) => `"${cell}"`).join(','))
+      .join('\n');
+
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+
+    link.setAttribute('href', url);
+    link.setAttribute('download', `${type}-list.csv`);
+    link.style.visibility = 'hidden';
+
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  }
+
 
 
 }

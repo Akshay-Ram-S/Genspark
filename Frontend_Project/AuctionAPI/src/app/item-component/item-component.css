@@ -1,15 +1,15 @@
 .auction-card {
   transition: box-shadow 0.3s ease, transform 0.3s ease;
-  background-color: #FFFFF0;
+  background-color: white;
   display: flex;
   flex-direction: column;
   border-radius: 12px;
-  border: 2px solid goldenrod;
+  border: 2px solid grey;
   position: relative;
 }
 
-.bg-color{
-  background-color: beige;
+.back-color{
+  background-color: lightgray;
 }
 
 .auction-card:hover {
@@ -24,7 +24,7 @@
   margin:0;
   padding:0;
   overflow: hidden;
-  background-color: goldenrod;
+  background: linear-gradient(135deg, #007bff, #00b7eb);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -35,7 +35,7 @@
   height: 100%;
   object-fit: cover;
   display: block;
-  background-color: goldenrod;
+  background: linear-gradient(135deg, #007bff, #00b7eb);
 }
 
 
@@ -48,7 +48,7 @@
 }
 
 .badge{
-  background-color: goldenrod;
+  background: linear-gradient(135deg, #007bff, #00b7eb);
 }
 
 .sold-ribbon {

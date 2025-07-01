@@ -1,4 +1,4 @@
-<div class="container mt-5">
+<div class="container mt-2">
 
   <div *ngIf="isLoading" class="text-center">
     <p>Loading your bids...</p>
@@ -8,7 +8,7 @@
     <strong>{{ errorMessage }}</strong>
   </div>
 
-  <div *ngIf="!isLoading && !errorMessage && bids.length === 0" class="alert text-center">
+  <div *ngIf="!isLoading && !errorMessage && bids.length === 0" class="alert alert-info text-center shadow-sm rounded-4 w-100">
     You haven't placed any bids yet.
   </div>
 

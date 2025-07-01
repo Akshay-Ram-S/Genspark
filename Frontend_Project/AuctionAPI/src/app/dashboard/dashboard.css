@@ -1,26 +1,73 @@
-.card {
-  transition: transform 0.2s ease;
-  border-radius: 1rem;
-}
-
-.card:hover {
-  transform: translateY(-5px);
-}
-
-canvas {
-  max-height: 300px;
-}
-
-h1{
-  color:goldenrod;
-}
-
 .sidebar {
-  min-height: 100%;
-  background-color: #f8f9fa;
-  border-radius: 1rem;
+  background-color: #ffffff;
+  color: #ffffff; 
 }
 
-.bg-color{
-  background-color: ivory;;
+.sidebar h5 {
+  color: #ffffff; 
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #6c757d, #868e96); 
+  color: #ffffff;
+  border: none;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #5a6268, #747b81); 
+}
+
+.btn-success {
+  background: linear-gradient(135deg, #28a745, #34c759); 
+  color: #ffffff;
+  border: none;
+}
+
+.btn-success:hover {
+  background: linear-gradient(135deg, #218838, #2cb14d); 
+}
+
+.btn-warning {
+  background: linear-gradient(135deg, #ffc107, #ffca2c); 
+  color: #343a40; 
+  border: none;
+}
+
+.btn-warning:hover {
+  background: linear-gradient(135deg, #e0a800, #f1b90a);
+}
+
+.btn-info {
+  background: linear-gradient(135deg, #17a2b8, #00b7eb);
+  color: #ffffff;
+  border: none;
+}
+
+.btn-info:hover {
+  background: linear-gradient(135deg, #138496, #0098c7); 
+}
+
+.card .bg-color {
+  background: linear-gradient(135deg, #ffffff, #f8f9fa); 
+  border: 1px solid rgba(0, 123, 255, 0.3); 
+}
+
+.card-body h6 {
+  color: #343a40; 
+}
+
+.text-primary {
+  color: #007bff !important; 
+}
+
+.text-success {
+  color: #28a745 !important; 
+}
+
+.text-warning {
+  color: #ffc107 !important; 
+}
+
+.text-secondary {
+  color: #6c757d !important; 
 }

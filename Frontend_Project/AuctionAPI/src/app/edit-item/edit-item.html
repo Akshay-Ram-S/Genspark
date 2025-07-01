@@ -28,7 +28,7 @@
 
     <form [formGroup]="editForm" (ngSubmit)="onSubmit()" novalidate>
 
-      <div class="mb-3">
+      <div class="mb-4">
         <label class="form-label">Title</label>
         <input type="text" class="form-control" formControlName="title" />
         <div *ngIf="editForm.controls['title'].touched">
@@ -41,7 +41,7 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-4">
         <label class="form-label">Starting Price</label>
         <input type="number" class="form-control" formControlName="startingPrice" />
         <div *ngIf="editForm.controls['startingPrice'].touched">
@@ -54,7 +54,7 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-4">
         <label class="form-label">End Date</label>
         <input type="datetime-local" class="form-control" formControlName="endDate" />
         <div *ngIf="editForm.controls['endDate'].touched">
@@ -67,7 +67,7 @@
         </div>
       </div>
 
-      <div class="mb-3">
+      <div class="mb-4">
         <label class="form-label">Category</label>
         <select class="form-select" formControlName="category">
           <option value="" disabled selected>Select a category</option>
@@ -80,8 +80,8 @@
         </div>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Description</label>
+      <div class="mb-4">
+        <label class="form-label">Description <span class="text-muted">(Max 1000 characters)</span></label>
         <textarea class="form-control" rows="3" formControlName="description"></textarea>
         <div *ngIf="editForm.controls['description'].touched">
           <div *ngIf="editForm.controls['description'].errors?.['required']" class="text-danger small">
@@ -99,8 +99,8 @@
         </div>
       </div>
 
-      <div class="mb-3">
-        <label class="form-label">Change Image (optional)</label>
+      <div class="mb-4">
+        <label class="form-label">Change Image (optional) <br/><span class="text-muted">(.jpg, .jpeg, .png, .webp)</span></label>
         <input type="file" accept=".jpg,.jpeg,.png,.webp" class="form-control" (change)="onImageSelected($event)" />
       </div>
 

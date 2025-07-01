@@ -1,26 +1,25 @@
 import { TestBed } from '@angular/core/testing';
 import { NotificationService } from '../notification.service';
 import * as signalR from '@microsoft/signalr';
+import { SignalRFactory } from './signalr-factory';
 
 describe('NotificationService', () => {
   let service: NotificationService;
-
   let mockHubConnection: jasmine.SpyObj<signalR.HubConnection>;
-  let mockHubConnectionBuilder: jasmine.SpyObj<signalR.HubConnectionBuilder>;
+  let signalRFactorySpy: jasmine.SpyObj<SignalRFactory>;
 
   beforeEach(() => {
     mockHubConnection = jasmine.createSpyObj('HubConnection', ['start', 'on', 'stop', 'invoke']);
     mockHubConnection.start.and.returnValue(Promise.resolve());
 
-    mockHubConnectionBuilder = jasmine.createSpyObj('HubConnectionBuilder', ['withUrl', 'withAutomaticReconnect', 'build']);
-    mockHubConnectionBuilder.withUrl.and.returnValue(mockHubConnectionBuilder);
-    mockHubConnectionBuilder.withAutomaticReconnect.and.returnValue(mockHubConnectionBuilder);
-    mockHubConnectionBuilder.build.and.returnValue(mockHubConnection);
-
-    spyOn(signalR, 'HubConnectionBuilder').and.returnValue(mockHubConnectionBuilder);
+    signalRFactorySpy = jasmine.createSpyObj('SignalRFactory', ['createConnection']);
+    signalRFactorySpy.createConnection.and.returnValue(mockHubConnection);
 
     TestBed.configureTestingModule({
-      providers: [NotificationService]
+      providers: [
+        NotificationService,
+        { provide: SignalRFactory, useValue: signalRFactorySpy }
+      ]
     });
 
     service = TestBed.inject(NotificationService);
