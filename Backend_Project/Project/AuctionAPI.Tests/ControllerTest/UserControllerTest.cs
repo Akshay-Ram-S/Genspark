@@ -73,34 +73,80 @@ namespace AuctionAPI.Tests.Controllers
         }
 
         [Test]
-        public async Task CreateUser_Failure()
+        public async Task CreateUser_UnauthenticatedUserWithInvalidEmail_ReturnsBadRequest()
         {
-            var user = new AddUserDto { Email = "invalid@role.com", Name = "Test", Aadhar = "123", PAN = "ABCDE1234F" };
-
-            _mockValidation.Setup(v => v.IsValidEmail(It.IsAny<string>())).Returns(true);
-            _mockValidation.Setup(v => v.ValidName(It.IsAny<string>())).Returns(true);
-            _mockValidation.Setup(v => v.ValidAadharAndPAN(It.IsAny<string>(), It.IsAny<string>())).ReturnsAsync(true);
-            _mockValidation.Setup(v => v.EmailExists(It.IsAny<string>())).ReturnsAsync(false);
+            var user = new AddUserDto
+            {
+                Email = "invalid-email",
+                Name = "John",
+                Aadhar = "123456789012",
+                PAN = "ABCDE1234F",
+                Role = "seller"
+            };
 
             _controller.ControllerContext = new ControllerContext
             {
-                HttpContext = new DefaultHttpContext()
+                HttpContext = new DefaultHttpContext
+                {
+                    User = new ClaimsPrincipal(new ClaimsIdentity())
+                }
             };
 
-            var result = await _controller.CreateUser(user) as BadRequestObjectResult;
+            // Act
+            var result = await _controller.CreateUser(user);
 
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status400BadRequest));
+            // Assert
+            var badRequest = result as BadRequestObjectResult;
+            Assert.That(badRequest, Is.Not.Null);
+            Assert.That(badRequest!.StatusCode, Is.EqualTo(StatusCodes.Status400BadRequest));
         }
+
+
+        [Test]
+        public async Task CreateUser_AuthenticatedUser_ReturnsForbidden()
+        {
+            
+            var user = new AddUserDto
+            {
+                Email = "test@example.com",
+                Name = "John",
+                Aadhar = "123456789012",
+                PAN = "ABCDE1234F",
+                Role = "seller"
+            };
+
+            
+            _controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext
+                {
+                    User = new ClaimsPrincipal(new ClaimsIdentity(new[]
+                    {
+                        new Claim(ClaimTypes.Email, "existing@example.com")
+                    }, "mock")) // IsAuthenticated = true
+                }
+            };
+
+            // Act
+            var result = await _controller.CreateUser(user);
+
+            // Assert
+            var forbidden = result as ObjectResult;
+            Assert.That(forbidden, Is.Not.Null);
+            Assert.That(forbidden!.StatusCode, Is.EqualTo(StatusCodes.Status403Forbidden));
+        }
+
 
         [Test]
         public async Task UpdateUser_Success()
         {
             var email = "user@test.com";
-            var updateDto = new UpdateUserDto { Name = "Updated Name" };
+            var updateDto = new UpdateUserDto { NewPassword = "Updated" };
             var updatedUser = new User { Email = email };
 
-            _mockUserService.Setup(s => s.UpdateUser(email, updateDto)).ReturnsAsync(updatedUser);
+            _mockUserService
+                .Setup(s => s.UpdateUser(email, It.IsAny<UpdateUserDto>()))
+                .ReturnsAsync(updatedUser);
 
             var claims = new List<Claim> { new Claim(ClaimTypes.Email, email) };
             var identity = new ClaimsIdentity(claims, "TestAuth");
@@ -114,8 +160,11 @@ namespace AuctionAPI.Tests.Controllers
             var result = await _controller.UpdateUser(Guid.NewGuid(), updateDto) as OkObjectResult;
 
             Assert.That(result, Is.Not.Null);
-            Assert.That(result.StatusCode, Is.EqualTo(StatusCodes.Status200OK));
+            Assert.That(result!.StatusCode, Is.EqualTo(StatusCodes.Status200OK));
+            _mockUserService.Verify(s => s.UpdateUser(email, It.IsAny<UpdateUserDto>()), Times.Once);
         }
+
+
 
         [Test]
         public async Task DeleteUser_Success()

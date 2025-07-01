@@ -79,9 +79,9 @@ namespace AuctionAPI.Services
                 var allUsers = await _bidderRepository.GetAll();
                 if (allUsers == null)
                 {
-                    throw new Exception($"No sellers found in the databse");
+                    throw new Exception($"No bidders found in the databse");
                 }
-                allUsers = allUsers.Where(s => s.User != null && s.User.Role?.ToLower() != "admin")
+                allUsers = allUsers.Where(s => s.User != null && (s.User.Role.ToLower() != "")) // Filtering out mocked dummy bidder for admin
                                     .ToList();
                 var users = allUsers
                     .OrderBy(i => i.User.Name)

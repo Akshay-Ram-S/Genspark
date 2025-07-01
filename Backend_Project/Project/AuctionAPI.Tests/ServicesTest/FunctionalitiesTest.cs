@@ -1,6 +1,5 @@
 using AuctionAPI.Contexts;
 using AuctionAPI.Interfaces;
-using AuctionAPI.Mappers;
 using AuctionAPI.Misc;
 using AuctionAPI.Models;
 using AuctionAPI.Models.DTOs;
@@ -8,8 +7,6 @@ using Microsoft.EntityFrameworkCore;
 using Moq;
 using NUnit.Framework;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace AuctionAPI.Tests.Misc
@@ -18,32 +15,46 @@ namespace AuctionAPI.Tests.Misc
     public class FunctionalitiesTests
     {
         private Functionalities _functionalities;
-        private Mock<AuctionContext> _contextMock;
-        private Mock<IValidation> _validationMock;
+        private AuctionContext _context;
         private Mock<IEncryptionService> _encryptionServiceMock;
+        private Mock<IValidation> _validationMock;
         private Mock<IRepository<string, User>> _userRepoMock;
+        private Mock<IRepository<Guid, Seller>> _sellerRepoMock;
+        private Mock<IRepository<Guid, Bidder>> _bidderRepoMock;
+        private Mock<IRepository<Guid, Item>> _itemRepoMock;
+        private Mock<IRepository<Guid, ItemDetails>> _itemDetailsRepoMock;
 
         [SetUp]
         public void Setup()
         {
+            // In-memory DB context setup
             var options = new DbContextOptionsBuilder<AuctionContext>()
                 .UseInMemoryDatabase(databaseName: Guid.NewGuid().ToString())
                 .Options;
 
-            var context = new AuctionContext(options);
+            _context = new AuctionContext(options);
 
-            _validationMock = new Mock<IValidation>();
+            // Mock all dependencies
             _encryptionServiceMock = new Mock<IEncryptionService>();
+            _validationMock = new Mock<IValidation>();
             _userRepoMock = new Mock<IRepository<string, User>>();
+            _sellerRepoMock = new Mock<IRepository<Guid, Seller>>();
+            _bidderRepoMock = new Mock<IRepository<Guid, Bidder>>();
+            _itemRepoMock = new Mock<IRepository<Guid, Item>>();
+            _itemDetailsRepoMock = new Mock<IRepository<Guid, ItemDetails>>();
 
+            // Inject all dependencies into Functionalities
             _functionalities = new Functionalities(
-                context,
+                _context,
                 _encryptionServiceMock.Object,
                 _validationMock.Object,
-                _userRepoMock.Object
+                _userRepoMock.Object,
+                _sellerRepoMock.Object,
+                _bidderRepoMock.Object,
+                _itemRepoMock.Object,
+                _itemDetailsRepoMock.Object
             );
         }
-
 
         [Test]
         public async Task RegisterUser_Success()
@@ -59,7 +70,10 @@ namespace AuctionAPI.Tests.Misc
             };
 
             _encryptionServiceMock.Setup(e => e.EncryptData(It.IsAny<EncryptModel>()))
-                .ReturnsAsync((EncryptModel model) => new EncryptModel { EncryptedData = $"encrypted-{model.Data}" });
+                .ReturnsAsync((EncryptModel model) => new EncryptModel
+                {
+                    EncryptedData = $"encrypted-{model.Data}"
+                });
 
             // Act
             var result = await _functionalities.RegisterUser(userDto);
@@ -71,14 +85,12 @@ namespace AuctionAPI.Tests.Misc
             Assert.That(result.Aadhar, Is.EqualTo("encrypted-123456789012"));
         }
 
-
         [Test]
         public async Task GetUserDetails_Success()
         {
             // Arrange
             var email = "user@example.com";
             var user = new User { Email = email };
-
             _userRepoMock.Setup(r => r.Get(email)).ReturnsAsync(user);
 
             // Act
@@ -90,25 +102,30 @@ namespace AuctionAPI.Tests.Misc
         }
 
         [Test]
-        public void GetUserDetails_Exception()
+        public void GetUserDetails_UserNotFound_ThrowsException()
         {
             // Arrange
-            var email = "user@gmail.com";
+            var email = "nonexistent@example.com";
 
             // Act & Assert
-            var ex = Assert.ThrowsAsync<Exception>(() =>
-                _functionalities.GetUserDetails(email));
-            Assert.That(ex.Message, Is.EqualTo("User not found"));
+            var ex = Assert.ThrowsAsync<Exception>(() => _functionalities.GetUserDetails(email));
+            Assert.That(ex!.Message, Is.EqualTo("User not found"));
         }
 
         [Test]
-        public void GetUserDetails_Empty()
+        public void GetUserDetails_EmptyEmail_ThrowsArgumentException()
         {
             // Act & Assert
-            var ex = Assert.ThrowsAsync<ArgumentException>(() =>
-                _functionalities.GetUserDetails("   "));
-            Assert.That(ex.ParamName, Is.EqualTo("email"));
+            var ex = Assert.ThrowsAsync<ArgumentException>(() => _functionalities.GetUserDetails("   "));
+            Assert.That(ex!.ParamName, Is.EqualTo("email"));
+        }
+
+        [TearDown]
+        public void TearDown()
+        {
+            _context?.Dispose();
         }
 
     }
+    
 }

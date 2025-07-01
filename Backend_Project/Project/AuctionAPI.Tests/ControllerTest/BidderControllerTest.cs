@@ -17,7 +17,6 @@ namespace AuctionAPI.Tests.Controllers
     {
         private Mock<IUserService<Bidder>> _mockBidderService;
         private Mock<ILogger<BidderController>> _mockLogger;
-        private Mock<IValidation> _mockValidation;
         private Mock<IFunctionalities> _mockFunctionalities;
         private BidderController _controller;
 
@@ -26,13 +25,11 @@ namespace AuctionAPI.Tests.Controllers
         {
             _mockBidderService = new Mock<IUserService<Bidder>>();
             _mockLogger = new Mock<ILogger<BidderController>>();
-            _mockValidation = new Mock<IValidation>();
             _mockFunctionalities = new Mock<IFunctionalities>();
 
             _controller = new BidderController(
                 _mockBidderService.Object,
                 _mockLogger.Object,
-                _mockValidation.Object,
                 _mockFunctionalities.Object
             );
         }

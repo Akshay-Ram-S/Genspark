@@ -43,9 +43,17 @@ namespace AuctionAPI.Tests.Controllers
         }
 
         [Test]
-        public async Task CreateItem_Test()
+        public async Task CreateItem_ShouldReturnCreatedAtAction()
         {
-            var dto = new ItemCreateDto { EndDate = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(1)) };
+            var dto = new ItemCreateDto
+            {
+                Title = "Test Item",
+                EndDate = DateTime.UtcNow.AddDays(1),
+                StartingPrice = 100,
+                Category = "Electronics",
+                Description = "Test"
+            };
+
             var createdItem = new ItemResponse
             {
                 ItemID = Guid.NewGuid(),
@@ -53,19 +61,36 @@ namespace AuctionAPI.Tests.Controllers
                 Status = "Active"
             };
 
-            _itemServiceMock.Setup(s => s.CreateItemAsync(dto)).ReturnsAsync(createdItem);
+            var user = new ClaimsPrincipal(new ClaimsIdentity(new[]
+            {
+                new Claim(ClaimTypes.Role, "Seller"),
+                new Claim(ClaimTypes.Email, "test@example.com")
+            }, "mock"));
+
+            _controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = user }
+            };
+
+            _itemServiceMock
+                .Setup(s => s.CreateItemAsync(dto, "test@example.com"))  
+                .ReturnsAsync(createdItem);
 
             var result = await _controller.CreateItem(dto) as CreatedAtActionResult;
 
-            Assert.That(result, Is.Not.Null);
-            Assert.That(result.StatusCode, Is.EqualTo(201));
+            var apiResponse = result.Value as ApiResponse<ItemResponse>;
+
+            Assert.That(apiResponse, Is.Not.Null);
+            Assert.That(apiResponse!.Data, Is.EqualTo(createdItem));
         }
+
+
 
         [Test]
         public async Task UpdateItem_Exception()
         {
             var id = Guid.NewGuid();
-            var dto = new ItemUpdateDto { EndDate = DateOnly.FromDateTime(DateTime.UtcNow.AddDays(1)) };
+            var dto = new ItemUpdateDto { EndDate = DateTime.UtcNow.AddDays(1) };
             var updatedItem = new ItemResponse
             {
                 ItemID = id,
@@ -73,11 +98,28 @@ namespace AuctionAPI.Tests.Controllers
                 Status = "Active"
             };
 
-            _itemServiceMock.Setup(s => s.UpdateItem(id, dto, "test@example.com")).ReturnsAsync(updatedItem);
+            _itemServiceMock.Setup(s => s.UpdateItem(id, dto, "test@example.com", "Admin"))
+                            .ReturnsAsync(updatedItem);
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Email, "test@example.com"),
+                new Claim(ClaimTypes.Role, "Admin")
+            };
+            var identity = new ClaimsIdentity(claims, "TestAuth");
+            var user = new ClaimsPrincipal(identity);
+
+            _controller.ControllerContext = new ControllerContext
+            {
+                HttpContext = new DefaultHttpContext { User = user }
+            };
 
             var result = await _controller.UpdateItemById(id, dto) as OkObjectResult;
+
+            Assert.That(result, Is.Not.Null);
             Assert.That(result.StatusCode, Is.EqualTo(200));
         }
+
 
         [Test]
         public async Task GetItem_Test()
@@ -135,7 +177,7 @@ namespace AuctionAPI.Tests.Controllers
             var id = Guid.NewGuid();
             var item = new Item { Id = id };
 
-            _itemServiceMock.Setup(s => s.DeleteItem(id, "test@example.com")).ReturnsAsync(item);
+            _itemServiceMock.Setup(s => s.DeleteItem(id, "test@example.com", "Seller")).ReturnsAsync(item);
 
             var result = await _controller.DeleteItemById(id) as OkObjectResult;
 

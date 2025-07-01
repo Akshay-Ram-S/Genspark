@@ -14,6 +14,7 @@ namespace AuctionAPI.Tests.ServicesTest
         private Mock<IRepository<string, User>> _userRepoMock;
         private Mock<IRepository<Guid, Audit>> _auditRepoMock;
         private Mock<IEncryptionService> _encryptionMock;
+        private Mock<IFunctionalities> _functionalityMock;
         private CommonUserService _service;
 
         [SetUp]
@@ -22,8 +23,9 @@ namespace AuctionAPI.Tests.ServicesTest
             _userRepoMock = new Mock<IRepository<string, User>>();
             _auditRepoMock = new Mock<IRepository<Guid, Audit>>(); // ignored
             _encryptionMock = new Mock<IEncryptionService>();
+            _functionalityMock = new Mock<IFunctionalities>();
 
-            _service = new CommonUserService(_userRepoMock.Object, _auditRepoMock.Object, _encryptionMock.Object);
+            _service = new CommonUserService(_userRepoMock.Object, _auditRepoMock.Object, _encryptionMock.Object, _functionalityMock.Object);
         }
 
         [Test]
@@ -41,8 +43,8 @@ namespace AuctionAPI.Tests.ServicesTest
 
             var dto = new UpdateUserDto
             {
-                Name = "New Name",
-                Password = "NewPassword"
+                NewPassword = "newpassword",
+                CurrentPassword = "oldpassword"
             };
 
             _userRepoMock.Setup(r => r.Get(email)).ReturnsAsync(oldUser);
@@ -53,9 +55,6 @@ namespace AuctionAPI.Tests.ServicesTest
 
             // Act
             var result = await _service.UpdateUser(email, dto);
-
-            // Assert
-            Assert.That(result.Name, Is.EqualTo(dto.Name));
             Assert.That(result.Password, Is.EqualTo("EncryptedPassword"));
         }
 
@@ -66,7 +65,7 @@ namespace AuctionAPI.Tests.ServicesTest
             var email = "missing@example.com";
             _userRepoMock.Setup(r => r.Get(email)).ReturnsAsync((User)null);
 
-            var dto = new UpdateUserDto { Name = "Test", Password = "pwd" };
+            var dto = new UpdateUserDto { NewPassword = "Test", CurrentPassword = "pwd" };
 
             // Act & Assert
             var ex = Assert.ThrowsAsync<Exception>(async () => await _service.UpdateUser(email, dto));

@@ -121,7 +121,6 @@ namespace AuctionAPI.Services
         }
 
 
-
         public async Task<ItemResponse?> GetItemById(Guid id)
 
         {

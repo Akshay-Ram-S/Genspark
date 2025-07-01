@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("AuctionAPI.Tests")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+573b280e30c86a862f14e0557dca3d23168b1dea")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8492ab56ca79a9961a34d295a432c78fee652d50")]
 [assembly: System.Reflection.AssemblyProductAttribute("AuctionAPI.Tests")]
 [assembly: System.Reflection.AssemblyTitleAttribute("AuctionAPI.Tests")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

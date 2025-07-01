@@ -62,7 +62,7 @@ namespace AuctionAPI.Tests.Services
             _bidRepoMock.Setup(r => r.GetAll()).ReturnsAsync(new List<Bid>());
             _bidRepoMock.Setup(r => r.Add(It.IsAny<Bid>())).ReturnsAsync((Bid b) => b);
 
-            var result = await _service.PlaceBid(bidDto);
+            var result = await _service.PlaceBid(bidDto, "Bidder");
 
             Assert.That(result.Amount, Is.EqualTo(1000));
             Assert.That(result.Title, Is.EqualTo(item.Title));
