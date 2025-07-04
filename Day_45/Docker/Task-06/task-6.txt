@@ -1,0 +1,14 @@
+Commands for docker swarm - task 6
+
+docker service create \
+  --name nginx-web \
+  --replicas 3 \
+  -p 8080:80 \
+  nginx:latest
+
+curl http://localhost:8080
+
+docker service rm nginx-web
+
+docker swarm leave --force
+
