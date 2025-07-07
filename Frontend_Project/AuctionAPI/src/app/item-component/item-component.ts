@@ -54,8 +54,6 @@ export class ItemComponent implements OnInit {
     
   }
 
-
-
   onPlaceBid(): void {
     if(!this.isAuthenticated){
        this.router.navigate(['/login']);

@@ -14,8 +14,6 @@
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  border-left: 7px solid #007bff; 
-  border-right: 7px solid #007bff; 
 }
 
 .bidder-info {
@@ -36,8 +34,12 @@
   text-align: right;
 }
 
+.bg-color{
+  background: #ff9800;
+}
+
 .highlight-bid {
-  background: linear-gradient(135deg, #007bff, #00b7eb); 
+  background: #84bffe
 }
 
 .medium-badge {
@@ -66,6 +68,3 @@
   box-shadow: 0 0 20px rgba(0, 123, 255, 0.3);
 }
 
-.bg-color{
-  background: linear-gradient(135deg, #007bff, #00b7eb);
-}

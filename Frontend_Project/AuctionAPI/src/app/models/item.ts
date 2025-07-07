@@ -9,6 +9,8 @@ interface Item {
   endDate: string;
   currentBid?: number;
   currentBidderName?: string;
+  sellerId?: string;
   sellerName: string;
   imageUrl?: string;
+  boughtBy?: string;
 }

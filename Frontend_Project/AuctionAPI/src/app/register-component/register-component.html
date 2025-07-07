@@ -4,6 +4,11 @@
       <div class="card shadow-lg border-0 rounded-4">
         <div class="card-body p-4">
           <h3 class="card-title text-center mb-4">Register</h3>
+          @if (errorMessage;) {
+            <div class="alert alert-danger mt-3">{{ errorMessage }}</div>
+          } @else {
+            <div class="text-danger mt-3 text-center">Please fill in all required fields.</div>
+          }
 
           <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="mb-3">
@@ -173,11 +178,7 @@
             </button>
           </form>
 
-          @if (errorMessage;) {
-            <div class="alert alert-danger mt-3">{{ errorMessage }}</div>
-          } @else {
-            <div class="text-muted mt-3 text-center">Please fill in all required fields.</div>
-          }
+          
         </div>
       </div>
     </div>

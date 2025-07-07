@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { TokenService } from './token.service';
 import { User } from '../models/user';
@@ -8,20 +8,11 @@ import { User } from '../models/user';
 export class SellerService {
   private baseUrl = 'http://localhost:5205/api/v1/Seller';
 
-  constructor(private http: HttpClient, public tokenService: TokenService) {}
+  constructor(private http: HttpClient, private tokenService: TokenService) {}
 
-  getItemsBySeller(id:string): Observable<ApiResponse<any[]>> {
-    if(id){
-      return this.http.get<ApiResponse<any[]>>(`${this.baseUrl}/Items/${id}`);
-    }
-    const Id = this.tokenService.getUserId();
-    const token = localStorage.getItem('token');
-
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-
-    return this.http.get<ApiResponse<any[]>>(`${this.baseUrl}/Items/${Id}`,{headers});
+  getItemsBySeller(id?: string): Observable<ApiResponse<any[]>> {
+    const sellerId = id || this.tokenService.getUserId();
+    return this.http.get<ApiResponse<any[]>>(`${this.baseUrl}/Items/${sellerId}`);
   }
 
   getSellers(): Observable<ApiResponse<any[]>> {

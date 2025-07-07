@@ -12,19 +12,25 @@
     You haven't placed any bids yet.
   </div>
 
-  <ul class="list-group" *ngIf="bids.length > 0">
-    <li class="list-group-item" *ngFor="let bid of bids">
-      <div class="row align-items-center text-center text-md-start">
-        <div class="col-md-3 col-12 mb-1"><strong>Item:</strong> {{ bid.title || 'N/A' }}</div>
-        <div class="col-md-3 col-12 mb-1"><strong>Amount:</strong> ${{ bid.amount }}</div>
-        <div class="col-md-3 col-12 mb-1"><strong>Date:</strong> {{ bid.timestamp | date: 'yyyy-MM-dd' }}</div>
-        <div class="col-md-3 col-12 text-md-end text-center">
-          <a (click)="ViewItem(bid.itemId)" class="btn btn-primary btn-sm">
-            View Item
-          </a>
+  <div 
+    *ngIf="bids.length > 0" 
+    class="scroll-container shadow-sm border rounded-4">
+
+    <ul class="list-group list-group-flush">
+      <li class="list-group-item" *ngFor="let bid of bids">
+        <div class="row align-items-center text-center text-md-start">
+          <div class="col-md-3 col-12 mb-1"><strong>Item:</strong> {{ bid.title || 'N/A' }}</div>
+          <div class="col-md-3 col-12 mb-1"><strong>Amount:</strong> ${{ bid.amount }}</div>
+          <div class="col-md-3 col-12 mb-1"><strong>Date:</strong> {{ bid.timestamp | date: 'yyyy-MM-dd' }}</div>
+          <div class="col-md-3 col-12 text-md-end text-center">
+            <a (click)="ViewItem(bid.itemId)" class="btn btn-primary btn-sm">
+              View Item
+            </a>
+          </div>
         </div>
-      </div>
-    </li>
-  </ul>
+      </li>
+    </ul>
+
+  </div>
 
 </div>

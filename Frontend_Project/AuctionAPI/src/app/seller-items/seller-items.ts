@@ -20,7 +20,6 @@ export class SellerItems implements OnInit {
   public fallbackImage: string = 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg';
 
   constructor(private sellerService: SellerService, 
-              private itemService: ItemService,
               private router: Router,
               private route: ActivatedRoute) {}
 
@@ -29,7 +28,6 @@ export class SellerItems implements OnInit {
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id');
     const urlPath = this.route.snapshot.url[1]?.path;
-    console.log(urlPath, id);
 
     if (id != null && urlPath == "seller") {
       this.ownProfile = false;
@@ -38,7 +36,6 @@ export class SellerItems implements OnInit {
     this.sellerService.getItemsBySeller(this.id).subscribe({
       next: (res) => {
         this.items = res.data ?? [];
-        console.log('Items fetched:', this.items);
         this.errorMessage = '';
       },
       error: (err) => {

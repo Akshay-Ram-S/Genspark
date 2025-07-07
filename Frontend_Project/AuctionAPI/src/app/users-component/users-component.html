@@ -1,4 +1,4 @@
-<div class="container my-5">
+<div class="container my-5" style="min-height: 56vh;">
   <div class="text-center mb-4">
     <h1 class="fw-bold">{{ roleType | titlecase }}s</h1>
   </div>
@@ -18,7 +18,7 @@
 
   <br/>
 
-  <div class="row g-4 justify-content-center animate__animated animate__zoomIn animate__faster">
+  <div class="row g-4 justify-content-center animate__animated animate__zoomIn">
     @for (user of users; track user.email) {
       <div class="col-12 col-sm-6 col-md-4 col-lg-3">
         <app-user [user]="user"></app-user>

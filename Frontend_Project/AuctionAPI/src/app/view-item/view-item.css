@@ -1,6 +1,35 @@
-.bg-color{
-  background: linear-gradient(135deg, #007bff, #00b7eb);
+.card-color{
+  background-color: aliceblue;
 }
+
+.description {
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;  
+  overflow: hidden;
+  cursor: pointer;
+  position: relative;
+}
+
+.description::after {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  background: white;
+  padding-left: 0.2em;
+}
+
+.description.expanded {
+  -webkit-line-clamp: unset;
+  line-clamp: unset;
+  overflow: visible;
+}
+
+.description.expanded::after {
+  content: '';
+}
+
 
 .pulse-border {
   animation: pulse 1.5s infinite;

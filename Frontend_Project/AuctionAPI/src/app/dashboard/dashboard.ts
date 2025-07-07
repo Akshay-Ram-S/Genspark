@@ -163,7 +163,7 @@ export class Dashboard implements OnInit, AfterViewInit {
 
 
   downloadUsersCSV(type: 'seller' | 'bidder'): void {
-    const headers = ['User ID', 'Name', 'Email', 'Phone', 'Role'];
+    const headers = ['ID', 'Name', 'Email', 'Phone'];
 
     const users = type === 'seller' ? this.sellers : this.bidders;
 

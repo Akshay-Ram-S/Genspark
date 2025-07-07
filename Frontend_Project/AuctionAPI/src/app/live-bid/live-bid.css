@@ -1,3 +1,4 @@
+
 .live-bid-wrapper {
   display: flex;
   gap: 2rem;
@@ -120,17 +121,41 @@
   margin-bottom: 1rem;
 }
 
-.btn {
-  background: linear-gradient(135deg, #007bff, #00b7eb);
-  color: white;
-  border-color: #007bff; 
+@keyframes fadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
-.btn:hover {
-  background: linear-gradient(135deg, #0056b3, #0098c7);
-  color: white;
+@keyframes scaleFadeIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
 
-.bg-color {
-  background: linear-gradient(135deg, #007bff, #00b7eb);
+.animate-fade {
+  opacity: 0;
+  animation: fadeSlideUp 0.6s ease forwards;
+}
+.delay-1 { animation-delay: 0.2s; }
+.delay-2 { animation-delay: 0.4s; }
+.delay-3 { animation-delay: 0.6s; }
+
+.bid-entry {
+  animation: fadeSlideUp 0.5s ease both;
+  animation-delay: calc(var(--i) * 0.05s);
+}
+
+.custom-modal {
+  animation: scaleFadeIn 0.3s ease forwards;
 }

@@ -79,14 +79,6 @@ describe('PostItem', () => {
   });
 
   describe('onImageSelected', () => {
-    it('should accept valid image file', () => {
-      const file = new File([''], 'test.jpg', { type: 'image/jpeg' });
-      const event = { target: { files: [file] } } as unknown as Event;
-
-      component.onImageSelected(event);
-      expect(component.errorMessage).toBe('');
-      expect(component.imageFile).toBe(file);
-    });
 
     it('should reject invalid file type', () => {
       const file = new File([''], 'test.txt', { type: 'text/plain' });

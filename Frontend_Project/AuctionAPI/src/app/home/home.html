@@ -1,22 +1,24 @@
 <div class="container-fluid d-flex justify-content-start align-items-start ps-5 pt-5" style="min-height: 100vh; z-index: 100;">
   <div style="max-width: 48%;">
 
-    <h1 class="display-4 fw-bold mb-3 text-color">Welcome to AuctionAPI</h1>
+    <h1 class="display-4 fw-bold mb-3 text-color animate-fade delay-1">
+      Welcome to AuctionAPI
+    </h1>
 
-    <p class="text-muted mb-3 fs-5">
+    <p class="text-muted mb-3 fs-5 animate-fade delay-2">
       Dive into the excitement of real-time auctions. <br>
       Discover rare collectibles, vintage treasures, and one-of-a-kind items.
     </p>
 
-    <p class="text-muted mb-3 fs-6">
+    <p class="text-muted mb-3 fs-6 animate-fade delay-3">
       Whether you're a seasoned seller or a passionate bidder, AuctionAPI empowers you with the tools to win or sell items effortlessly. Our real-time bidding engine ensures transparency, fairness, and lightning-fast interactions.
     </p>
 
-    <p *ngIf="!isAuthenticated"  class="text-muted mb-4 fs-6">
+    <p *ngIf="!isAuthenticated" class="text-muted mb-4 fs-6 animate-fade delay-4">
       Join our trusted community and experience auctions like never before — secure, reliable, and thrilling. Sign up today and become part of the marketplace revolution.
     </p>
 
-    <div *ngIf="!isAuthenticated" class="d-flex flex-column gap-3">
+    <div *ngIf="!isAuthenticated" class="d-flex flex-column gap-3 animate-fade delay-5">
       <a class="btn btn-warning btn-lg shadow-sm px-4 py-2 fw-semibold"
          [routerLink]="['/login']"
          (mouseenter)="hovering=true" (mouseleave)="hovering=false"
@@ -32,7 +34,7 @@
       </a>
     </div>
 
-    <div *ngIf="isAuthenticated" class="d-flex flex-column gap-3">
+    <div *ngIf="isAuthenticated" class="d-flex flex-column gap-3 animate-fade delay-5">
       <a *ngIf="userRole === 'bidder' || userRole === 'admin'" 
          class="btn btn-warning btn-lg shadow-sm px-4 py-2 fw-semibold"
          [routerLink]="['/items']"

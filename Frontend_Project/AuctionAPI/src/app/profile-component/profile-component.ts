@@ -3,7 +3,7 @@ import { ActivatedRoute, Router, RouterModule } from '@angular/router';
 import { SellerItems } from '../seller-items/seller-items';
 import { BidderBids } from '../bidder-bids/bidder-bids';
 import { CommonModule } from '@angular/common';
-import { ItemsBought } from '../bidder-items/items-bought';
+import { ItemsBought } from '../items-bought/items-bought';
 import { AuthService } from '../services/auth.service';
 import { UserService } from '../services/user.service';
 import { SellerService } from '../services/seller.service';
@@ -70,8 +70,8 @@ export class Profile implements OnInit {
       this.authService.getMe().subscribe({
         next: (res) => {
           this.user = res.data;
-          this.sellerId = res.data.sellerId ?? '';
-          this.bidderId = res.data.bidder.bidderId ?? '';
+          this.sellerId = res.data?.sellerId ?? '';
+          this.bidderId = res.data?.bidder?.bidderId ?? '';
         },
         error: () => this.router.navigate(['/login'])
       });
@@ -83,11 +83,10 @@ export class Profile implements OnInit {
     this.router.navigate(['/profile/change-password']);
   }
 
-  onDelete(): void {
+  confirmDelete(): void {
     this.userService.delete().subscribe({
       next: () => {
         localStorage.removeItem('token');
-        alert('User deleted successfully');
         this.router.navigate(['/login']);
         window.location.reload();
       },

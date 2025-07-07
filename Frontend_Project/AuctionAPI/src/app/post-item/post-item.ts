@@ -29,6 +29,7 @@ export class PostItem implements OnInit {
     'Art',
     'Other'
   ];
+  imagePreviewUrl: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -48,6 +49,7 @@ export class PostItem implements OnInit {
     });
   }
 
+
   onImageSelected(event: Event): void {
     const input = event.target as HTMLInputElement;
 
@@ -63,20 +65,46 @@ export class PostItem implements OnInit {
     if (!allowedTypes.includes(file.type) || !extensionValid) {
       this.errorMessage = 'Only image files (.jpg, .jpeg, .png, .webp) are allowed.';
       this.imageFile = null;
+      this.imagePreviewUrl = null;
       return;
     }
 
-    this.convertToWebp(file)
-      .then(webpFile => {
-        this.errorMessage = '';
-        this.imageFile = webpFile;
-      })
-      .catch(err => {
-        console.error('Image conversion failed:', err);
-        this.errorMessage = 'Failed to convert image to WebP.';
-      });
-  }
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
 
+    img.onload = () => {
+      const width = img.naturalWidth;
+      const height = img.naturalHeight;
+
+      const minWidth = 600;
+      const minHeight = 400;
+
+      if (width < minWidth || height < minHeight) {
+        this.errorMessage = `Image too small. Minimum is ${minWidth}px ×${minHeight}px.`;
+        this.imageFile = null;
+        this.imagePreviewUrl = null;
+        return;
+      }
+
+      this.convertToWebp(file)
+        .then(webpFile => {
+          this.errorMessage = '';
+          this.imageFile = webpFile;
+          this.imagePreviewUrl = img.src;
+        })
+        .catch(err => {
+          console.error('Image conversion failed:', err);
+          this.errorMessage = 'Failed to convert image to WebP.';
+          this.imagePreviewUrl = null;
+        });
+    };
+
+    img.onerror = () => {
+      this.errorMessage = 'Invalid image file.';
+      this.imageFile = null;
+      this.imagePreviewUrl = null;
+    };
+  }
 
 
   onSubmit(): void {
@@ -122,7 +150,8 @@ export class PostItem implements OnInit {
           canvas.width = img.width;
           canvas.height = img.height;
           const ctx = canvas.getContext('2d');
-          if (!ctx) return reject('Canvas context not available');
+          if (!ctx) 
+            return reject('Canvas context not available');
 
           ctx.drawImage(img, 0, 0);
 
@@ -130,7 +159,7 @@ export class PostItem implements OnInit {
             if (!blob) return reject('WebP conversion failed');
             const webpFile = new File([blob], file.name.replace(/\.\w+$/, '.webp'), { type: 'image/webp' });
             resolve(webpFile);
-          }, 'image/webp', 1); 
+          }, 'image/webp', 0.8); 
         };
         img.onerror = reject;
         img.src = e.target?.result as string;

@@ -85,6 +85,7 @@ describe('Dashboard', () => {
           endDate: new Date().toISOString(),
           description: 'A powerful gaming laptop',      
           sellerName: 'John Doe',
+          sellerId: "123",
           boughtBy: 'Jane Smith',
           status: 'Sold'
         },
@@ -96,7 +97,8 @@ describe('Dashboard', () => {
           currentBid: 0,
           startDate: new Date().toISOString(),         
           endDate: new Date().toISOString(),
-          description: 'A best-selling novel',        
+          description: 'A best-selling novel',    
+          sellerId: "123",    
           sellerName: 'Alice',
           boughtBy: null,
           status: 'Unsold'

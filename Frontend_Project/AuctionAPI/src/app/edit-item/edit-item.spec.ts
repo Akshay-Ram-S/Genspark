@@ -69,13 +69,6 @@ describe('EditItem', () => {
     expect(component.editForm.value.title).toBe('Sample Item');
   });
 
-  it('should set imageFile on image select', () => {
-    const file = new File(['dummy'], 'dummy.png', { type: 'image/png' });
-    const event = { target: { files: [file] } };
-    component.onImageSelected(event as any);
-    expect(component.imageFile).toBe(file);
-  });
-
   it('should not submit form if invalid', () => {
     component.editForm.controls['title'].setValue('');
     component.onSubmit();

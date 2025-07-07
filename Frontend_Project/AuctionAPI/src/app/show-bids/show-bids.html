@@ -1,9 +1,13 @@
-<h3>Live Bids</h3>
+<div class="d-flex justify-content-between align-items-start">
+  <h3>Live Bids 📢</h3>
+</div>
+
+
 
 <div class="bid-log" *ngIf="bids.length > 0; else noBids">
   @for (bid of bids | slice:0:10; track $index) {
     <div class="bid-entry d-flex justify-content-between align-items-center" 
-         [ngClass]="{ 'highlight-bid': bid.amount === highestAmount }">
+         [ngClass]="{ 'highlight-bid': bid.amount === highestAmount }"  >
 
       <div class="bidder-info">
         <strong>{{ bid.name }}</strong> - ${{ bid.amount }}
@@ -15,9 +19,9 @@
 
       <div class="bid-status">
         @if (auctionEnded && bid.amount === highestAmount) {
-          <span class="badge bg-success medium-badge">Sold</span>
+          <span class="badge bg-color medium-badge">Sold</span>
         } @else if (bid.amount === highestAmount) {
-          <span class="badge bg-success medium-badge">Current</span>
+          <span class="badge bg-color medium-badge">Current</span>
         } @else {
           <span class="badge bg-secondary medium-badge"> Bid</span>
         }

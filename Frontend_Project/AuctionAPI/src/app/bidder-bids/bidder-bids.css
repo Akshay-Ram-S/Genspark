@@ -1,16 +1,5 @@
-.text-color{
-    color:goldenrod;
+.scroll-container {
+  max-height: 550px; 
+  overflow-y: auto;
+  padding-right: 0.5rem;
 }
-
-.btn-primary{
-    color:beige;
-    background-color: goldenrod;
-    border-color: goldenrod;
-}
-
-.alert{
-    background-color: beige;
-    border-color: goldenrod;
-    color: goldenrod;
-}
-

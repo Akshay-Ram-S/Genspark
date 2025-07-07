@@ -1,8 +1,8 @@
-<div class="container-fluid mt-4 mb-3">
+<div class="container-fluid mt-4 mb-3" style="min-height: 61vh;">
   <div class="row">
     <div class="col-12 d-flex flex-column flex-md-row">
 
-      <div class="sidebar bg-color shadow-sm rounded p-3 me-md-4 mb-4 mb-md-0" style="min-width: 220px;">
+      <div class="sidebar bg-color shadow-sm rounded p-3 me-md-4 mb-4 mb-md-0 border-color" style="min-width: 220px;">
         <h5 class="text-dark mb-3">Export CSV</h5>
         <div class="d-flex text-start flex-column gap-2">
           <button (click)="downloadItemsCSV('All')" class="btn btn-secondary w-100">
@@ -27,51 +27,51 @@
       </div>
 
       <div class="flex-fill">
-  <h1 class="text-center mb-3 animate__animated animate__fadeInDown">Admin Dashboard</h1>
-  <br>
+          <h1 class="text-center mb-3 animate__animated animate__fadeInDown">Admin Dashboard</h1>
+          <br>
 
- <div class="row text-center g-3 mb-3">
-    <div class="col-12 col-sm-4 col-md-4">
-      <div class="card bg-color shadow-sm border-0 cursor-pointer h-100" [routerLink]="['/users/seller']">
-        <div class="card-body py-3 px-2">
-          <h6 class="card-title mb-1">Sellers</h6>
-          <h4 class="text-gold text-primary mb-0">{{ sellerCount }}</h4>
+        <div class="row text-center g-3 mb-3" style="cursor:pointer">
+            <div class="col-12 col-sm-4 col-md-4">
+              <div class="card border-color shadow-sm cursor-pointer h-100 border-color" [routerLink]="['/users/seller']">
+                <div class="card-body py-3 px-2">
+                  <h6 class="card-title mb-1">Sellers</h6>
+                  <h4 class="text-color mb-0">{{ sellerCount }}</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4 col-md-4">
+              <div class="card shadow-sm cursor-pointer h-100" [routerLink]="['/users/bidder']">
+                <div class="card-body py-3 px-2">
+                  <h6 class="card-title mb-1">Bidders</h6>
+                  <h4 class="text-color mb-0">{{ bidderCount }}</h4>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-12 col-sm-4 col-md-4">
+              <div class="card shadow-sm cursor-pointer h-100" [routerLink]="['/items']">
+                <div class="card-body py-3 px-2">
+                  <h6 class="card-title mb-1">Total Items</h6>
+                  <h4 class="text-color mb-0">{{ totalItems }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+        <!-- Chart -->
+        <div class="row">
+          <div class="col-12 col-lg-10 mx-auto">
+            <div class="card shadow-sm border-0">
+              <div class="card-body border-color py-3">
+                <h6 class="text-center text-secondary mb-3">Item Status</h6>
+                <canvas id="statusChart" style="max-height: 360px;"></canvas>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
-    </div>
-
-    <div class="col-12 col-sm-4 col-md-4">
-      <div class="card bg-color shadow-sm border-0 cursor-pointer h-100" [routerLink]="['/users/bidder']">
-        <div class="card-body py-3 px-2">
-          <h6 class="card-title mb-1">Bidders</h6>
-          <h4 class="text-gold text-success mb-0">{{ bidderCount }}</h4>
-        </div>
-      </div>
-    </div>
-
-    <div class="col-12 col-sm-4 col-md-4">
-      <div class="card bg-color shadow-sm border-0 cursor-pointer h-100" [routerLink]="['/items']">
-        <div class="card-body py-3 px-2">
-          <h6 class="card-title mb-1">Total Items</h6>
-          <h4 class="text-gold text-warning mb-0">{{ totalItems }}</h4>
-        </div>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- Chart -->
-  <div class="row">
-    <div class="col-12 col-lg-10 mx-auto">
-      <div class="card shadow-sm border-0">
-        <div class="card-body bg-color py-3">
-          <h6 class="text-center text-secondary mb-3">Item Status</h6>
-          <canvas id="statusChart" style="max-height: 360px;"></canvas>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
 
     </div>
   </div>

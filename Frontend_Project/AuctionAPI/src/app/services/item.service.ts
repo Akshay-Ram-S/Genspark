@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { ItemAllBids } from '../models/all-bids';
 
@@ -42,7 +42,6 @@ export class ItemService {
     return this.http.get<any>(`${this.baseUrl}`, { params });
   }
 
-
   getItemById(itemId: string): Observable<ApiResponse<Item>> {
     return this.http.get<ApiResponse<Item>>(`${this.baseUrl}/${itemId}`);
   }
@@ -52,31 +51,15 @@ export class ItemService {
   }
 
   postItem(formData: FormData): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-
-    return this.http.post(`${this.baseUrl}`, formData, { headers });
+    return this.http.post(`${this.baseUrl}`, formData);
   }
 
   updateItem(itemId: string, formData: FormData): Observable<any> {
     console.log('Updating item with ID:', itemId);
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-
-    return this.http.put(`${this.baseUrl}/${itemId}`, formData, { headers });
+    return this.http.put(`${this.baseUrl}/${itemId}`, formData);
   }
 
   deleteItem(itemId: string): Observable<any> {
-    const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      Authorization: `Bearer ${token}`
-    });
-
-    return this.http.delete(`${this.baseUrl}/${itemId}`, { headers });
+    return this.http.delete(`${this.baseUrl}/${itemId}`);
   }
-
 }

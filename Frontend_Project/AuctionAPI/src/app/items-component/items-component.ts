@@ -85,6 +85,7 @@ export class ItemsComponent implements OnInit, OnDestroy {
       pageSize: this.pageSize
     }).subscribe({
       next: (response) => {
+        console.log(response.data);
         this.noItemsFound = false;
         const statusOrder: Record<string, number> = {
           active: 1,

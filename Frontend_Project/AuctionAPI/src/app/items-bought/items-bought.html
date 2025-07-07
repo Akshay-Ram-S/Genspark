@@ -1,21 +1,21 @@
-<div *ngIf="errorMessage" class="alert alert-warning text-center">
+<div *ngIf="errorMessage" class="alert alert-warning text-center shadow-sm rounded-4">
   {{ errorMessage }}
 </div>
 
-<div class="row justify-content-center g-4">
+<div class="container my-4 d-flex flex-column align-items-center">
+  <div class="row justify-content-center mt-4 gap-4 mb-4">
     @if (items.length > 0) {
       @for (item of items; track item.itemID; let i = $index) {
-        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4 d-flex justify-content-center">
+        <div class="col-12 col-sm-12 col-md-12 col-lg-12 mb-4 d-flex justify-content-center">
           <div class="animate__animated animate__fadeIn" [style.animationDelay]="(i * 200) + 'ms'">
             <app-item [item]="item"></app-item>
           </div>
         </div>
       }
-    } 
-    @else {
+    } @else {
       <div class="alert alert-info text-center shadow-sm rounded-4 w-100" style="max-width: 800px;">
-        <h5 class="mb-0">No items posted.</h5>
+        <h5 class="mb-0">No items bought.</h5>
       </div>
     }
+  </div>
 </div>
-

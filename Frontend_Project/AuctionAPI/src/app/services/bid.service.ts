@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 export interface BidRequest {
@@ -17,23 +17,10 @@ export class BidService {
   constructor(private http: HttpClient) {}
 
   placeBid(bid: BidRequest): Observable<ApiResponse<any>> {
-    
-    const token = localStorage.getItem('token'); 
-
-    const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`
-    });
-    return this.http.post<ApiResponse<any>>(this.apiUrl, bid, {headers});
+    return this.http.post<ApiResponse<any>>(this.apiUrl, bid);
   }
 
-  deleteBid(bidId: string) {
-    const token = localStorage.getItem('token'); 
-
-    const headers = new HttpHeaders({
-        Authorization: `Bearer ${token}`
-    });
-    return this.http.delete(`${this.apiUrl}/${bidId}`, {headers});
+  deleteBid(bidId: string): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${bidId}`);
   }
-
-  
 }

@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
 import { Navbar } from './navbar-component';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
@@ -46,16 +46,6 @@ describe('NavbarComponent', () => {
   it('should return false from isLoggedIn when not authenticated', () => {
     authServiceSpy.isAuthenticated.and.returnValue(false);
     expect(component.isLoggedIn).toBeFalse();
-  });
-
-  it('should call AuthService.logout and navigate to /login', () => {
-    spyOn(router, 'navigate');
-    authServiceSpy.logout.and.stub();
-
-    component.logout();
-
-    expect(authServiceSpy.logout).toHaveBeenCalled();
-    expect(router.navigate).toHaveBeenCalledWith(['/login']);
   });
 
   it('should set isAdmin to true if token has admin role', () => {

@@ -1,21 +1,22 @@
 import { CommonModule } from "@angular/common";
 import { Component, OnInit } from "@angular/core";
-import { ActivatedRoute } from "@angular/router";
+import { ActivatedRoute, Router } from "@angular/router";
 import { FormsModule } from "@angular/forms";
-import { NgChartsModule, NgChartsConfiguration } from "ng2-charts";
+import { NgChartsModule } from "ng2-charts";
 import { ChartConfiguration } from "chart.js";
 import { InfiniteScrollModule } from "ngx-infinite-scroll";
-
 import { ItemService } from "../services/item.service";
 import { ItemAllBids } from "../models/all-bids";
-import { ItemComponent } from "../item-component/item-component";
+import { TokenService } from "../services/token.service";
+import * as bootstrap from "bootstrap";
+import { ImageService } from "../services/image.service";
 
 @Component({
   selector: 'app-view-item',
   templateUrl: './view-item.html',
   styleUrls: ['./view-item.css'],
   standalone: true,
-  imports: [CommonModule, ItemComponent, FormsModule, NgChartsModule, InfiniteScrollModule]
+  imports: [CommonModule, FormsModule, NgChartsModule, InfiniteScrollModule]
 })
 export class ViewItem implements OnInit {
   item!: Item;
@@ -24,13 +25,16 @@ export class ViewItem implements OnInit {
   pageSize = 5;
   currentPage = 0;
   loadingMore = false;
-
+  isAdmin = false;
+  authorisedSeller = false;
+  public fallbackImage: string = 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg';
+  imageUrl: string = '';
+  showFullDescription: boolean = false;
 
   isLoading = true;
   errorMessage = '';
   highestAmount: number = 0;
-  sortOption = '';
-  bidderFilter = '';
+  selectedImageUrl: string = '';
 
   chartData: ChartConfiguration<'line'>['data'] = {
     labels: [],
@@ -40,7 +44,7 @@ export class ViewItem implements OnInit {
         label: 'Bid Amount',
         fill: false,
         borderColor: '#007bff',
-        backgroundColor: 'rgba(0, 123, 255, 0.2)',
+        backgroundColor: 'rgba(5, 121, 244, 0.2)',
         tension: 0.3
       }
     ]
@@ -63,7 +67,7 @@ export class ViewItem implements OnInit {
     },
     scales: {
       x: {
-        ticks: { color: 'black', font: { size: 16 }, weight: 'bold'},
+        ticks: { color: 'black', font: { size: 16 }, weight: 'bold' },
         title: {
           display: true,
           text: 'Bidder',
@@ -83,17 +87,28 @@ export class ViewItem implements OnInit {
     }
   };
 
-  constructor(private route: ActivatedRoute, private itemService: ItemService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private itemService: ItemService,
+    private tokenService: TokenService,
+    private router: Router,
+    private imageService: ImageService
+  ) {}
 
   ngOnInit(): void {
     const itemId = this.route.snapshot.paramMap.get('id')!;
     this.loadItem(itemId);
-    this.loadBids(itemId);
   }
 
   loadItem(id: string) {
     this.itemService.getItemById(id).subscribe({
-      next: res => this.item = res.data,
+      next: res => {
+        this.item = res.data;
+        this.isAdmin = this.tokenService.getRole()?.toLowerCase() === "admin";
+        this.authorisedSeller = this.tokenService.getUserId() === this.item.sellerId;
+        this.imageUrl = this.imageService.getItemImage(this.item.itemID);
+        this.loadBids(this.item.itemID);
+      },
       error: err => this.errorMessage = 'Failed to load item.'
     });
   }
@@ -103,7 +118,7 @@ export class ViewItem implements OnInit {
       next: res => {
         this.bids = res.data;
         this.updateHighestBid();
-        this.sortBids();
+        this.updateChart();
         this.resetScroll();
         this.isLoading = false;
       },
@@ -118,6 +133,22 @@ export class ViewItem implements OnInit {
     this.highestAmount = this.bids.length > 0 ? Math.max(...this.bids.map(b => b.amount)) : 0;
   }
 
+  updateChart() {
+    this.chartData = {
+      labels: this.bids.map(b => b.name),
+      datasets: [
+        {
+          data: this.bids.map(b => b.amount),
+          label: 'Bid Amount',
+          fill: false,
+          borderColor: 'black',
+          backgroundColor: '#007bff',
+          tension: 0.3
+        }
+      ]
+    };
+  }
+
   resetScroll() {
     this.displayedBids = [];
     this.currentPage = 0;
@@ -125,55 +156,24 @@ export class ViewItem implements OnInit {
   }
 
   loadNextPage() {
-    const filtered = this.filteredBids;
     const start = this.currentPage * this.pageSize;
-    const next = filtered.slice(start, start + this.pageSize);
+    const next = this.bids.slice(start, start + this.pageSize);
     this.displayedBids = [...this.displayedBids, ...next];
     this.currentPage++;
   }
 
   onScrollDown() {
-    if (this.displayedBids.length < this.filteredBids.length && !this.loadingMore) {
+    if (this.displayedBids.length < this.bids.length && !this.loadingMore) {
       this.loadingMore = true;
-
       setTimeout(() => {
         this.loadNextPage();
         this.loadingMore = false;
-      }, 1000); 
+      }, 1000);
     }
   }
 
-  sortBids() {
-    if (this.sortOption === 'highest') {
-      this.bids.sort((a, b) => b.amount - a.amount);
-    } else if (this.sortOption === 'lowest') {
-      this.bids.sort((a, b) => a.amount - b.amount);
-    } else {
-      this.bids.sort((a, b) => new Date(b.bid_timestamp).getTime() - new Date(a.bid_timestamp).getTime());
-    }
-    this.updateChart();
-    this.resetScroll();
-  }
-
-  get filteredBids() {
-    return this.bids.filter(b => b.name.toLowerCase().includes(this.bidderFilter.toLowerCase()));
-  }
-
-  updateChart() {
-    const filtered = this.filteredBids;
-    this.chartData = {
-      labels: filtered.map(b => b.name),
-      datasets: [
-        {
-          data: filtered.map(b => b.amount),
-          label: 'Bid Amount',
-          fill: false,
-          borderColor: 'beige',
-          backgroundColor: 'goldenrod',
-          tension: 0.3
-        }
-      ]
-    };
+  onPlaceBid(): void {
+    this.router.navigate(['/items/live-bid', this.item.itemID]);
   }
 
   exportCSV() {
@@ -190,8 +190,9 @@ export class ViewItem implements OnInit {
     a.click();
   }
 
-  onFilterChange() {
-    this.updateChart();
-    this.resetScroll();
+  openImageModal(url: string) {
+    this.selectedImageUrl = url;
+    const modal = new bootstrap.Modal(document.getElementById('imageModal')!);
+    modal.show();
   }
 }

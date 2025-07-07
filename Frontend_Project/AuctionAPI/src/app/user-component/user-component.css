@@ -2,7 +2,7 @@
   width: 70px;
   height: 70px;
   border-radius: 50%;
-  background: linear-gradient(135deg, #007bff, #00b7eb);
+  background: #007bff;
   color: white;
   font-size: 2rem;
   display: flex;
@@ -13,20 +13,12 @@
 }
 
 
-.btn-golden {
-  background: linear-gradient(135deg, #007bff, #00b7eb);
-  color: white;
-  border: none;
-  border-radius: 30px;
-  transition: all 0.3s ease;
-}
-
 .btn-golden:hover {
   transform: translateY(-2px);
 }
 
 .user-card {
-  background-color: #fffdf5;
+  background-color: aliceblue;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 

@@ -1,37 +1,5 @@
-.card-header{
-    background: linear-gradient(135deg, #007bff, #00b7eb);
-}
-
 .btn{
     height: 50px;
     width: 30%;
 }
 
-.page-link {
-  background-color: white;
-  border: 1px solid goldenrod;
-  color: goldenrod;
-  transition: 0.3s ease;
-}
-
-.page-link:hover {
-  background-color: goldenrod;
-  color: white;
-}
-
-.page-link:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.active-page {
-  background: linear-gradient(135deg, #007bff, #00b7eb) !important;
-  color: white !important;
-  font-weight: bold;
-  box-shadow: 0 0 10px goldenrod;
-  border: none;
-}
-
-.body::before{
-  filter: blur(10px); 
-}

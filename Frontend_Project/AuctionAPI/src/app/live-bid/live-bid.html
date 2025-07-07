@@ -1,16 +1,16 @@
-<div *ngIf="auctionEnded" class="alert alert-warning text-center fixed-top mx-auto w-75 mt-2 z-3">
+<div *ngIf="auctionEnded" class="alert text-center alert-danger sticky-top mx-auto w-75 mt-2 z-3">
   This auction has ended.
 </div>
-<div *ngIf="successMessage" class="alert alert-success text-center fixed-top mx-auto w-75 mt-2 z-3" style="top: 3.5rem;">
+<div *ngIf="successMessage" class="alert alert-success text-center sticky-top mx-auto w-75 mt-2 z-3" style="top: 3.5rem;">
   {{ successMessage }}
 </div>
-<div *ngIf="errorMessage" class="alert alert-danger text-center fixed-top mx-auto w-75 mt-2 z-3" style="top: 6.5rem;">
+<div *ngIf="errorMessage" class="alert alert-danger text-center sticky-top mx-auto w-75 mt-2 z-3" style="top: 6.5rem;">
   {{ errorMessage }}
 </div>
 
-<div class="live-bid-wrapper d-flex flex-column flex-md-row gap-3 mt-3 pt-2" *ngIf="item">
+<div class="live-bid-wrapper d-flex flex-column flex-md-row gap-3 mt-3 pt-2 animate-fade delay-1" *ngIf="item">
   
-  <div class="left-section d-flex flex-column gap-3 w-100 w-md-60">
+  <div class="left-section d-flex flex-column gap-3 w-100 w-md-60 animate-fade delay-2">
 
     <div class="glass-card item-card p-3">
       <img [src]="item.imageUrl || 'https://images.pexels.com/photos/414612/pexels-photo-414612.jpeg'" 
@@ -20,16 +20,13 @@
         <h3 class="mb-2">{{ item.title }}</h3>
         <p class="mb-1" [ngClass]="{ 'text-danger': auctionEnded }">
           Time remaining: 
-          <span [ngClass]="{ 'text-danger': auctionEnded, 'text-success': !auctionEnded }">{{ countdown }}</span>
+          <span [ngClass]="{ 'text-danger': auctionEnded, 'text-success': !auctionEnded }" class="fw-bold">{{ countdown }}</span>
         </p>
         
         <div class="progress mb-2" style="height: 10px;" *ngIf="!auctionEnded">
-          <div class="progress-bar progress-bar-striped bg-color progress-bar-animated"
+          <div class="progress-bar progress-bar-striped progress-bar-animated"
                role="progressbar"
-               [style.width.%]="progressPercent"
-               [attr.aria-valuenow]="progressPercent"
-               aria-valuemin="0"
-               aria-valuemax="100">
+               [style.width.%]="progressPercent">
           </div>
         </div>
 
@@ -40,7 +37,7 @@
       </div>
     </div>
 
-    <div *ngIf="userRole === 'Bidder' || userRole === 'Admin'" class="glass-card bid-form-card p-3">
+    <div *ngIf="userRole === 'Bidder'" class="glass-card bid-form-card p-3">
       <h6 class="mb-3">Place Your Bid</h6>
       <form [formGroup]="bidForm" (ngSubmit)="submitBid()" class="bid-form d-flex gap-2 flex-column">
         <input type="number" formControlName="bidAmount" placeholder="Enter your bid" class="form-control form-control-sm" />
@@ -51,7 +48,7 @@
     </div>
   </div>
 
-  <div class="right-section glass-card w-100 w-md-40 p-3">
+  <div class="right-section glass-card w-100 w-md-40 p-3 animate-fade delay-3">
     <app-show-bids [bids]="bids" [highestAmount]="highestAmount" [auctionEnded]="auctionEnded" />
   </div>
 </div>

@@ -24,9 +24,6 @@ export class Home implements OnInit{
     
   }
 
-  constructor(private tokenService: TokenService, 
-              private authService: AuthService,
-            ) {
-    
-  }
+  constructor(private authService: AuthService) {}
+
 }

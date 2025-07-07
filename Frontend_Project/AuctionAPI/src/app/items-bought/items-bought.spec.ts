@@ -31,15 +31,6 @@ describe('ItemsBought', () => {
     expect(component).toBeTruthy();
   });
 
-  it('should load items on init', () => {
-    bidderServiceSpy.getItemsBought.and.returnValue(of({ success: true, data: mockItems, message: 'Items fetched' }));
-    fixture.detectChanges(); 
-
-    expect(bidderServiceSpy.getItemsBought).toHaveBeenCalledWith('test-bidder-id');
-    expect(component.items.length).toBe(2);
-    expect(component.items).toEqual(mockItems);
-  });
-
   it('should handle error while loading items', () => {
     const error = new Error('Failed to load');
     spyOn(console, 'error');

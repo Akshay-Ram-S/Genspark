@@ -30,6 +30,7 @@ export class EditItem implements OnInit {
     'Art',
     'Other'
   ];
+  imagePreviewUrl: string | null = null;
 
   constructor(
     private fb: FormBuilder,
@@ -55,13 +56,20 @@ export class EditItem implements OnInit {
         this.editForm.patchValue({
           title: item.title,
           startingPrice: item.startingPrice,
-          endDate: item.endDate ? item.endDate.split('T')[0] : '',
+          endDate: this.formatToDateTimeLocal(item.endDate),
           category: item.category,
           description: item.description
         });
       },
       error: (err) => console.error('Error loading item data:', err)
     });
+  }
+
+  formatToDateTimeLocal(date: string | Date): string {
+    const d = new Date(date);
+    const offset = d.getTimezoneOffset();
+    const local = new Date(d.getTime() - offset * 60 * 1000);
+    return local.toISOString().slice(0, 16); 
   }
 
   onImageSelected(event: Event): void {
@@ -73,21 +81,51 @@ export class EditItem implements OnInit {
 
     const file = input.files[0];
     const allowedTypes = ['image/jpeg', 'image/png', 'image/jpg', 'image/webp'];
-    const allowedExtensions = ['.jpg', '.jpeg', '.png', '.webp'];
-
-    const fileTypeValid = allowedTypes.includes(file.type);
     const fileExtension = file.name.substring(file.name.lastIndexOf('.')).toLowerCase();
-    const extensionValid = allowedExtensions.includes(fileExtension);
+    const extensionValid = ['.jpg', '.jpeg', '.png', '.webp'].includes(fileExtension);
 
-    if (!fileTypeValid || !extensionValid) {
+    if (!allowedTypes.includes(file.type) || !extensionValid) {
       this.errorMessage = 'Only image files (.jpg, .jpeg, .png, .webp) are allowed.';
       this.imageFile = null;
+      this.imagePreviewUrl = null;
       return;
     }
-    console.log(this.errorMessage);
 
-    this.errorMessage = '';
-    this.imageFile = file;
+    const img = new Image();
+    img.src = URL.createObjectURL(file);
+
+    img.onload = () => {
+      const width = img.naturalWidth;
+      const height = img.naturalHeight;
+
+      const minWidth = 600;
+      const minHeight = 400;
+
+      if (width < minWidth || height < minHeight) {
+        this.errorMessage = `Image too small. Minimum is ${minWidth}px ×${minHeight}px.`;
+        this.imageFile = null;
+        this.imagePreviewUrl = null;
+        return;
+      }
+
+      this.convertToWebp(file)
+        .then(webpFile => {
+          this.errorMessage = '';
+          this.imageFile = webpFile;
+          this.imagePreviewUrl = img.src;
+        })
+        .catch(err => {
+          console.error('Image conversion failed:', err);
+          this.errorMessage = 'Failed to convert image to WebP.';
+          this.imagePreviewUrl = null;
+        });
+    };
+
+    img.onerror = () => {
+      this.errorMessage = 'Invalid image file.';
+      this.imageFile = null;
+      this.imagePreviewUrl = null;
+    };
   }
 
   onSubmit(): void {
@@ -136,6 +174,37 @@ export class EditItem implements OnInit {
       this.router.navigate(['/items']);
     },
     error: (err) => console.error('Error deleting item:', err)
+    });
+  }
+
+  private convertToWebp(file: File): Promise<File> {
+    return new Promise((resolve, reject) => {
+      const img = new Image();
+      const reader = new FileReader();
+
+      reader.onload = (e) => {
+        img.onload = () => {
+          const canvas = document.createElement('canvas');
+          canvas.width = img.width;
+          canvas.height = img.height;
+          const ctx = canvas.getContext('2d');
+          if (!ctx) 
+            return reject('Canvas context not available');
+
+          ctx.drawImage(img, 0, 0);
+
+          canvas.toBlob((blob) => {
+            if (!blob) return reject('WebP conversion failed');
+            const webpFile = new File([blob], file.name.replace(/\.\w+$/, '.webp'), { type: 'image/webp' });
+            resolve(webpFile);
+          }, 'image/webp', 0.8); 
+        };
+        img.onerror = reject;
+        img.src = e.target?.result as string;
+      };
+
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
     });
   }
 

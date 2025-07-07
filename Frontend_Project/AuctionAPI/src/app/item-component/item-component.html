@@ -1,22 +1,19 @@
-
 <div class="position-relative d-inline-block w-100" style="max-width: 800px;">
 
-
   <div *ngIf="isOwnProfile || isAdmin"
-     class="position-absolute"
-     style="top: -20px; right: -20px; z-index: 10;">
-  <button class="btn btn-sm p-1 shadow-sm"
-          style="min-width: 28px; min-height: 28px;"
-          title="Edit"
-          (click)="editItem()">
-    <i class="bi bi-pencil-square fs-6"></i>
-  </button>
-</div>
+       class="position-absolute"
+       style="top: -20px; right: -20px; z-index: 10;">
+    <button class="btn btn-sm p-1 shadow-sm"
+            style="min-width: 28px; min-height: 28px;"
+            title="Edit"
+            (click)="editItem()">
+      <i class="bi bi-pencil-square fs-6"></i>
+    </button>
+  </div>
 
-  <div class="auction-card d-flex flex-row flex-wrap flex-md-nowrap mr-2"
-       style="width: 100%; height: 400px; max-width:800px;">
-    
-    <div class="image-frame position-relative w-50 h-100 image-section">
+  <div class="auction-card d-flex flex-column w-100" style="max-width: 800px;">
+
+    <div class="image-frame position-relative w-100 image-section" style="height: 250px;">
       <div *ngIf="!imageLoaded"
            class="d-flex justify-content-center align-items-center bg-white position-absolute top-0 start-0 w-100 h-100 z-1">
         <div class="spinner-border text-secondary" role="status">
@@ -32,31 +29,31 @@
            (click)="openImageModal()"
            (error)="imageUrl = fallbackImage"
            [alt]="'Image of ' + item.title"
-           class="w-100 h-100 object-fit-cover rounded" />
+           class="w-100 h-100 object-fit-cover rounded-top" />
     </div>
 
-    <div class="d-flex flex-column justify-content-between w-50 ps-3 details-section mt-3 me-2 ml-2">
+    <div class="d-flex flex-column justify-content-between px-3 pt-2 details-section" style="font-size: 0.90rem;">
       <div>
-        <div class="d-flex justify-content-between align-items-center mb-2">
-          <h3 class="fw-bold mb-0 text-truncate w-75 text-color">{{ item.title }}</h3>
+        <div class="d-flex justify-content-between align-items-center mb-1">
+          <h5 class="fw-semibold mb-0 text-truncate w-75 text-color">{{ item.title }}</h5>
           @if(item.category != '') {
-            <span class="badge large" style="font-size: large;">{{ item.category }}</span>
+            <span class="badge">{{ item.category }}</span>
           }
         </div>
 
-        <div class="text-muted large mb-3 position-relative line-clamp-2"
-             style="overflow: hidden; cursor: pointer;"
-             (click)="openDescriptionModal(item.description, item.title)">
+        <div class="text-muted mb-2 position-relative line-clamp-2"
+            style="overflow: hidden; cursor: pointer;"
+            (click)="openDescriptionModal(item.description, item.title)">
           {{ item.description }}
           <span class="position-absolute end-0 bottom-0 bg-white ps-1">...</span>
         </div>
 
-        <ul class="list-unstyled mb-3 larger">
+        <ul class="list-unstyled mb-2">
           <li><i class="bi bi-clock me-1 text-secondary"></i><strong>Ends:</strong> {{ item.endDate | date:'MMM d, y, h:mm a' }}</li>
           <li><i class="bi bi-person me-1 text-secondary"></i><strong>Seller:</strong> {{ item.sellerName || sellerName }}</li>
         </ul>
 
-        <div class="back-color rounded p-2 border larger">
+        <div class="back-color rounded p-2 border">
           <p class="mb-1"><strong>Starting Price:</strong> ${{ item.startingPrice }}</p>
           @if(item.status == 'Sold'){
             <p class="mb-1"><strong>Sold Price:</strong> ${{ item.currentBid }}</p>
@@ -70,60 +67,11 @@
         </div>
       </div>
 
-      <div class="d-flex flex-wrap justify-content-end gap-2 mt-3 mb-3">
-        <button class="btn btn-outline-dark px-3" (click)="onViewAllBids()" *ngIf="viewBidButton">View All Bids</button>
-        <button class="btn btn-dark px-3" (click)="onPlaceBid()">Live Bid</button>
+      <div class="d-flex flex-wrap justify-content-end gap-2 mt-2 mb-2">
+        <button class="btn btn-outline-dark btn-sm px-3" (click)="onViewAllBids()" *ngIf="viewBidButton">View Item</button>
+        <button class="btn btn-dark btn-sm px-3" (click)="onPlaceBid()">Live Bid</button>
       </div>
     </div>
-  </div>
-</div>
 
-
-<div *ngIf="showDescriptionModal" class="modal-backdrop fade show"></div>
-
-<div
-  class="modal fade show d-block"
-  tabindex="-1"
-  role="dialog"
-  aria-modal="true"
-  *ngIf="showDescriptionModal"
-  style="background-color: rgba(0, 0, 0, 0.5);"
->
-  <div class="modal-dialog modal-dialog-scrollable">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">{{ modalTitle }}</h5>
-        <button type="button" class="btn-close" (click)="closeDescriptionModal()"></button>
-      </div>
-      <div class="modal-body">
-        <p>{{ modalDescription }}</p>
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-secondary" (click)="closeDescriptionModal()">Close</button>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div *ngIf="showImageModal" class="modal-backdrop fade show"></div>
-
-<div *ngIf="showImageModal"
-     class="modal fade show d-block"
-     tabindex="-1"
-     role="dialog"
-     aria-modal="true"
-     style="background-color: rgba(0, 0, 0, 0.7);">
-  <div class="modal-dialog modal-dialog-centered modal-lg">
-    <div class="modal-content bg-transparent border-0 shadow-none">
-      <div class="modal-header border-0">
-        <button type="button" class="btn-close btn-close-white ms-auto" (click)="closeImageModal()"></button>
-      </div>
-      <div class="modal-body d-flex justify-content-center align-items-center">
-        <img [src]="modalImageUrl"
-             alt="Full Image"
-             class="img-fluid rounded shadow-lg"
-             style="max-height: 80vh;" />
-      </div>
-    </div>
   </div>
 </div>

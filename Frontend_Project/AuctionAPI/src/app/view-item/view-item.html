@@ -1,75 +1,144 @@
-<div class="container my-4 mt-5">
- 
-  <div class="d-flex justify-content-center mb-4">
-    <div style="max-width: 850px; width: 100%;">
-      <app-item *ngIf="item" [item]="item" [viewBidButton]="false" />
-    </div>
-  </div>
+<div class="container-fluid px-4 py-5">
+  <!-- Item Overview -->
+  <div *ngIf="item" class="row justify-content-center mb-5">
+    <div class="col-xl-10 col-lg-11">
+      <div class="card shadow-lg border-0 rounded-4 overflow-hidden">
+        <div class="row g-0">
+          <!-- Image Section -->
+          <div class="col-md-5 bg-light position-relative" style="cursor: pointer;">
+            <img [src]="item.imageUrl || fallbackImage"
+                 class="img-fluid h-100 w-100 object-fit-cover"
+                 style="min-height: 300px;"
+                 (click)="openImageModal(item.imageUrl || fallbackImage)"
+                 (error)="item.imageUrl = fallbackImage"
+                 alt="Item Image" />
+            <div *ngIf="item.status === 'Sold'" class="position-absolute top-0 start-0 bg-danger text-white px-3 py-1 rounded-end">
+              Sold
+            </div>
+            <div *ngIf="item.status === 'Unsold'" class="position-absolute top-0 start-0 bg-secondary text-white px-3 py-1 rounded-end">
+              Unsold
+            </div>
+          </div>
 
-  <div class="mb-3 d-flex gap-3 flex-wrap end mt-5">
-    <button class="btn btn-outline-primary" (click)="exportCSV()">Export CSV</button>
-  </div>
+          <!-- Details Section -->
+          <div class="col-md-7">
+            <div class="p-4 h-100 d-flex flex-column justify-content-between">
+              <div>
+                <h3 class="fw-bold mb-3">{{ item.title }}</h3>
+                <p class="text-muted description" 
+                  [class.expanded]="showFullDescription" 
+                  (click)="showFullDescription = !showFullDescription"
+                  title="Click to expand or collapse">
+                  {{ item.description }}
+                </p>
 
-  <div class="d-flex flex-wrap justify-content-between align-items-start w-100 px-2 gap-4">
-
-    <div class="flex-grow-1" style="max-width: 1200px; max-width: 100%;">
-      <div *ngIf="filteredBids.length !== 0" class="p-3 border rounded bg-white shadow-sm">
-        <canvas baseChart
-                [data]="chartData"
-                [options]="chartOptions"
-                chartType="line"
-                style="width: 100%; height: 400px;">
-        </canvas>
-      </div>
-    </div>
-
-    <div class="flex-grow-1" style="min-width: 420px; max-width: 100%;">
-      <h2 class="text-center mt-5 mb-4">Bids on this Item</h2>
-
-      <div *ngIf="filteredBids.length === 0" class="alert alert-warning text-center">
-        No bids found.
-      </div>
-
-      <div *ngIf="displayedBids.length > 0"
-           infiniteScroll
-           [infiniteScrollDistance]="2"
-           [infiniteScrollThrottle]="100"
-           (scrolled)="onScrollDown()"
-           class="d-flex flex-column gap-3 overflow-auto"
-           style="max-height: 450px; padding-right: 10px;">
-
-        <div class="card shadow-sm px-3 py-2"
-            *ngFor="let bid of displayedBids"
-            [ngClass]="{ 'border-success pulse-border': bid.amount === highestAmount }">
-          <div class="card-body py-2">
-            <div class="row text-center text-md-start align-items-center">
-              <div class="col-md-4 col-12 mb-2 mb-md-0">
-                <i class="bi bi-person-circle me-1 text-secondary"></i>
-                <strong>Bidder:</strong> {{ bid.name }}
+                <p><i class="bi bi-clock text-primary me-2"></i><strong>Ends:</strong> {{ item.endDate | date:'MMM d, y, h:mm a' }}</p>
+                <p><i class="bi bi-person text-success me-2"></i><strong>Seller:</strong> {{ item.sellerName }}</p>
               </div>
-              <div class="col-md-4 text-center col-12 mb-2 mb-md-0">
-                <strong>Amount:</strong> ${{ bid.amount }}
-                <span *ngIf="bid.amount === highestAmount" class="badge bg-color fs-6 text-white ms-2">
-                  @if(item.status == 'Sold')
-                    {Sold} 
-                  @else 
-                    {Highest}
-                </span>
+
+              <div class="border-top pt-3 mt-3">
+                <p class="mb-1"><strong>Starting Price:</strong> ${{ item.startingPrice }}</p>
+                <p class="mb-1">
+                  <strong *ngIf="item.status === 'Sold'">Sold Price:</strong>
+                  <strong *ngIf="item.status !== 'Sold'">Current Bid:</strong>
+                  {{ item.currentBid ? '$' + item.currentBid : '-' }}
+                </p>
+                <p class="mb-1"><strong>Status:</strong> {{ item.status }}</p>
+                <p class="mb-0"><strong>Bought By:</strong> {{ item.boughtBy || '-' }}</p>
               </div>
-              <div class="col-md-4 col-12 text-end">
-                <i class="bi bi-calendar-event me-1 text-secondary"></i>
-                <strong>Date:</strong> {{ bid.bid_timestamp | date: 'dd MMM yyyy, h:mm a' }}
+
+              <div class="d-flex gap-3 mt-4">
+                <button class="btn btn-dark px-4" (click)="onPlaceBid()">Live Bid</button>
+                <button *ngIf="isAdmin || authorisedSeller" class="btn btn-outline-primary px-4" (click)="exportCSV()">Export CSV</button>
               </div>
             </div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
 
-        <div *ngIf="loadingMore" class="my-3 text-center">
-          <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading more...</span>
-          </div>
+  <!-- Chart & Bids Section -->
+  <div class="row g-4">
+    <!-- Bids Chart -->
+    <div class="col-lg-7">
+      <div class="card card-color shadow-sm border-0 rounded-4 p-4 h-100">
+        <h4 class="mb-4 text-center">Bid Trend</h4>
+        <div *ngIf="displayedBids.length !== 0">
+          <canvas baseChart
+                  [data]="chartData"
+                  [options]="chartOptions"
+                  chartType="line"
+                  style="width: 100%; height: 350px;">
+          </canvas>
+        </div>
+        <div *ngIf="displayedBids.length === 0" class="text-center text-muted py-4">
+          No bid data available for chart.
+        </div>
+      </div>
+    </div>
+
+    <!-- Bids List -->
+    <div class="col-lg-5">
+      <div class="card card-color shadow-sm border-0 rounded-4 p-4 h-100 d-flex flex-column">
+        <h4 class="text-center mb-4">Bids on This Item</h4>
+
+        <div *ngIf="displayedBids.length === 0" class="alert alert-warning text-center">
+          No bids placed yet.
         </div>
 
+        <div *ngIf="displayedBids.length > 0"
+             infiniteScroll
+             [infiniteScrollDistance]="2"
+             [infiniteScrollThrottle]="100"
+             (scrolled)="onScrollDown()"
+             class="flex-grow-1 overflow-auto px-1"
+             style="max-height: 400px;">
+          
+          <div class="card mb-3 fs-6 shadow-sm border-0"
+               *ngFor="let bid of displayedBids"
+               [ngClass]="{ 'border-start border-success border-4': bid.amount === highestAmount }">
+            <div class="card-body py-2 px-3">
+              <div class="d-flex justify-content-between align-items-center flex-wrap">
+                <div class="text-primary fw-semibold">
+                  <i class="bi bi-person-circle me-1"></i>{{ bid.name }}
+                  <span *ngIf="bid.amount === highestAmount"
+                        class="badge bg-success text-white ms-2" style="size:1.5em;">
+                    @if(item.status == 'Sold') {Sold} @else {Highest}
+                  </span>
+                </div>
+                <div class="fw-bold">
+                  ${{ bid.amount }}
+                </div>
+              </div>
+              <div class="text-muted medium mt-1">
+                <i class="bi bi-calendar-event me-1"></i>{{ bid.bid_timestamp | date: 'dd MMM yyyy, h:mm a' }}
+              </div>
+            </div>
+          </div>
+
+          <div *ngIf="loadingMore" class="text-center py-3">
+            <div class="spinner-border text-primary" role="status">
+              <span class="visually-hidden">Loading more...</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<!-- Image View Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content rounded-4 shadow">
+      <div class="modal-header border-0">
+        <h5 class="modal-title" id="imageModalLabel">Item Image</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body p-0 text-center">
+        <img [src]="selectedImageUrl" alt="Full Image" class="img-fluid rounded-bottom" />
       </div>
     </div>
   </div>

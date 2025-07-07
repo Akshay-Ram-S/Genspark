@@ -1,5 +1,5 @@
 .custom-navbar {
-  background: linear-gradient(135deg, #007bff, #00b7eb);
+  background: #007bff
 }
 
 .navbar-brand, .nav-link {
@@ -8,7 +8,7 @@
 }
 
 .nav-link:hover, .nav-link.active {
-  color: rgb(24, 24, 24) !important;
+  color: black !important;
   transform: scale(1.10);
 }
 
@@ -22,7 +22,7 @@
 }
 
 .dropdown-item.active{
-  background-color: #00b7eb;
+  background-color: #ff9800;
 }
 
 .dropdown-item:hover {

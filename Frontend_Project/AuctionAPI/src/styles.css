@@ -4,20 +4,21 @@
 @import '../node_modules/animate.css/animate.min.css';
 
 .btn{
-  background: linear-gradient(135deg, #007bff, #00b7eb);
+  background: #007bff;
   color:white;
   border-color: #007bff;
 }
 
 .btn:hover{
-  background: linear-gradient(135deg, #343a40, #6c757d);
+  background: #ff9800;
   color:white;
-  border-color: darkgoldenrod;
   transform: scale(1.05);
+  border-color: #6c757d;
 }
 
 .html{
   min-height: 50vh;
+  background-color: aliceblue;
 }
 
 .plain-background{
@@ -35,7 +36,7 @@
   z-index: -1;
 }
 
-.blur-background{
+/* .blur-background{
   position: fixed;
   top: 0;
   left: 0;
@@ -49,4 +50,4 @@
   background-position: center;
   filter: blur(15px);
   z-index: -1;
-}
+} */
