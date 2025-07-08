@@ -1,20 +1,20 @@
 import { Routes } from '@angular/router';
-import { Login } from './login-component/login-component';
-import { Register } from './register-component/register-component';
-import { ItemsComponent } from './items-component/items-component';
-import { ViewItem } from './view-item/view-item';
-import { PostItem } from './post-item/post-item';
-import { UsersComponent } from './users-component/users-component';
+import { Login } from './components/login-component/login-component';
+import { Register } from './components/register-component/register-component';
+import { ItemsComponent } from './components/items-component/items-component';
+import { ViewItem } from './components/view-item/view-item';
+import { PostItem } from './components/post-item/post-item';
+import { UsersComponent } from './components/users-component/users-component';
 import { SellerGuard } from './guards/seller-guard';
-import { Unauthorized} from './unauthorized/unauthorized';
-import { LiveBid } from './live-bid/live-bid';
+import { Unauthorized} from './components/unauthorized/unauthorized';
+import { LiveBid } from './components/live-bid/live-bid';
 import { AuthGuard } from './guards/auth-guard';
-import { Dashboard } from './dashboard/dashboard';
+import { Dashboard } from './components/dashboard/dashboard';
 import { AdminGuard } from './guards/admin-guard';
-import { Home } from './home/home';
-import { ChangePassword } from './change-password/change-password';
-import { EditItem } from './edit-item/edit-item';
-import { Profile } from './profile-component/profile-component';
+import { Home } from './components/home/home';
+import { ChangePassword } from './components/change-password/change-password';
+import { EditItem } from './components/edit-item/edit-item';
+import { Profile } from './components/profile-component/profile-component';
 
 export const routes: Routes = [
     { path: '', component: Home },

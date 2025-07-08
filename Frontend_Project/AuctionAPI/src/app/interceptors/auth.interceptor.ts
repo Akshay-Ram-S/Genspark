@@ -1,6 +1,5 @@
 import { HttpInterceptorFn } from '@angular/common/http';
 import { HttpRequest, HttpHandlerFn } from '@angular/common/http';
-import { inject } from '@angular/core';
 
 export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: HttpHandlerFn) => {
   const token = localStorage.getItem('token');
@@ -18,5 +17,5 @@ export const authInterceptor: HttpInterceptorFn = (req: HttpRequest<any>, next: 
     return next(authReq);
   }
 
-  return next(req); // no token, proceed without auth
+  return next(req);
 };
