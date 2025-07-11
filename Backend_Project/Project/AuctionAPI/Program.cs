@@ -18,14 +18,24 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
+
 using Serilog;
+using Serilog.Configuration;
+using Serilog.Events;
+using Serilog.Sinks.AzureBlobStorage;
+using Serilog.Exceptions;
 
 
-Log.Logger = new LoggerConfiguration()
-    .WriteTo.Console()
-    .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day,
-                outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {CorrelationId} {Level:u3} {Username} {Message:lj}{Exception}{NewLine}")
-    .CreateLogger();
+Log.Logger = loggerConfig.CreateLogger();
+
+
+
+
+// Log.Logger = new LoggerConfiguration()
+//     .WriteTo.Console()
+//     .WriteTo.File("Logs/log.txt", rollingInterval: RollingInterval.Day,
+//                 outputTemplate: "{Timestamp:yyyy-MM-dd HH:mm:ss.fff zzz} {CorrelationId} {Level:u3} {Username} {Message:lj}{Exception}{NewLine}")
+//     .CreateLogger();
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -173,6 +183,8 @@ builder.Services.AddTransient<IFunctionalities, Functionalities>();
 builder.Services.AddScoped<IBidService, BidService>();
 builder.Services.AddTransient<IValidation, Validation>();
 builder.Services.AddTransient<ICommonUserService, CommonUserService>();
+
+
 #endregion
 
 #region Misc
@@ -236,5 +248,7 @@ app.UseRateLimiter();
 
 app.MapControllers();
 app.MapHub<AuctionHub>("/auctionHub");
+
+
 
 app.Run();

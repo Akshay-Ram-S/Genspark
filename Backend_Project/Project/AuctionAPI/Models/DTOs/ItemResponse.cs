@@ -12,6 +12,7 @@ namespace AuctionAPI.Models.DTOs
         public DateTime EndDate { get; set; }
         public decimal? CurrentBid { get; set; }
         public string CurrentBidderName { get; set; } = string.Empty;
+        public Guid SellerId { get; set;}
         public string SellerName { get; set; } = string.Empty;
         public string BoughtBy { get; set; } = string.Empty;
         

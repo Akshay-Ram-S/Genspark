@@ -18,6 +18,7 @@ namespace AuctionAPI.Service
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             await WaitForDatabaseAsync(stoppingToken);
+            DateTime lastLogUploadTime = DateTime.MinValue;
 
             try
             {
@@ -73,21 +74,20 @@ namespace AuctionAPI.Service
                         catch (IdNotFoundException ex)
                         {
                             Console.WriteLine($"[MonitorService] Item not found during update. Skipping. ID: {item.Id}, Msg: {ex.Message}");
-                            continue;
                         }
                         catch (Exception ex)
                         {
-                            Console.WriteLine($"[MonitorService] Unexpected error while processing item {item.Id}: {ex.Message}");
-                            continue;
+                            Console.WriteLine($"[MonitorService] Error processing item {item.Id}: {ex.Message}");
                         }
                     }
 
                     await Task.Delay(TimeSpan.FromSeconds(30), stoppingToken);
+
                 }
             }
-            catch (Exception e)
+            catch (Exception ex)
             {
-                Console.WriteLine($"[MonitorService] Fatal error: {e.Message}");
+                Console.WriteLine($"[MonitorService] Fatal error: {ex.Message}");
             }
         }
 
@@ -103,7 +103,7 @@ namespace AuctionAPI.Service
                     using var scope = _serviceProvider.CreateScope();
                     var context = scope.ServiceProvider.GetRequiredService<AuctionContext>();
 
-                    var _ = await context.Database.ExecuteSqlRawAsync("SELECT 1", token);
+                    await context.Database.ExecuteSqlRawAsync("SELECT 1", token);
                     Console.WriteLine("[MonitorService] Database is ready.");
                     return;
                 }
@@ -117,7 +117,5 @@ namespace AuctionAPI.Service
 
             throw new Exception("[MonitorService] Database not ready after retries.");
         }
-
-
     }
 }

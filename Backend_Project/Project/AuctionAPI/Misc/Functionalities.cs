@@ -111,6 +111,7 @@ namespace AuctionAPI.Misc
                 EndDate = item.EndDate,
                 CurrentBid = item.ItemDetails?.CurrentBid,
                 CurrentBidderName = item.ItemDetails?.Bidder?.User?.Name ?? "N/A",
+                BoughtBy = (item.Status == "Sold") ? item.ItemDetails?.Bidder?.User?.Name : ""
             });
             return itemSummaries;
         }

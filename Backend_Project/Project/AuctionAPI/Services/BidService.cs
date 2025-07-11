@@ -34,7 +34,7 @@ namespace AuctionAPI.Services
             _hubContext = hubContext;
         }
 
-        public async Task<BidResponse> PlaceBid(BidCreateDTO bidDto, string role)
+        public async Task<BidResponse> PlaceBid(BidCreateDTO bidDto)
         {
             try
             {
@@ -43,9 +43,6 @@ namespace AuctionAPI.Services
 
                 if (bidDto.ItemId == Guid.Empty)
                     throw new ArgumentException("ItemId must be a valid GUID.", nameof(bidDto.ItemId));
-
-                if (role != "Admin" && bidDto.BidderId == Guid.Empty)
-                    throw new ArgumentException("BidderId must be a valid GUID.", nameof(bidDto.BidderId));
 
                 var item = await _itemRepository.Get(bidDto.ItemId);
                 if (item == null)
@@ -59,24 +56,11 @@ namespace AuctionAPI.Services
 
                 item.Bids ??= new Collection<Bid>();
 
-                Bidder bidder;
+                var bidder = await _bidderRepository.Get(bidDto.BidderId);
+                if (bidder == null)
+                    throw new Exception("Bidder not found");
 
-                if (role == "Admin")
-                {
-                    bidder = new Bidder
-                    {
-                        BidderId = Guid.NewGuid(),
-                        User = new User { Name = "Admin" }, 
-                        Bids = new List<Bid>()
-                    };
-                }
-                else
-                {
-                    bidder = await _bidderRepository.Get(bidDto.BidderId);
-                    if (bidder == null)
-                        throw new Exception("Bidder not found");
-                    bidder.Bids ??= new List<Bid>();
-                }
+                bidder.Bids ??= new List<Bid>();
 
                 var bid = _mapper.MapBid(bidDto);
                 if (bid == null)

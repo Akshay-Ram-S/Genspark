@@ -20,6 +20,7 @@ namespace AuctionAPI.Mappers
                 Category = item.Category ?? "Uncategorized",
                 CurrentBid = itemDetail.CurrentBid,
                 CurrentBidderName = bidder?.User?.Name ?? string.Empty,
+                SellerId = seller.SellerId,
                 SellerName = seller?.User?.Name ?? string.Empty
             };
 

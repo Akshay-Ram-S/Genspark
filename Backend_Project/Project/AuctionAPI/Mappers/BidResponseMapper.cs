@@ -13,6 +13,7 @@ namespace AuctionAPI.Mappers
                 Id = bid.Id,
                 ItemID = bid.ItemId,
                 Title = item.Title,
+                BidderId = bidder.BidderId,
                 BidderName = bidder.User.Name?? "Name not found",
                 Amount = bid.Amount,
                 Timestamp = bid.Timestamp,

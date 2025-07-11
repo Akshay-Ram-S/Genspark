@@ -77,6 +77,21 @@ namespace AuctionAPI.Controllers
                     _logger.LogWarning($"Attempt to register with existing email: {user.Email}");
                     return Conflict(ApiResponseMapper.Conflict<string>("Email already exists."));
                 }
+                if (await _validation.PhoneExists(user.Phone))
+                {
+                    _logger.LogWarning($"Attempt to register with existing phone: {user.Phone}");
+                    return Conflict(ApiResponseMapper.Conflict<string>("Phone number already exists."));
+                }
+                
+                if (await _validation.AadharExists(user.Aadhar))
+                {
+                    return Conflict(ApiResponseMapper.Conflict<string>("Aadhar already exists"));
+                }
+                if (await _validation.PanExists(user.PAN))
+                {
+                    return Conflict(ApiResponseMapper.Conflict<string>("PAN already exists"));
+                }
+                
 
                 if (user.Role.ToLower() == "seller")
                 {
@@ -92,12 +107,13 @@ namespace AuctionAPI.Controllers
                     return CreatedAtAction("GetBidderById", "Bidder", new { id = result.BidderId },
                             ApiResponseMapper.Created(result, "Bidder created successfully."));
                 }
-                else if (user.Role.ToLower() == "admin")
-                {
-                    var result = await _userService.CreateAdmin(user);
-                    _logger.LogWarning($"Invalid role specified: {user.Role}");
-                    return Ok(ApiResponseMapper.Success(result, $"Admin created"));
-                }
+                // else if (user.Role.ToLower() == "admin")
+                // {
+                //     var result = await _userService.CreateAdmin(user);
+                //     _logger.LogWarning($"Invalid role specified: {user.Role}");
+                //     return Ok(ApiResponseMapper.Success(result, $"Admin created"));
+                // }
+                
                 return Ok(ApiResponseMapper.Success("Done", $"Admin created"));
             }
             catch (Exception e)

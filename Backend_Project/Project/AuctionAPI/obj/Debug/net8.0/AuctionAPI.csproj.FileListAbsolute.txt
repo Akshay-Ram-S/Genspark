@@ -173,3 +173,14 @@
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/obj/Debug/net8.0/AuctionAPI.pdb
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/obj/Debug/net8.0/AuctionAPI.genruntimeconfig.cache
 /Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/obj/Debug/net8.0/ref/AuctionAPI.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/Azure.Core.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/Azure.Storage.Blobs.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/Azure.Storage.Common.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/System.ClientModel.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/System.IO.Hashing.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/System.Memory.Data.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/Azure.Identity.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/Microsoft.Identity.Client.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/Microsoft.Identity.Client.Extensions.Msal.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/Serilog.Exceptions.dll
+/Users/presidio/Documents/Genspark/Backend_Project/Project/AuctionAPI/bin/Debug/net8.0/Serilog.Sinks.AzureBlobStorage.dll

@@ -42,33 +42,17 @@ namespace AuctionAPI.Services
             _userRepository = userRepository;
         }
 
-       public async Task<ItemResponse> CreateItemAsync(ItemCreateDto dto, string email)
+       public async Task<ItemResponse> CreateItemAsync(ItemCreateDto dto)
        {
             try
             {
                 var item = _mapper.MapItem(dto);
 
                 var seller = await _sellerRepository.Get(dto.SellerID);
-                bool isAdmin = false;
 
                 if (seller == null)
                 {
-                    var user = await _userRepository.Get(email);
-                    if (user == null)
-                        throw new Exception($"User with ID {dto.SellerID} not found");
-
-                    if (user.Role != "Admin")
-                        throw new Exception($"User with ID {dto.SellerID} is not authorized to post items");
-
-                    isAdmin = true;
-                    // For Admin only
-                    seller = new Seller
-                    {
-                        SellerId = user.UserId,
-                        User = user,
-                        Items = new List<Item>()
-                    };
-                    await _sellerRepository.Add(seller);
+                    throw new Exception($"User with ID {dto.SellerID} not found");
                 }
 
                 item = await _itemRepository.Add(item);
@@ -91,22 +75,11 @@ namespace AuctionAPI.Services
 
                 await _itemDetailsRepository.Add(itemDetails);
 
-                if (!isAdmin)
-                {
-                    seller!.Items ??= new List<Item>();
-                    seller.Items.Add(item);
-                    await _sellerRepository.Update(seller.SellerId, seller);
-                }
-
-                var userEmail = isAdmin
-                    ? (await _userRepository.Get(email))?.Email
-                    : seller!.User.Email;
-
                 await _auditRepository.Add(new Audit
                 {
                     Action = "Create",
                     CreatedAt = DateTime.UtcNow,
-                    CreatedBy = userEmail,
+                    CreatedBy = seller?.User.Email,
                     EntityId = item.Id,
                     EntityType = "Item"
                 });

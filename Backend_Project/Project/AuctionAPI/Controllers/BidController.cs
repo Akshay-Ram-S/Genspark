@@ -34,11 +34,10 @@ namespace AuctionAPI.Controllers
         {
             _logger.LogInformation("Attempting to place a bid on item {ItemId} by bidder {BidderId} for amount {Amount}",
                 bidDto.ItemId, bidDto.BidderId, bidDto.Amount);
-            var role = User.FindFirst(ClaimTypes.Role)?.Value;
 
             try
             {
-                var bid = await _bidService.PlaceBid(bidDto, role);
+                var bid = await _bidService.PlaceBid(bidDto);
 
                 _logger.LogInformation("Bid placed successfully with ID {BidId}", bid.Id);
 

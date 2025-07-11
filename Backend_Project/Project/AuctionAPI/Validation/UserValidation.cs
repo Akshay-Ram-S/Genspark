@@ -32,10 +32,25 @@ namespace AuctionAPI.Validation
             }
         }
 
+        public async Task<bool> PhoneExists(string phone)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(phone))
+                    return false;
+
+                var users = await _userRepository.GetAll();
+                return users.Any(u => u.Phone.Equals(phone, StringComparison.OrdinalIgnoreCase));
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public bool IsValidEmail(string email)
         {
-            var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$",
-                                        RegexOptions.IgnoreCase | RegexOptions.Compiled);
+            var emailRegex = new Regex(@"^[^@\s]+@[^@\s]+\.[^@\s]+$", RegexOptions.IgnoreCase | RegexOptions.Compiled);
             return emailRegex.IsMatch(email);
         }
 
@@ -76,6 +91,59 @@ namespace AuctionAPI.Validation
 
             return true;
         }
+
+        public async Task<bool> AadharExists(string aadhar)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(aadhar))
+                    return false;
+
+                var users = await _userRepository.GetAll();
+
+                foreach (var user in users)
+                {
+                    if (!string.IsNullOrEmpty(user.Aadhar) &&
+                        BCrypt.Net.BCrypt.Verify(aadhar, user.Aadhar))
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
+        public async Task<bool> PanExists(string pan)
+        {
+            try
+            {
+                if (string.IsNullOrWhiteSpace(pan))
+                    return false;
+
+                var users = await _userRepository.GetAll();
+
+                foreach (var user in users)
+                {
+                    if (!string.IsNullOrEmpty(user.PAN) &&
+                        BCrypt.Net.BCrypt.Verify(pan, user.PAN))
+                    {
+                        return true;
+                    }
+                }
+
+                return false;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
 
     }
 }

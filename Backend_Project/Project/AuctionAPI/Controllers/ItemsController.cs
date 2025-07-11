@@ -47,7 +47,7 @@ namespace AuctionAPI.Controllers
 
             try
             {
-                var item = await _itemService.CreateItemAsync(dto, userEmail);
+                var item = await _itemService.CreateItemAsync(dto);
                 _logger.LogInformation("Item {ItemId} created successfully by user {User}", item.ItemID, userEmail);
                 return CreatedAtAction(nameof(GetItem), new { id = item.ItemID },
                     ApiResponseMapper.Created(item, "Item created successfully."));
