@@ -1,0 +1,138 @@
+{
+  "version": 2,
+  "dgSpecHash": "u01bRyZW0Ic=",
+  "success": true,
+  "projectFilePath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+  "expectedPackageFiles": [
+    "/Users/presidio/.nuget/packages/azure.core/1.46.2/azure.core.1.46.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/azure.identity/1.14.2/azure.identity.1.14.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/azure.security/1.1.0/azure.security.1.1.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/azure.security.keyvault.secrets/4.8.0/azure.security.keyvault.secrets.4.8.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/azure.storage.blobs/12.24.1/azure.storage.blobs.12.24.1.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/azure.storage.common/12.23.0/azure.storage.common.12.23.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.bcl.asyncinterfaces/8.0.0/microsoft.bcl.asyncinterfaces.8.0.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.data.edm/5.6.2/microsoft.data.edm.5.6.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.data.odata/5.6.2/microsoft.data.odata.5.6.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.data.services.client/5.6.2/microsoft.data.services.client.5.6.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.extensions.apidescription.server/6.0.5/microsoft.extensions.apidescription.server.6.0.5.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.extensions.dependencyinjection.abstractions/8.0.2/microsoft.extensions.dependencyinjection.abstractions.8.0.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.extensions.logging.abstractions/8.0.3/microsoft.extensions.logging.abstractions.8.0.3.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.identity.client/4.73.1/microsoft.identity.client.4.73.1.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.identity.client.extensions.msal/4.73.1/microsoft.identity.client.extensions.msal.4.73.1.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.identitymodel.abstractions/6.35.0/microsoft.identitymodel.abstractions.6.35.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.openapi/1.6.14/microsoft.openapi.1.6.14.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/microsoft.windowsazure.configurationmanager/1.8.0/microsoft.windowsazure.configurationmanager.1.8.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/newtonsoft.json/5.0.8/newtonsoft.json.5.0.8.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/swashbuckle.aspnetcore/6.6.2/swashbuckle.aspnetcore.6.6.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/swashbuckle.aspnetcore.swagger/6.6.2/swashbuckle.aspnetcore.swagger.6.6.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/swashbuckle.aspnetcore.swaggergen/6.6.2/swashbuckle.aspnetcore.swaggergen.6.6.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/swashbuckle.aspnetcore.swaggerui/6.6.2/swashbuckle.aspnetcore.swaggerui.6.6.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/system.clientmodel/1.4.2/system.clientmodel.1.4.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/system.diagnostics.diagnosticsource/6.0.1/system.diagnostics.diagnosticsource.6.0.1.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/system.io.hashing/6.0.0/system.io.hashing.6.0.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/system.memory/4.5.5/system.memory.4.5.5.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/system.memory.data/6.0.1/system.memory.data.6.0.1.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/system.runtime.compilerservices.unsafe/6.0.0/system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/system.security.cryptography.protecteddata/4.5.0/system.security.cryptography.protecteddata.4.5.0.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/system.spatial/5.6.2/system.spatial.5.6.2.nupkg.sha512",
+    "/Users/presidio/.nuget/packages/windowsazure.storage/4.3.0/windowsazure.storage.4.3.0.nupkg.sha512"
+  ],
+  "logs": [
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'Azure.Security 1.1.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "libraryId": "Azure.Security",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'Microsoft.Data.Edm 5.6.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "libraryId": "Microsoft.Data.Edm",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'Microsoft.Data.OData 5.6.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "libraryId": "Microsoft.Data.OData",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'Microsoft.Data.Services.Client 5.6.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "libraryId": "Microsoft.Data.Services.Client",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'Microsoft.WindowsAzure.ConfigurationManager 1.8.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "libraryId": "Microsoft.WindowsAzure.ConfigurationManager",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'Newtonsoft.Json 5.0.8' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "libraryId": "Newtonsoft.Json",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'System.Spatial 5.6.2' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "libraryId": "System.Spatial",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    },
+    {
+      "code": "NU1701",
+      "level": "Warning",
+      "message": "Package 'WindowsAzure.Storage 4.3.0' was restored using '.NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8, .NETFramework,Version=v4.8.1' instead of the project target framework 'net8.0'. This package may not be fully compatible with your project.",
+      "projectPath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "warningLevel": 1,
+      "filePath": "/Users/presidio/Documents/Genspark/Day_50/BlobAPI/BlobAPI/BlobAPI.csproj",
+      "libraryId": "WindowsAzure.Storage",
+      "targetGraphs": [
+        "net8.0"
+      ]
+    }
+  ]
+}
