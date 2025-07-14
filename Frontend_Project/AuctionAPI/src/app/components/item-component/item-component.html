@@ -27,7 +27,7 @@
       <img [src]="imageUrl || fallbackImage"
            (load)="onImageLoad()"
            (click)="openImageModal()"
-           (error)="imageUrl = fallbackImage"
+           (error)="fallbackImage"
            [alt]="'Image of ' + item.title"
            class="w-100 h-100 object-fit-cover rounded-top" />
     </div>
@@ -45,7 +45,6 @@
             style="overflow: hidden; cursor: pointer;"
             (click)="openDescriptionModal(item.description, item.title)">
           {{ item.description }}
-          <span class="position-absolute end-0 bottom-0 bg-white ps-1">...</span>
         </div>
 
         <ul class="list-unstyled mb-2">

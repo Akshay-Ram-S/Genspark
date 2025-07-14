@@ -45,7 +45,7 @@ export class PostItem implements OnInit {
       endDate: ['', [Validators.required, futureDateValidator]],
       category: ['', Validators.required],
       description: ['', [Validators.required, Validators.minLength(10), Validators.maxLength(1000)]],
-      image: [null]
+      image: [null, Validators.required]
     });
   }
 
@@ -91,11 +91,13 @@ export class PostItem implements OnInit {
           this.errorMessage = '';
           this.imageFile = webpFile;
           this.imagePreviewUrl = img.src;
+          this.postForm.get('image')?.setValue(this.imageFile);
         })
         .catch(err => {
           console.error('Image conversion failed:', err);
           this.errorMessage = 'Failed to convert image to WebP.';
           this.imagePreviewUrl = null;
+          this.postForm.get('image')?.setValue(null);
         });
     };
 

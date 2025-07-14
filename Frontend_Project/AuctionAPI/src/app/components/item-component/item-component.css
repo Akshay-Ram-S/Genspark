@@ -66,6 +66,7 @@
 }
 
 .unsold{
+  left: -40px;
   background-color: rgb(170, 170, 170);
   text-align: center;
 }

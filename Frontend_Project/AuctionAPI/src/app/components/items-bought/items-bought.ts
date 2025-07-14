@@ -28,7 +28,6 @@ export class ItemsBought implements OnInit{
     this.bidderService.getItemsBought(this.bidderId).subscribe({
       next: (res) => {
         this.items = res.data;
-        console.log(res.data);
       },
       error: (err) => {
         console.error('Error loading seller profile', err);

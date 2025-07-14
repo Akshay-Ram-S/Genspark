@@ -86,20 +86,24 @@ export class ItemsComponent implements OnInit, OnDestroy {
     }).subscribe({
       next: (response) => {
         console.log(response.data);
-        this.noItemsFound = false;
         const statusOrder: Record<string, number> = {
           active: 1,
           sold: 2,
           unsold: 3
         };
 
-        this.items = (response.data ?? [])
-        .filter(item => this.applyStatusFilter([item]).length > 0)
-        .sort((a, b) => {
+        const filtered = (response.data ?? []).filter(item =>
+          this.applyStatusFilter([item]).length > 0
+        );
+
+        this.items = filtered.sort((a, b) => {
           const statusA = statusOrder[a.status.toLowerCase()] ?? 999;
           const statusB = statusOrder[b.status.toLowerCase()] ?? 999;
           return statusA - statusB;
         });
+
+        this.noItemsFound = filtered.length === 0;
+
         this.totalPages = response.pagination?.totalPages ?? 1;
         this.isLoading = false;
       },

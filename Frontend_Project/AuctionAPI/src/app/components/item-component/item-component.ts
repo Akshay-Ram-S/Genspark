@@ -38,6 +38,7 @@ export class ItemComponent implements OnInit {
       const payload = JSON.parse(atob(token.split('.')[1]));
       this.isAdmin = payload?.role?.toLowerCase() === 'admin';
     }
+    
   }
 
   onImageLoad() {

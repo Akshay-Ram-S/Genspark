@@ -1,8 +1,9 @@
 import { Component, ElementRef, HostListener, ViewChild } from '@angular/core';
-import { NotificationService } from '../../../services/notification.service';
+import { NotificationService } from '../../services/notification.service';
 import { CommonModule } from '@angular/common';
 
 @Component({
+  standalone: true,
   selector: 'app-notification',
   imports: [CommonModule],
   templateUrl: './notification.html',
