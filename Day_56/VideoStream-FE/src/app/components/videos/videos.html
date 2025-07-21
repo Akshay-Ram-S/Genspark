@@ -1,0 +1,22 @@
+<div class="container mt-4">
+  <h2 class="mb-4 text-center"><i class="bi bi-broadcast-pin me-2"></i>Live Stream</h2>
+  
+  <div class="row">
+    <div class="col-md-4 mb-4" *ngFor="let video of videos">
+      <div class="card h-100">
+        <video 
+        [src]="video.blobUrl"
+        class="card-img-top"
+        controls 
+        muted 
+        preload="none" 
+        ></video>
+
+        <div class="card-body">
+          <h5 class="card-title">{{ video.title }}</h5>
+          <p class="card-text">{{ video.description }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
